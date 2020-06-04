@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 export default class App extends Component {
   render (){
     return (
-      <p>Olá Mundo</p>
+      <p>Olá Mundo Git e Glitch</p>
     )
   }
 }
