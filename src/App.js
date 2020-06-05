@@ -4,7 +4,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <p>Olá Mundo Glitch</p>
+        <p>Olá Mundo VS Code</p>
       </div>
     );
   }
