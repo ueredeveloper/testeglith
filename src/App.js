@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
 export default class App extends Component {
-  render (){
+  render() {
     return (
-
-    <div><p>Olá Mundo Vs Code</p></div>
-  
-    )
+      <div>
+        {" "}
+        <p>Olá Mundo Glitch</p>
+      </div>
+    );
   }
 }
