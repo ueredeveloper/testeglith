@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 
 var pos1 = 0,
@@ -6,11 +6,12 @@ var pos1 = 0,
   pos3 = 0,
   pos4 = 0;
 
-function elmnt(props) {
-  return <div id="mydivheader"></div>;
-}
-
 const Draggable = () => {
+  
+  const DivDrag = props => {
+    // Você pode usar Hooks aqui!
+    return <div id="mydivheader" onClick={props.dragMouseDown}></div>;
+  };
 
   const dragMouseDown = e => {
     e = e || window.event;
@@ -18,9 +19,9 @@ const Draggable = () => {
     // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
-    document.onmouseup = this.closeDragElement;
+    document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
-    document.onmousemove = this.elementDrag;
+    document.onmousemove = elementDrag;
   };
 
   const elementDrag = e => {
@@ -32,8 +33,8 @@ const Draggable = () => {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
-    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+    DivDrag.style.top = DivDrag.offsetTop - pos2 + "px";
+    DivDrag.style.left = DivDrag.offsetLeft - pos1 + "px";
   };
 
   const closeDragElement = () => {
@@ -42,7 +43,11 @@ const Draggable = () => {
     document.onmousemove = null;
   };
 
-  return <div>{elmnt}</div>;
+  return (
+    <div>
+      <DivDrag dragMouseDown={dragMouseDown}></DivDrag>
+    </div>
+  );
 };
 
 export default Draggable;
