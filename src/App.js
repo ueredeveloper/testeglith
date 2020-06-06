@@ -4,7 +4,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <p>Olá Mundo Vs Code 3</p>
+        <p>Olá Mundo Glitch 4</p>
       </div>
     );
   }
