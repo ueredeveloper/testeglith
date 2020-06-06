@@ -8,9 +8,19 @@ var pos1 = 0,
 
 const Draggable = () => {
   
+  // div 
   const DivDrag = props => {
-    // Você pode usar Hooks aqui!
-    return <div id="mydivheader" onClick={props.dragMouseDown}></div>;
+    const styles = {
+      top: 0,
+      left: 0
+    };
+    return (
+      <div id="mydiv">
+        <div id="mydivheader" style={styles} onClick={props.dragMouseDown}>
+          Click here to move
+        </div>
+      </div>
+    );
   };
 
   const dragMouseDown = e => {
@@ -32,6 +42,9 @@ const Draggable = () => {
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
+
+    console.log(DivDrag);
+
     // set the element's new position:
     DivDrag.style.top = DivDrag.offsetTop - pos2 + "px";
     DivDrag.style.left = DivDrag.offsetLeft - pos1 + "px";
