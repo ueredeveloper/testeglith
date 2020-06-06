@@ -6,14 +6,11 @@ var pos1 = 0,
   pos3 = 0,
   pos4 = 0;
 
-const Draggable = () => {
-  var eleDiv = React.createElement("div", {id:'mydivheader'}, "Clique Here");
+function elmnt(props) {
+  return <div id="mydivheader"></div>;
+}
 
-  const closeDragElement = () => {
-    /* stop moving when mouse button is released:*/
-    document.onmouseup = null;
-    document.onmousemove = null;
-  };
+const Draggable = () => {
 
   const dragMouseDown = e => {
     e = e || window.event;
@@ -25,8 +22,8 @@ const Draggable = () => {
     // call a function whenever the cursor moves:
     document.onmousemove = this.elementDrag;
   };
-  
-   const elementDrag = (e) => {
+
+  const elementDrag = e => {
     e = e || window.event;
     e.preventDefault();
     // calculate the new cursor position:
@@ -35,12 +32,17 @@ const Draggable = () => {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+  };
 
+  const closeDragElement = () => {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  };
 
-  return <div>{eleDiv}</div>;
+  return <div>{elmnt}</div>;
 };
 
 export default Draggable;
