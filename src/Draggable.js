@@ -23,6 +23,18 @@ const Draggable = () => {
       </div>
     );
   };
+  
+  
+  const DivDragg = (props) => {
+    return React.DOM.div({
+      dragMouseDown: props.dragMouseDown,
+      style: {
+        position: 'absolute',
+        left: 0,
+        top: 0
+      }
+    }, props.children)
+  }
 
   const dragMouseDown = e => {
     e = e || window.event;
@@ -44,11 +56,11 @@ const Draggable = () => {
     pos3 = e.clientX;
     pos4 = e.clientY;
 
-    console.log(DivDrag);
+    console.log(DivDragg);
 
     // set the element's new position:
-    DivDrag.props.style.top = DivDrag.offsetTop - pos2 + "px";
-    DivDrag.style.left = DivDrag.offsetLeft - pos1 + "px";
+    DivDragg.props.style.top = DivDragg.offsetTop - pos2 + "px";
+    DivDragg.props.style.left = DivDragg.offsetLeft - pos1 + "px";
   };
 
   const closeDragElement = () => {
@@ -59,7 +71,7 @@ const Draggable = () => {
 
   return (
     <div>
-      <DivDrag dragMouseDown={dragMouseDown} style={{top:0, left:0}}></DivDrag>
+      <DivDragg dragMouseDown={dragMouseDown}></DivDragg>
     </div>
   );
 };
