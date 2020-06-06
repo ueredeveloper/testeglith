@@ -1,24 +1,20 @@
 import React, { Component } from "react";
 
-  const button = {
-    position: 'absolute',
-    left: '100px',
-    top: '150px',
-  }
-  
-  const btnInput = ()=> {
-    return <button id="btn" style={button} onClick={this.setX()}>.</button>
-      
-      
-  }
-  
+const button = {
+  position: "absolute",
+  left: "100px",
+  top: "150px"
+};
+
+const ButtonInput = (value) => {
+  return <button>value</button>;
+};
+
 export default class App extends Component {
-  
-
-
   setX = () => {
-    var rect = bntInput.getBoundingClientRect();
-    console.log(rect.top, rect.right, rect.bottom, rect.left);
+    var rect = ButtonInput.getBoundingClientRect();
+    //console.log(rect.top, rect.right, rect.bottom, rect.left);
+    console.log("clicked");
   };
 
   render() {
@@ -26,7 +22,9 @@ export default class App extends Component {
       <div>
         <div>
           <input></input>
-          
+          <ButtonInput id="btn" style={button} onClick={this.setX()}>
+           Olá Mundo
+          </ButtonInput>
         </div>
       </div>
     );
