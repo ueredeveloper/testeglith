@@ -20,17 +20,23 @@ export default class Draggable extends Component {
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
-    
-    let button = document.getElementById('mydivheader')
+
+    let button = document.getElementById("mydivheader");
 
     // set the element's new position:
     button.style.top = button.offsetTop - pos2 + "px";
     button.style.left = button.offsetLeft - pos1 + "px";
+
+    console.log(button);
   };
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          backgroundColor: "red"
+        }}
+      >
         <div id="mydivheader" onClick={this.elemDrag}>
           Draggable
         </div>
