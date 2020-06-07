@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const InputDraggable = (props) => {
+const InputDraggable = props => {
   const divRef = useRef(null);
 
   const dragMouseDown = e => {
@@ -46,8 +46,6 @@ const InputDraggable = (props) => {
     pos4 = e.clientY;
 
     let div = divRef.current;
-    
-    console.log(div)
 
     // set the element's new position:
     div.style.top = div.offsetTop - pos2 + "px";
@@ -67,7 +65,16 @@ const InputDraggable = (props) => {
   };
 
   return (
-    <div id="mydiv" ref={divRef} onMouseDown={dragMouseDown} type="text">
+    <div
+      id="mydiv"
+      style={{
+        top: props.component.style.top,
+        left: props.component.style.top
+      }}
+      ref={divRef}
+      onMouseDown={dragMouseDown}
+      type="text"
+    >
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">

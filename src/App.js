@@ -5,15 +5,17 @@ const App = () => {
   const [data, setData] = React.useState({
     components: [
       {
+        content:"Loop For",
         style: {
-          top: "160px",
-          left: "193px"
+          top: "190px",
+          left: "200px"
         }
       },
       {
+        content:"Switch",
         style: {
-          top: "64px",
-          left: "175px"
+          top: "50px",
+          left: "400px"
         }
       }
     ]
@@ -22,16 +24,9 @@ const App = () => {
   return (
     <div>
       <div>Olá Mundo Brasil</div>
-      <InputDraggable component={/>
-                                 {{data.paths.map((path, i) => (
-          <Polygon
-            key={i}
-            path={path}
-            googleMap={googleMap}
-            map={map}
-            setInformation={setInformation}
-          />
-        ))}}
+      {data.components.map((c, i) => (
+        <InputDraggable component={c} key={i}/>
+      ))}
     </div>
   );
 };
