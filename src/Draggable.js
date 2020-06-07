@@ -9,21 +9,6 @@ var pos1 = 0,
 const Draggable = () => {
   const divRef = useRef(null);
 
-  // div
-  /*
-  const DivDrag = props => {
-    
-    
-    return (
-      <div
-        id="mydiv"
-        onClick={props.dragMouseDown}
-      >
-        <div id="mydivheader">Click here to move</div>
-      </div>
-    );
-  };*/
-
   const dragMouseDown = e => {
     e = e || window.event;
     e.preventDefault();
@@ -46,8 +31,6 @@ const Draggable = () => {
 
     let div = divRef.current;
 
-    console.log(div);
-
     // set the element's new position:
     div.style.top = div.offsetTop - pos2 + "px";
     div.style.left = div.offsetLeft - pos1 + "px";
@@ -59,10 +42,8 @@ const Draggable = () => {
     document.onmousemove = null;
   };
 
-  //
-  //    onClick={props.dragMouseDown}
   return (
-    <div id="mydivheader" ref={divRef} onClick={dragMouseDown}>
+    <div id="mydiv" ref={divRef} onMouseDown={dragMouseDown}>
       click
     </div>
   );
