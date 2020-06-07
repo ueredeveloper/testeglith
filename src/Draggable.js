@@ -9,10 +9,8 @@ var pos1 = 0,
 const Draggable = () => {
   // div
   const DivDrag = props => {
-    style :{
-      top: 0,
-      left: 0
-    }
+    
+    
     return (
       <div
         id="mydiv"
@@ -21,6 +19,12 @@ const Draggable = () => {
         <div id="mydivheader">Click here to move</div>
       </div>
     );
+  };
+  
+  
+  DivDrag.style = {
+    top:0,
+    left:0
   };
 
   const dragMouseDown = e => {
