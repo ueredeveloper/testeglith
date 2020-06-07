@@ -6,8 +6,6 @@ const App = () => {
     components: []
   });
 
- 
-
   return (
     <div>
       <div>Olá Mundo Brasil</div>

@@ -69,12 +69,23 @@ const Draggable = () => {
     setAnchorEl(null);
   };
   const classes = useStyles();
+  const [value, setValue] = React.useState("Controlled");
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
 
   return (
     <div id="mydiv" ref={divRef} onMouseDown={dragMouseDown} type="text">
       <div>
         <form className={classes.root} noValidate autoComplete="off">
-          <TextField id="standard-basic" label="Standard" />
+          <TextField
+            id="standard-textarea"
+            label="Multiline Placeholder"
+            placeholder="Placeholder"
+            multiline
+            value={value}
+            onChange={handleChange}
+          />
           <IconButton className={classes.margin} size="small">
             <ControlCameraIcon fontSize="small" />
           </IconButton>
