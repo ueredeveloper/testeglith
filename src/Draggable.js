@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./style.css";
 
 var pos1 = 0,
@@ -7,6 +7,9 @@ var pos1 = 0,
   pos4 = 0;
 
 const Draggable = () => {
+  
+  const mapContainerRef = useRef(null);
+  
   // div
   const DivDrag = props => {
     
