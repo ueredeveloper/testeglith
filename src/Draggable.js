@@ -7,10 +7,10 @@ var pos1 = 0,
   pos4 = 0;
 
 const Draggable = () => {
-  
-  const mapContainerRef = useRef(null);
-  
+  const divRef = useRef(null);
+
   // div
+  /*
   const DivDrag = props => {
     
     
@@ -22,13 +22,7 @@ const Draggable = () => {
         <div id="mydivheader">Click here to move</div>
       </div>
     );
-  };
-  
-  
-  DivDrag.style = {
-    top:0,
-    left:0
-  };
+  };*/
 
   const dragMouseDown = e => {
     e = e || window.event;
@@ -50,11 +44,13 @@ const Draggable = () => {
     pos3 = e.clientX;
     pos4 = e.clientY;
 
-    console.log(DivDrag);
+    let div = divRef.current;
+
+    console.log(div);
 
     // set the element's new position:
-    DivDrag.props.style.top = DivDrag.offsetTop - pos2 + "px";
-    DivDrag.props.style.left = DivDrag.offsetLeft - pos1 + "px";
+    div.style.top = div.offsetTop - pos2 + "px";
+    div.style.left = div.offsetLeft - pos1 + "px";
   };
 
   const closeDragElement = () => {
@@ -63,12 +59,11 @@ const Draggable = () => {
     document.onmousemove = null;
   };
 
+  //
+  //    onClick={props.dragMouseDown}
   return (
-    <div>
-      <DivDrag
-        dragMouseDown={dragMouseDown}
-        style={{ style: { top: 0, left: 0 } }}
-      ></DivDrag>
+    <div id="mydivheader" ref={divRef} onClick={dragMouseDown}>
+      click
     </div>
   );
 };
