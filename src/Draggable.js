@@ -4,6 +4,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 
 import "./style.css";
 
@@ -73,12 +74,17 @@ const Draggable = () => {
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <TextField id="standard-basic" label="Standard" />
+
+          <IconButton size="small">
+            <ControlCameraIcon fontSize="small" />
+          </IconButton>
+
           <Button
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
           >
-            Open Menu
+            Opções
           </Button>
           <Menu
             id="simple-menu"

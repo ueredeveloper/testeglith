@@ -1,4 +1,3 @@
-
 /*
 #mydiv {
   position: absolute;
@@ -16,4 +15,8 @@
   position: absolute;
 
   color: #fff;
+}
+]
+#btnMove {
+  cursor: move;
 }
