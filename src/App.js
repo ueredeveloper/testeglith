@@ -7,8 +7,8 @@ const App = () => {
       {
         content:"Loop For",
         style: {
-          top: "40px",
-          left: "50px"
+          top: "318px",
+          left: "439px"
         }
       },
       {
