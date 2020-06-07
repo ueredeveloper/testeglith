@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Draggable = () => {
+const InputDraggable = (props) => {
   const divRef = useRef(null);
 
   const dragMouseDown = e => {
@@ -46,6 +46,8 @@ const Draggable = () => {
     pos4 = e.clientY;
 
     let div = divRef.current;
+    
+    console.log(div)
 
     // set the element's new position:
     div.style.top = div.offsetTop - pos2 + "px";
@@ -86,4 +88,4 @@ const Draggable = () => {
   );
 };
 
-export default Draggable;
+export default InputDraggable;
