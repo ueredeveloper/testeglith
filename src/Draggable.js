@@ -7,6 +7,11 @@ import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import SettingsIcon from "@material-ui/icons/Settings"; // setting
+import VideoCallIcon from '@material-ui/icons/VideoCall'; // video
+import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'; // imagem
+import CreateIcon from '@material-ui/icons/Create'; // edit
+
 import "./style.css";
 
 var pos1 = 0,
@@ -92,13 +97,17 @@ const Draggable = () => {
           <IconButton aria-label="delete" className={classes.margin}>
             <DeleteIcon fontSize="small" />
           </IconButton>
-          <Button
+
+          <IconButton
+            className={classes.margin}
+            size="small"
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
           >
-            Opções
-          </Button>
+            <SettingsIcon fontSize="small" />
+          </IconButton>
+
           <Menu
             id="simple-menu"
             anchorEl={anchorEl}
@@ -107,7 +116,7 @@ const Draggable = () => {
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>Editar</MenuItem>
-            <MenuItem onClick={handleClose}>Youtube</MenuItem>
+            <MenuItem onClick={handleClose}><</MenuItem>
             <MenuItem onClick={handleClose}>Imagem</MenuItem>
           </Menu>
         </form>
