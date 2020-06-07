@@ -8,9 +8,10 @@ import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SettingsIcon from "@material-ui/icons/Settings"; // setting
-import VideoCallIcon from '@material-ui/icons/VideoCall'; // video
-import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'; // imagem
-import CreateIcon from '@material-ui/icons/Create'; // edit
+
+import VideoCallIcon from "@material-ui/icons/VideoCall"; // video
+import InsertPhotoIcon from "@material-ui/icons/InsertPhoto"; // imagem
+import CreateIcon from "@material-ui/icons/Create"; // edit
 
 import "./style.css";
 
@@ -83,6 +84,9 @@ const Draggable = () => {
     <div id="mydiv" ref={divRef} onMouseDown={dragMouseDown} type="text">
       <div>
         <form className={classes.root} noValidate autoComplete="off">
+          <IconButton className={classes.margin} size="small">
+            <ControlCameraIcon fontSize="small" />
+          </IconButton>
           <TextField
             id="standard-textarea"
             label="Multiline Placeholder"
@@ -91,12 +95,6 @@ const Draggable = () => {
             value={value}
             onChange={handleChange}
           />
-          <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon fontSize="small" />
-          </IconButton>
-          <IconButton aria-label="delete" className={classes.margin}>
-            <DeleteIcon fontSize="small" />
-          </IconButton>
 
           <IconButton
             className={classes.margin}
@@ -115,9 +113,18 @@ const Draggable = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>Editar</MenuItem>
-            <MenuItem onClick={handleClose}><</MenuItem>
-            <MenuItem onClick={handleClose}>Imagem</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <CreateIcon />
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <VideoCallIcon />
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <InsertPhotoIcon />
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <DeleteIcon />
+            </MenuItem>
           </Menu>
         </form>
       </div>
