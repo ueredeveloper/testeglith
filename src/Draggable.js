@@ -43,9 +43,12 @@ const Draggable = () => {
   };
 
   return (
-    <div id="mydiv" ref={divRef} onMouseDown={dragMouseDown}>
-      click
-    </div>
+    <input
+      id="mydiv"
+      ref={divRef}
+      onMouseDown={dragMouseDown}
+      type="text"
+    ></input>
   );
 };
 
