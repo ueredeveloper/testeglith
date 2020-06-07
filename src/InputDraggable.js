@@ -59,7 +59,7 @@ const InputDraggable = props => {
   };
 
   const classes = useStyles();
-  const [value, setValue] = React.useState("Controlled");
+  const [value, setValue] = React.useState(props.component.content);
   const handleChange = event => {
     setValue(event.target.value);
   };

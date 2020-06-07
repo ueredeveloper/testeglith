@@ -2,9 +2,20 @@
 
 Teste de conexão com repositorio github
 
-17.29 - Modificação no Glitch
-  ao fazer git pull no  glitch, as modificações vem sem, no entanto, modificar 
-  o arquio html (index.html)
+07/06/2020
+ - Comecei a pensar em fazer um mapa mental, então vi como faz um  input draggable
+ de acordo com o tuturial da W3Schools e o começo das separações dos componentes.
+ 
+[Draggable - W3Schools](https://www.w3schools.com/howto/howto_js_draggable.asp)
 
-  17.32 - Modificacao no Vs Code
-  vamos ver se esta modificacao sai no  glitch .md
+ - Component InputDraggable
+   tem o objetivo de possibilitar a movimentação do input 
+   
+   - Component InputMenu
+   mostra as opções:
+     editar
+     vídeo - adicionar vídeo
+     imagem - adicionar imagem
+     deletar
+     
+     
