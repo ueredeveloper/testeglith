@@ -1,4 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+
 import "./style.css";
 
 var pos1 = 0,
@@ -6,8 +12,16 @@ var pos1 = 0,
   pos3 = 0,
   pos4 = 0;
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch"
+    }
+  }
+}));
+
 const Draggable = () => {
-  
   const divRef = useRef(null);
 
   const dragMouseDown = e => {
@@ -43,13 +57,43 @@ const Draggable = () => {
     document.onmousemove = null;
   };
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const classes = useStyles();
+
   return (
-    <input
-      id="mydiv"
-      ref={divRef}
-      onMouseDown={dragMouseDown}
-      type="text"
-    ></input>
+    <div id="mydiv" ref={divRef} onMouseDown={dragMouseDown} type="text">
+      <div>
+        <form className={classes.root} noValidate autoComplete="off">
+          <TextField id="standard-basic" label="Standard" />
+          <Button
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
+            Open Menu
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={handleClose}>Editar</MenuItem>
+            <MenuItem onClick={handleClose}>Youtube</MenuItem>
+            <MenuItem onClick={handleClose}>Imagem</MenuItem>
+          </Menu>
+        </form>
+      </div>
+    </div>
   );
 };
 
