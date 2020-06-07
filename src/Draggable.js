@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./style.css";
 
 var pos1 = 0,
@@ -7,6 +7,7 @@ var pos1 = 0,
   pos4 = 0;
 
 const Draggable = () => {
+  
   const divRef = useRef(null);
 
   const dragMouseDown = e => {

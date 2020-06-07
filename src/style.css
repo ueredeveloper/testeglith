@@ -1,3 +1,5 @@
+
+/*
 #mydiv {
   position: absolute;
   z-index: 9;
@@ -7,5 +9,11 @@
   padding: 10px;
   cursor: move;
   background-color: #2196F3;
+  color: #fff;
+}
+*/
+#mydiv {
+  position: absolute;
+
   color: #fff;
 }
