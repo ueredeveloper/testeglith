@@ -9,7 +9,7 @@ var pos1 = 0,
 const Draggable = () => {
   // div
   const DivDrag = props => {
-    style = {
+    style :{
       top: 0,
       left: 0
     }
