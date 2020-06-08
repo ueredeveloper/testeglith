@@ -87,9 +87,13 @@ const InputDraggable = props => {
 
     let div = divRef.current;
 
+    //div.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0)";
+    
     // set the element's new position:
-    div.style.top = div.offsetTop - currentX + "px";
-    div.style.left = div.offsetLeft - currentY + "px";
+    div.style.top = currentX + "px";
+    div.style.left = currentX + "px";
+    
+    
   };
 
   const dragTouchEnd = e => {
