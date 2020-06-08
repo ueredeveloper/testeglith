@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DraggableKipura = props => {
-  const divContainer = useRef(null);
+  const divRef = useRef(null);
   var active = false;
   var currentX;
   var currentY;
@@ -31,7 +31,7 @@ const DraggableKipura = props => {
   var container; //, container;
 
   useEffect(() => {
-    container = divContainer.current;
+    container = divRef.current;
 
     console.log(container);
 
@@ -103,36 +103,22 @@ const DraggableKipura = props => {
   };
 
   return (
- 
-        <div id="container"  ref={divContainer}></div>
-      
-    
-  );
-};
-
-export default DraggableKipura;
-
-/*
-<div id="item" ref={divContainer}>
-      divItem
-    </div>
-    */
-
-/*
-
-<div
+ <div
       id="mydiv"
       style={{
         top: props.component.style.top,
         left: props.component.style.top
       }}
-      ref={divContainer}
+    
       type="text"
     >
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon fontSize="small" />
+            <ControlCameraIcon
+              ref={divRef}
+              fontSize="small"
+            />
           </IconButton>
           <TextField
             id="standard-textarea"
@@ -147,4 +133,12 @@ export default DraggableKipura;
       </div>
     </div>
     
-    */
+  );
+};
+
+export default DraggableKipura;
+
+/*
+
+
+*/
