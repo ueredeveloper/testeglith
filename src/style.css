@@ -17,10 +17,10 @@
 }
 
 #container {
-  width: 10px;
-  height: 10px;
+  width: 50px;
+  height: 50px;
   background-color: rgb(245, 230, 99);
-  border: 2px solid rgba(136, 136, 136, 0.5);
+  border: 5px solid rgba(136, 136, 136, 0.5);
   border-radius: 50%;
   touch-action: none;
   user-select: none;
@@ -30,6 +30,6 @@
 }
 #container:hover {
   cursor: pointer;
-  border-width: 5px;
+  border-width: 15px;
 }
 

@@ -8,13 +8,16 @@ import IconButton from "@material-ui/core/IconButton";
 import "./style.css";
 import InputMenu from "./InputMenu";
 
+/*
 var pos1 = 0,
   pos2 = 0,
   pos3 = 0,
-  pos4 = 0;
+  pos4 = 0;*/
 
-var currentX;
-var currentY;
+var initialX; //1
+var initialY; //2
+var currentX; //3
+var currentY; //4
 
 var xOffset = 0;
 var yOffset = 0;
@@ -35,8 +38,8 @@ const InputDraggable = props => {
     e = e || window.event;
     e.preventDefault();
     // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
+    currentX = e.clientX;
+    currentY = e.clientY;
     document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
@@ -46,16 +49,16 @@ const InputDraggable = props => {
     e = e || window.event;
     e.preventDefault();
     // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
+    initialX = currentX - e.clientX;
+    initialY = currentY - e.clientY;
+    currentX = e.clientX;
+    currentY = e.clientY;
 
     let div = divRef.current;
 
     // set the element's new position:
-    div.style.top = div.offsetTop - pos2 + "px";
-    div.style.left = div.offsetLeft - pos1 + "px";
+    div.style.top = div.offsetTop - initialY + "px";
+    div.style.left = div.offsetLeft - initialX + "px";
   };
 
   const closeDragElement = () => {
@@ -76,21 +79,33 @@ const InputDraggable = props => {
   };
 
   const dragTouchEnd = e => {
-    initialX = currentX;
-    initialY = currentY;
+   // initialX = currentX;
+  //  initialY = currentY;
 
-    //let div = divRef.current;
+    let div = divRef.current;
 
     //div.style.transform = "translate3d(" + initialX + "px, " + initialY + "px, 0)";
+    
+    
+      xOffset = currentX;
+      yOffset = currentY;
+
+      // set the element's new position:
+    div.style.top = div.offsetTop - initialY + "px";
+    div.style.left = div.offsetLeft - initialX + "px";
+    
   };
 
   const dragTouchMove = e => {
-    currentX = e.touches[0].clientX;
-    currentY = e.touches[0].clientY;
-    
+
+    initialX = currentX - e.touches[0].clientX;
+    initialY = currentY - e.touches[0].clientY;
+  
     let div = divRef.current;
 
-    div.style.transform = "translate3d(" + currentX + "px, " + currentX + "px, 0)";
+    // set the element's new position:
+    div.style.top = div.offsetTop - initialY + "px";
+    div.style.left = div.offsetLeft - initialX + "px";
   };
 
   return (
@@ -108,7 +123,6 @@ const InputDraggable = props => {
           <IconButton className={classes.margin} size="small">
             <ControlCameraIcon
               onMouseDown={dragMouseDown}
-         
               onTouchMove={dragTouchMove}
               fontSize="small"
             />
