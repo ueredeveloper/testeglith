@@ -4,7 +4,7 @@ import "./styleDK.css";
 
 const DraggableKipura = props => {
   const divItem = useRef(null);
-    const divContainer = useRef(null);
+  const divContainer = useRef(null);
   var active = false;
   var currentX;
   var currentY;
@@ -13,24 +13,17 @@ const DraggableKipura = props => {
   var xOffset = 0;
   var yOffset = 0;
 
-  const [dragItem, setDragItem] = useState(null);
-   const [container, setContainer] = useState(null);
+ // const [dragItem, setDragItem] = useState(null);
+ // const [container, setContainer] = useState(null);
 
   useEffect(() => {
-    ///let dragItem  = divRef.current;
-    setDragItem(divItem.current);
-    setContainer(divContainer.current);
-    
-    console.log(dragItem);
-    
-     container.addEventListener("touchstart", dragStart, false);
-    container.addEventListener("touchend", dragEnd, false);
-    container.addEventListener("touchmove", drag, false);
 
-    container.addEventListener("mousedown", dragStart, false);
-    container.addEventListener("mouseup", dragEnd, false);
-    container.addEventListener("mousemove", drag, false);
-    
+    //setDragItem(divItem.current);
+   // setContainer(divContainer.current);
+
+    console.log(dragItem);
+
+    //container.addEventListener("touchstart", dragStart,  null);
     
   });
 
@@ -69,6 +62,8 @@ const DraggableKipura = props => {
 
       xOffset = currentX;
       yOffset = currentY;
+      
+      let dragItem = divItem.current;
 
       setTranslate(currentX, currentY, dragItem);
     }
@@ -80,7 +75,7 @@ const DraggableKipura = props => {
 
   return (
     <div id="outerContainer" ref={divItem}>
-      <div id="container">
+      <div id="container" ref={divContainer}>
         <div id="item"></div>
       </div>
     </div>
