@@ -15,8 +15,7 @@ var pos1 = 0,
 
 var currentX;
 var currentY;
-var initialX;
-var initialY;
+
 var xOffset = 0;
 var yOffset = 0;
 
@@ -74,21 +73,25 @@ const InputDraggable = props => {
   const dragTouchStart = e => {
     initialX = e.touches[0].clientX - xOffset;
     initialY = e.touches[0].clientY - yOffset;
-
-    console.log(initialX + " e " + initialY);
   };
 
   const dragTouchEnd = e => {
     initialX = currentX;
     initialY = currentY;
-    
-    console.log('touch end ' + initialX)
+
+    //let div = divRef.current;
+
+    //div.style.transform = "translate3d(" + initialX + "px, " + initialY + "px, 0)";
   };
-  
+
   const dragTouchMove = e => {
-    currentX = e.touches[0].clientX - initialX;
-    currentY = e.touches[0].clientY - initialY;
-  }
+    currentX = e.touches[0].clientX;
+    currentY = e.touches[0].clientY;
+    
+    let div = divRef.current;
+
+    div.style.transform = "translate3d(" + currentX + "px, " + currentX + "px, 0)";
+  };
 
   return (
     <div
@@ -105,8 +108,7 @@ const InputDraggable = props => {
           <IconButton className={classes.margin} size="small">
             <ControlCameraIcon
               onMouseDown={dragMouseDown}
-              onTouchStart={dragTouchStart}
-              onTouchEnd={dragTouchEnd}
+         
               onTouchMove={dragTouchMove}
               fontSize="small"
             />
@@ -127,3 +129,10 @@ const InputDraggable = props => {
 };
 
 export default InputDraggable;
+
+/*
+
+     onTouchStart={dragTouchStart}
+              onTouchEnd={dragTouchEnd}
+              
+              */
