@@ -1,9 +1,25 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import "./styleDK.css";
+//import "./styleDK.css";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import ControlCameraIcon from "@material-ui/icons/ControlCamera";
+import IconButton from "@material-ui/core/IconButton";
+
+import "./style.css";
+import InputMenu from "./InputMenu";
+
+const useStyles = makeStyles(theme => ({
+  margin: {
+    margin: theme.spacing(1)
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1)
+  }
+}));
 
 const DraggableKipura = props => {
-  const divItem = useRef(null);
+
   const divContainer = useRef(null);
   var active = false;
   var currentX;
@@ -13,14 +29,13 @@ const DraggableKipura = props => {
   var xOffset = 0;
   var yOffset = 0;
 
-var dragItem, container;
+  var container; //, container;
   
   useEffect(() => {
 
-    dragItem = divItem.current;
     container = divContainer.current;
 
-    console.log(dragItem);
+    console.log(container);
 
     container.addEventListener("touchstart", dragStart, false);
     container.addEventListener("touchend", dragEnd, false);
@@ -41,15 +56,11 @@ var dragItem, container;
       initialY = e.clientY - yOffset;
     }
 
-    if (e.target === dragItem) {
+    if (e.target === container) {
       active = true;
       
     }
-    
-    
-    console.log('dragStart ' + active);
-
-    // console.log(dragItem);
+ 
   };
 
   const dragEnd = e => {
@@ -57,9 +68,7 @@ var dragItem, container;
     initialY = currentY;
 
     active = false;
-    
-    //console.log('dragEnd')   
-   // console.log(dragItem);
+   
   };
 
   const drag = e => {
@@ -77,23 +86,47 @@ var dragItem, container;
       xOffset = currentX;
       yOffset = currentY;
       
-      setTranslate(currentX, currentY, dragItem);
+      setTranslate(currentX, currentY, container);
     }
-    
-  //  console.log('drag')
-       // console.log(dragItem);
+
   };
 
   const setTranslate = (xPos, yPos, el) => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
     
-    console.log('setTranslate')
-        console.log(dragItem);
   };
 
+    const classes = useStyles();
+    const handleChange = event => {
+    setValue(event.target.value);
+  };
+  
   return (
-    <div id="outerContainer" ref={divItem}>
-      
+      <div
+      id="mydiv"
+      style={{
+        top: props.component.style.top,
+        left: props.component.style.top
+      }}
+      ref={divContainer}
+      type="text"
+    >
+      <div>
+        <form className={classes.root} noValidate autoComplete="off">
+          <IconButton className={classes.margin} size="small">
+            <ControlCameraIcon fontSize="small" />
+          </IconButton>
+          <TextField
+            id="standard-textarea"
+            label="Multiline Placeholder"
+            placeholder="Placeholder"
+            multiline
+            value={value}
+            onChange={handleChange}
+          />
+        </form>
+        <InputMenu />
+      </div>
     </div>
   );
 };
@@ -101,6 +134,7 @@ var dragItem, container;
 export default DraggableKipura;
 
 /*
-<div id="container" ref={divContainer}>
-        <div id="item"></div>
-      </div>*/
+<div id="item" ref={divContainer}>
+      divItem
+    </div>
+    */
