@@ -13,19 +13,24 @@ const DraggableKipura = props => {
   var xOffset = 0;
   var yOffset = 0;
 
- // const [dragItem, setDragItem] = useState(null);
- // const [container, setContainer] = useState(null);
-
+var dragItem, container;
+  
   useEffect(() => {
 
-    //setDragItem(divItem.current);
-   // setContainer(divContainer.current);
+    dragItem = divItem.current;
+    container = divContainer.current;
 
     console.log(dragItem);
 
-    //container.addEventListener("touchstart", dragStart,  null);
+    container.addEventListener("touchstart", dragStart, false);
+    container.addEventListener("touchend", dragEnd, false);
+    container.addEventListener("touchmove", drag, false);
+
+    container.addEventListener("mousedown", dragStart, false);
+    container.addEventListener("mouseup", dragEnd, false);
+    container.addEventListener("mousemove", drag, false);
     
-  });
+  },[]);
 
   const dragStart = e => {
     if (e.type === "touchstart") {
@@ -39,6 +44,9 @@ const DraggableKipura = props => {
     if (e.target === dragItem) {
       active = true;
     }
+    
+    console.log('dragStart')
+     console.log(dragItem);
   };
 
   const dragEnd = e => {
@@ -46,6 +54,9 @@ const DraggableKipura = props => {
     initialY = currentY;
 
     active = false;
+    
+    console.log('dragEnd')   
+    console.log(dragItem);
   };
 
   const drag = e => {
@@ -63,14 +74,17 @@ const DraggableKipura = props => {
       xOffset = currentX;
       yOffset = currentY;
       
-      let dragItem = divItem.current;
-
       setTranslate(currentX, currentY, dragItem);
     }
+    
+    console.log('drag')
+        console.log(dragItem);
   };
 
   const setTranslate = (xPos, yPos, el) => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    
+    console.log('setTranslate')
   };
 
   return (
