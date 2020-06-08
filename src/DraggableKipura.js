@@ -26,43 +26,37 @@ const DraggableKipura = props => {
   var xOffset = 0;
   var yOffset = 0;
 
-var iconContainer, container;
-  
-  useEffect(() => {
+  var iconContainer, container;
 
+  useEffect(() => {
     iconContainer = divIconContainer.current;
     container = divContainer.current;
 
     console.log(iconContainer);
-
+    /*
     iconContainer.addEventListener("touchstart", dragStart, false);
     iconContainer.addEventListener("touchend", dragEnd, false);
     iconContainer.addEventListener("touchmove", drag, false);
-
+*/
     iconContainer.addEventListener("mousedown", dragStart, false);
     iconContainer.addEventListener("mouseup", dragEnd, false);
     iconContainer.addEventListener("mousemove", drag, false);
-    
-  },[]);
+  }, []);
 
   const dragStart = e => {
     if (e.type === "touchstart") {
+      console.log("dragStart if " + e.type);
       initialX = e.touches[0].clientX - xOffset;
       initialY = e.touches[0].clientY - yOffset;
     } else {
+      console.log("dragStart else: " + e.type);
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
     }
 
     if (e.target === iconContainer) {
       active = true;
-      
     }
-    
-    
-    console.log('dragStart ' + active);
-
-    // console.log(dragItem);
   };
 
   const dragEnd = e => {
@@ -70,9 +64,9 @@ var iconContainer, container;
     initialY = currentY;
 
     active = false;
-    
-    //console.log('dragEnd')   
-   // console.log(dragItem);
+
+    console.log("dragEnd: " + e.type);
+    // console.log(dragItem);
   };
 
   const drag = e => {
@@ -80,37 +74,39 @@ var iconContainer, container;
       e.preventDefault();
 
       if (e.type === "touchmove") {
+        console.log("fi touch move: " + e.type);
+
         currentX = e.touches[0].clientX - initialX;
         currentY = e.touches[0].clientY - initialY;
       } else {
+        console.log("else touch move: " + e.type);
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
       }
 
       xOffset = currentX;
       yOffset = currentY;
-      
+
       setTranslate(currentX, currentY, container);
-    }
-    
-  //  console.log('drag')
-       // console.log(dragItem);
+    } // if active
+
+    //  console.log('drag')
+    // console.log(dragItem);
   };
 
   const setTranslate = (xPos, yPos, el) => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-    
-    console.log('setTranslate')
-        console.log(iconContainer);
+
+    console.log("setTranslate");
   };
-  
-    const classes = useStyles();
+
+  const classes = useStyles();
   const [value, setValue] = React.useState(props.component.content);
   const handleChange = event => {
     setValue(event.target.value);
   };
 
- return (
+  return (
     <div
       id="mydiv"
       style={{
@@ -123,10 +119,7 @@ var iconContainer, container;
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon
-        ref={divMoveContainer}
-              fontSize="small"
-            />
+            <ControlCameraIcon ref={divIconContainer} fontSize="small" />
           </IconButton>
           <TextField
             id="standard-textarea"
