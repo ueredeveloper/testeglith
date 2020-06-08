@@ -13,6 +13,13 @@ var pos1 = 0,
   pos3 = 0,
   pos4 = 0;
 
+var currentX;
+var currentY;
+var initialX;
+var initialY;
+var xOffset = 0;
+var yOffset = 0;
+
 const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(1)
@@ -63,9 +70,24 @@ const InputDraggable = props => {
   const handleChange = event => {
     setValue(event.target.value);
   };
+
+  const dragTouchStart = e => {
+    initialX = e.touches[0].clientX - xOffset;
+    initialY = e.touches[0].clientY - yOffset;
+
+    console.log(initialX + " e " + initialY);
+  };
+
+  const dragTouchEnd = e => {
+    initialX = currentX;
+    initialY = currentY;
+    
+    console.log('touch end ' + initialX)
+  };
   
-  const dragTouchStart = (e) => {
-    console.log('ou touche start')
+  const dragTouchMove = e => {
+    currentX = e.touches[0].clientX - initialX;
+    currentY = e.touches[0].clientY - initialY;
   }
 
   return (
@@ -76,14 +98,18 @@ const InputDraggable = props => {
         left: props.component.style.top
       }}
       ref={divRef}
-      onMouseDown={dragMouseDown}
-      ontouchstart={dragTouchStart}
       type="text"
     >
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon fontSize="small" />
+            <ControlCameraIcon
+              onMouseDown={dragMouseDown}
+              onTouchStart={dragTouchStart}
+              onTouchEnd={dragTouchEnd}
+              onTouchMove={dragTouchMove}
+              fontSize="small"
+            />
           </IconButton>
           <TextField
             id="standard-textarea"
