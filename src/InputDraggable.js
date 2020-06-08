@@ -1,26 +1,11 @@
-import React, { useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
-
-import "./style.css";
 import InputMenu from "./InputMenu";
-
-/*
-var pos1 = 0,
-  pos2 = 0,
-  pos3 = 0,
-  pos4 = 0;*/
-
-var initialX; //1
-var initialY; //2
-var currentX; //3
-var currentY; //4
-
-var xOffset = 0;
-var yOffset = 0;
+import "./style.css";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -32,39 +17,84 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const InputDraggable = props => {
-  const divRef = useRef(null);
+  const divContainer = useRef(null);
+  var active = false;
+  var currentX;
+  var currentY;
+  var initialX;
+  var initialY;
+  var xOffset = 0;
+  var yOffset = 0;
 
-  const dragMouseDown = e => {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    currentX = e.clientX;
-    currentY = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
+  var container;
+
+  useEffect(() => {
+    container = divContainer.current;
+
+    container.addEventListener("touchstart", dragStart, false);
+    container.addEventListener("touchend", dragEnd, false);
+    container.addEventListener("touchmove", drag, false);
+
+    container.addEventListener("mousedown", dragStart, false);
+    container.addEventListener("mouseup", dragEnd, false);
+    container.addEventListener("mousemove", drag, false);
+  }, []);
+
+  const dragStart = e => {
+    if (e.type === "touchstart") {
+      console.log("dragStart if " + e.type);
+      initialX = e.touches[0].clientX - xOffset;
+      initialY = e.touches[0].clientY - yOffset;
+    } else {
+      console.log("dragStart else: " + e.type);
+      initialX = e.clientX - xOffset;
+      initialY = e.clientY - yOffset;
+    }
+
+    if (e.target === container) {
+      active = true;
+    }
   };
 
-  const elementDrag = e => {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    initialX = currentX - e.clientX;
-    initialY = currentY - e.clientY;
-    currentX = e.clientX;
-    currentY = e.clientY;
+  const dragEnd = e => {
+    initialX = currentX;
+    initialY = currentY;
 
-    let div = divRef.current;
+    active = false;
 
-    // set the element's new position:
-    div.style.top = div.offsetTop - initialY + "px";
-    div.style.left = div.offsetLeft - initialX + "px";
+    console.log("dragEnd: " + e.type);
+    // console.log(dragItem);
   };
 
-  const closeDragElement = () => {
-    /* stop moving when mouse button is released:*/
-    document.onmouseup = null;
-    document.onmousemove = null;
+  const drag = e => {
+    if (active) {
+      e.preventDefault();
+
+      if (e.type === "touchmove") {
+        console.log("fi touch move: " + e.type);
+
+        currentX = e.touches[0].clientX - initialX;
+        currentY = e.touches[0].clientY - initialY;
+      } else {
+        console.log("else touch move: " + e.type);
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+      }
+
+      xOffset = currentX;
+      yOffset = currentY;
+
+      setTranslate(currentX, currentY, container);
+    } // if active
+
+    //  console.log('drag')
+    // console.log(dragItem);
+  };
+
+  const setTranslate = (xPos, yPos, el) => {
+    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+
+    console.log("setTranslate");
   };
 
   const classes = useStyles();
@@ -73,55 +103,18 @@ const InputDraggable = props => {
     setValue(event.target.value);
   };
 
-  const dragTouchStart = e => {
-    initialX = e.touches[0].clientX - xOffset;
-    initialY = e.touches[0].clientY - yOffset;
-  };
-
-  const dragTouchMove = e => {
-    e.preventDefault();
-    
-    currentX = e.touches[0].clientX - initialX;
-    currentY = e.touches[0].clientY - initialY;
-
-    xOffset = currentX;
-    yOffset = currentY;
-
-    let div = divRef.current;
-
-    div.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0)";
-
-    // set the element's new position:
-   // div.style.top = currentX + "px";
-   // div.style.left = currentX + "px";
-  };
-
-  const dragTouchEnd = e => {
-    initialX = currentX;
-    initialY = currentY;
-  };
-
   return (
     <div
-      id="mydiv"
+      id="container"
       style={{
         top: props.component.style.top,
         left: props.component.style.top
       }}
-      ref={divRef}
+      ref={divContainer}
       type="text"
     >
       <div>
         <form className={classes.root} noValidate autoComplete="off">
-          <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon
-              onMouseDown={dragMouseDown}
-              onTouchStart={dragTouchStart}
-              onTouchMove={dragTouchMove}
-              onTouchEnd={dragTouchEnd}
-              fontSize="small"
-            />
-          </IconButton>
           <TextField
             id="standard-textarea"
             label="Multiline Placeholder"
@@ -136,7 +129,6 @@ const InputDraggable = props => {
     </div>
   );
 };
-
 export default InputDraggable;
 
 /*
