@@ -43,10 +43,13 @@ var dragItem, container;
 
     if (e.target === dragItem) {
       active = true;
+      
     }
     
-    console.log('dragStart')
-     console.log(dragItem);
+    
+    console.log('dragStart ' + active);
+
+    // console.log(dragItem);
   };
 
   const dragEnd = e => {
@@ -55,8 +58,8 @@ var dragItem, container;
 
     active = false;
     
-    console.log('dragEnd')   
-    console.log(dragItem);
+    //console.log('dragEnd')   
+   // console.log(dragItem);
   };
 
   const drag = e => {
@@ -77,23 +80,27 @@ var dragItem, container;
       setTranslate(currentX, currentY, dragItem);
     }
     
-    console.log('drag')
-        console.log(dragItem);
+  //  console.log('drag')
+       // console.log(dragItem);
   };
 
   const setTranslate = (xPos, yPos, el) => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
     
     console.log('setTranslate')
+        console.log(dragItem);
   };
 
   return (
     <div id="outerContainer" ref={divItem}>
-      <div id="container" ref={divContainer}>
-        <div id="item"></div>
-      </div>
+      
     </div>
   );
 };
 
 export default DraggableKipura;
+
+/*
+<div id="container" ref={divContainer}>
+        <div id="item"></div>
+      </div>*/
