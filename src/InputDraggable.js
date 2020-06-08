@@ -42,11 +42,9 @@ const InputDraggable = props => {
 
   const dragStart = e => {
     if (e.type === "touchstart") {
-      console.log("dragStart if " + e.type);
       initialX = e.touches[0].clientX - xOffset;
       initialY = e.touches[0].clientY - yOffset;
     } else {
-      console.log("dragStart else: " + e.type);
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
     }
@@ -61,22 +59,15 @@ const InputDraggable = props => {
     initialY = currentY;
 
     active = false;
-
-    console.log("dragEnd: " + e.type);
-    // console.log(dragItem);
   };
 
   const drag = e => {
     if (active) {
       e.preventDefault();
-
       if (e.type === "touchmove") {
-        console.log("fi touch move: " + e.type);
-
         currentX = e.touches[0].clientX - initialX;
         currentY = e.touches[0].clientY - initialY;
       } else {
-        console.log("else touch move: " + e.type);
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
       }
@@ -86,15 +77,10 @@ const InputDraggable = props => {
 
       setTranslate(currentX, currentY, container);
     } // if active
-
-    //  console.log('drag')
-    // console.log(dragItem);
   };
 
   const setTranslate = (xPos, yPos, el) => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-
-    console.log("setTranslate");
   };
 
   const classes = useStyles();
@@ -130,10 +116,3 @@ const InputDraggable = props => {
   );
 };
 export default InputDraggable;
-
-/*
-
-     onTouchStart={dragTouchStart}
-              onTouchEnd={dragTouchEnd}
-              
-              */
