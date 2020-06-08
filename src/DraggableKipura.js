@@ -19,7 +19,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DraggableKipura = props => {
-
   const divContainer = useRef(null);
   var active = false;
   var currentX;
@@ -30,9 +29,8 @@ const DraggableKipura = props => {
   var yOffset = 0;
 
   var container; //, container;
-  
-  useEffect(() => {
 
+  useEffect(() => {
     container = divContainer.current;
 
     console.log(container);
@@ -44,8 +42,7 @@ const DraggableKipura = props => {
     container.addEventListener("mousedown", dragStart, false);
     container.addEventListener("mouseup", dragEnd, false);
     container.addEventListener("mousemove", drag, false);
-    
-  },[]);
+  }, []);
 
   const dragStart = e => {
     if (e.type === "touchstart") {
@@ -58,9 +55,7 @@ const DraggableKipura = props => {
 
     if (e.target === container) {
       active = true;
-      
     }
- 
   };
 
   const dragEnd = e => {
@@ -68,7 +63,6 @@ const DraggableKipura = props => {
     initialY = currentY;
 
     active = false;
-   
   };
 
   const drag = e => {
@@ -85,24 +79,43 @@ const DraggableKipura = props => {
 
       xOffset = currentX;
       yOffset = currentY;
-      
+
       setTranslate(currentX, currentY, container);
     }
-
   };
 
   const setTranslate = (xPos, yPos, el) => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-    
   };
 
-    const classes = useStyles();
-    const handleChange = event => {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(props.component.content);
+  const handleChange = event => {
     setValue(event.target.value);
   };
-  
+
   return (
-      <div
+    <div id="mydiv">
+      <div ref={divContainer}>aqui
+        <IconButton className={classes.margin} size="small">
+          <ControlCameraIcon fontSize="small" />
+        </IconButton>
+      </div>
+    </div>
+  );
+};
+
+export default DraggableKipura;
+
+/*
+<div id="item" ref={divContainer}>
+      divItem
+    </div>
+    */
+
+/*
+
+<div
       id="mydiv"
       style={{
         top: props.component.style.top,
@@ -128,13 +141,5 @@ const DraggableKipura = props => {
         <InputMenu />
       </div>
     </div>
-  );
-};
-
-export default DraggableKipura;
-
-/*
-<div id="item" ref={divContainer}>
-      divItem
-    </div>
+    
     */
