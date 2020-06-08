@@ -46,9 +46,12 @@ const DraggableKipura = props => {
 
   const dragStart = e => {
     if (e.type === "touchstart") {
+      
+      console.log('if touchstart')
       initialX = e.touches[0].clientX - xOffset;
       initialY = e.touches[0].clientY - yOffset;
     } else {
+     console.log ('if e.type ' + e.type)
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
     }
@@ -59,6 +62,8 @@ const DraggableKipura = props => {
   };
 
   const dragEnd = e => {
+    
+    console.log('if end')
     initialX = currentX;
     initialY = currentY;
 
@@ -70,9 +75,12 @@ const DraggableKipura = props => {
       e.preventDefault();
 
       if (e.type === "touchmove") {
+        console.log('if touch move')
         currentX = e.touches[0].clientX - initialX;
         currentY = e.touches[0].clientY - initialY;
       } else {
+        
+         console.log ('if e.type ' + e.type)
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
       }
