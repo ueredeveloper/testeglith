@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
-import InputDraggable from "./InputDraggable";
+import React, { useState } from "react";
+//import InputDraggable from "./InputDraggable";
 import DraggableKipura from "./DraggableKipura";
 
 const App = () => {
-  const [data, setData] = React.useState({
+  const [data, setData] = useState({
     components: [
       {
         content: "Loop For",

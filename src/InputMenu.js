@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
-import Button from "@material-ui/core/Button";
+import React from "react";
+
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import ControlCameraIcon from "@material-ui/icons/ControlCamera";
+
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SettingsIcon from "@material-ui/icons/Settings"; // setting
@@ -36,10 +35,10 @@ const InputMenu = () => {
     console.log("handle Close inputMenu");
   };
   const classes = useStyles();
-  const [value, setValue] = React.useState("Controlled");
+  /* const [value, setValue] = React.useState("Controlled");
   const handleChange = event => {
     setValue(event.target.value);
-  };
+  };*/
 
   return (
     <div>
