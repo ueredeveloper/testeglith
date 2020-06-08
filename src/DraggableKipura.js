@@ -19,7 +19,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DraggableKipura = props => {
-  const divRef = useRef(null);
+  const iconMove = useRef(null);
+  const container = useRef(null);
   var active = false;
   var currentX;
   var currentY;
@@ -28,42 +29,43 @@ const DraggableKipura = props => {
   var xOffset = 0;
   var yOffset = 0;
 
-  var container; //, container;
+  var divMoveContainer, divContainer;
 
   useEffect(() => {
-    container = divRef.current;
+    
+    divMoveContainer = iconMove.current;
+    divContainer = container.current;
+    
+    console.log(divMoveContainer)
 
-    console.log(container);
+    divMoveContainer.addEventListener("touchstart", dragStart, false);
+    divMoveContainer.addEventListener("touchend", dragEnd, false);
+    divMoveContainer.addEventListener("touchmove", drag, false);
 
-    container.addEventListener("touchstart", dragStart, false);
-    container.addEventListener("touchend", dragEnd, false);
-    container.addEventListener("touchmove", drag, false);
-
-    container.addEventListener("mousedown", dragStart, false);
-    container.addEventListener("mouseup", dragEnd, false);
-    container.addEventListener("mousemove", drag, false);
-  }, []);
+    divMoveContainer.addEventListener("mousedown", dragStart, false);
+    divMoveContainer.addEventListener("mouseup", dragEnd, false);
+    divMoveContainer.addEventListener("mousemove", drag, false);
+    
+  },[]);
 
   const dragStart = e => {
     if (e.type === "touchstart") {
-      
-      console.log('if touchstart')
+      console.log("if touchstart");
       initialX = e.touches[0].clientX - xOffset;
       initialY = e.touches[0].clientY - yOffset;
     } else {
-     console.log ('if e.type ' + e.type)
+      console.log("if e.type " + e.type);
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
     }
 
-    if (e.target === container) {
+    if (e.target === divMoveContainer) {
       active = true;
     }
   };
 
   const dragEnd = e => {
-    
-    console.log('if end')
+    console.log("if end");
     initialX = currentX;
     initialY = currentY;
 
@@ -75,12 +77,11 @@ const DraggableKipura = props => {
       e.preventDefault();
 
       if (e.type === "touchmove") {
-        console.log('if touch move')
+        console.log("if touch move");
         currentX = e.touches[0].clientX - initialX;
         currentY = e.touches[0].clientY - initialY;
       } else {
-        
-         console.log ('if e.type ' + e.type)
+        console.log("if e.type " + e.type);
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
       }
@@ -88,7 +89,7 @@ const DraggableKipura = props => {
       xOffset = currentX;
       yOffset = currentY;
 
-      setTranslate(currentX, currentY, container);
+      setTranslate(currentX, currentY, divContainer);
     }
   };
 
@@ -103,22 +104,19 @@ const DraggableKipura = props => {
   };
 
   return (
- <div
+    <div
       id="mydiv"
       style={{
         top: props.component.style.top,
         left: props.component.style.top
       }}
-    
+      ref={container}
       type="text"
     >
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon
-              ref={divRef}
-              fontSize="small"
-            />
+            <ControlCameraIcon ref={divMoveContainer} fontSize="small" />
           </IconButton>
           <TextField
             id="standard-textarea"
@@ -132,7 +130,6 @@ const DraggableKipura = props => {
         <InputMenu />
       </div>
     </div>
-    
   );
 };
 
