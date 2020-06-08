@@ -1,16 +1,15 @@
 #container {
-  width: 100px;
-  height: 100px;
-  background-color: rgb(245, 230, 99);
-  border: 10px solid rgba(136, 136, 136, 0.5);
-  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+
+
   touch-action: none;
   user-select: none;
 }
 #container:active {
-  background-color: rgba(168, 218, 220, 1);
+
 }
 #container:hover {
   cursor: pointer;
-  border-width: 20px;
+  border-width: 10px;
 }

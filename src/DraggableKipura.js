@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
-import "./styleDK.css";
+import "./style.css";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -16,7 +16,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DraggableKipura = props => {
-
   const divContainer = useRef(null);
   var active = false;
   var currentX;
@@ -29,16 +28,15 @@ const DraggableKipura = props => {
   var container;
 
   useEffect(() => {
-
     container = divContainer.current;
 
-    iconContainer.addEventListener("touchstart", dragStart, false);
-    iconContainer.addEventListener("touchend", dragEnd, false);
-    iconContainer.addEventListener("touchmove", drag, false);
+    container.addEventListener("touchstart", dragStart, false);
+    container.addEventListener("touchend", dragEnd, false);
+    container.addEventListener("touchmove", drag, false);
 
-    iconContainer.addEventListener("mousedown", dragStart, false);
-    iconContainer.addEventListener("mouseup", dragEnd, false);
-    iconContainer.addEventListener("mousemove", drag, false);
+    container.addEventListener("mousedown", dragStart, false);
+    container.addEventListener("mouseup", dragEnd, false);
+    container.addEventListener("mousemove", drag, false);
   }, []);
 
   const dragStart = e => {
@@ -52,7 +50,7 @@ const DraggableKipura = props => {
       initialY = e.clientY - yOffset;
     }
 
-    if (e.target === iconContainer) {
+    if (e.target === container) {
       active = true;
     }
   };
@@ -85,7 +83,7 @@ const DraggableKipura = props => {
       xOffset = currentX;
       yOffset = currentY;
 
-      setTranslate(currentX, currentY, iconContainer);
+      setTranslate(currentX, currentY, container);
     } // if active
 
     //  console.log('drag')
@@ -105,24 +103,8 @@ const DraggableKipura = props => {
   };
 
   return (
-    <div id="container" ref={divIconContainer}>
-      <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon ref={divIconContainer} fontSize="small" />
-          </IconButton>
-      </div>
-  );
-};
-
-export default DraggableKipura;
-
-/*
-<div id="container" ref={divContainer}>
-        <div id="item"></div>
-      </div>*/
-
-/*
- <div
-      id="mydiv"
+    <div
+      id="container"
       style={{
         top: props.component.style.top,
         left: props.component.style.top
@@ -132,9 +114,6 @@ export default DraggableKipura;
     >
       <div>
         <form className={classes.root} noValidate autoComplete="off">
-          <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon ref={divIconContainer} fontSize="small" />
-          </IconButton>
           <TextField
             id="standard-textarea"
             label="Multiline Placeholder"
@@ -145,4 +124,14 @@ export default DraggableKipura;
           />
         </form>
       </div>
-    </div>*/
+    </div>
+  );
+};
+
+export default DraggableKipura;
+
+/*
+ <IconButton className={classes.margin} size="small">
+            <ControlCameraIcon fontSize="small" />
+          </IconButton>
+    */
