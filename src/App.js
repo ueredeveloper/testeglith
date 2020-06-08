@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import InputDraggable from "./InputDraggable";
+import InputDraggable from "./InputDraggable";
 import DraggableKipura from "./DraggableKipura";
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
     <div>
       <div>Olá Mundo Brasil</div>
       {data.components.map((c, i) => (
-        <DraggableKipura component={c} key={i} />
+        <InputDraggable component={c} key={i} />
       ))}
     </div>
   );

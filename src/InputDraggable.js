@@ -63,6 +63,10 @@ const InputDraggable = props => {
   const handleChange = event => {
     setValue(event.target.value);
   };
+  
+  const dragTouchStart = (e) => {
+    console.log('ou touche start')
+  }
 
   return (
     <div
@@ -73,6 +77,7 @@ const InputDraggable = props => {
       }}
       ref={divRef}
       onMouseDown={dragMouseDown}
+      ontouchstart={dragTouchStart}
       type="text"
     >
       <div>

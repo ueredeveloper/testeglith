@@ -96,8 +96,8 @@ const DraggableKipura = props => {
 
   return (
  
-          <IconButton  ref={divContainer}  className={classes.margin} size="small">
-            <ControlCameraIcon fontSize="small" />
+          <IconButton   className={classes.margin} size="small">
+            <ControlCameraIcon  ref={divContainer} fontSize="small" />
           </IconButton>
       
     
