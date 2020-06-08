@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 
-//import "./styleDK.css";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
-
-import "./style.css";
-import InputMenu from "./InputMenu";
+import "./styleDK.css";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -19,8 +16,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DraggableKipura = props => {
-  const iconMove = useRef(null);
-  const container = useRef(null);
+  const divIconContainer = useRef(null);
+  const divContainer = useRef(null);
   var active = false;
   var currentX;
   var currentY;
@@ -29,47 +26,53 @@ const DraggableKipura = props => {
   var xOffset = 0;
   var yOffset = 0;
 
-  var divMoveContainer, divContainer;
-
+var iconContainer, container;
+  
   useEffect(() => {
-    
-    divMoveContainer = iconMove.current;
-    divContainer = container.current;
-    
-    console.log(divMoveContainer)
 
-    divMoveContainer.addEventListener("touchstart", dragStart, false);
-    divMoveContainer.addEventListener("touchend", dragEnd, false);
-    divMoveContainer.addEventListener("touchmove", drag, false);
+    iconContainer = divIconContainer.current;
+    container = divContainer.current;
 
-    divMoveContainer.addEventListener("mousedown", dragStart, false);
-    divMoveContainer.addEventListener("mouseup", dragEnd, false);
-    divMoveContainer.addEventListener("mousemove", drag, false);
+    console.log(iconContainer);
+
+    iconContainer.addEventListener("touchstart", dragStart, false);
+    iconContainer.addEventListener("touchend", dragEnd, false);
+    iconContainer.addEventListener("touchmove", drag, false);
+
+    iconContainer.addEventListener("mousedown", dragStart, false);
+    iconContainer.addEventListener("mouseup", dragEnd, false);
+    iconContainer.addEventListener("mousemove", drag, false);
     
   },[]);
 
   const dragStart = e => {
     if (e.type === "touchstart") {
-      console.log("if touchstart");
       initialX = e.touches[0].clientX - xOffset;
       initialY = e.touches[0].clientY - yOffset;
     } else {
-      console.log("if e.type " + e.type);
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
     }
 
-    if (e.target === divMoveContainer) {
+    if (e.target === iconContainer) {
       active = true;
+      
     }
+    
+    
+    console.log('dragStart ' + active);
+
+    // console.log(dragItem);
   };
 
   const dragEnd = e => {
-    console.log("if end");
     initialX = currentX;
     initialY = currentY;
 
     active = false;
+    
+    //console.log('dragEnd')   
+   // console.log(dragItem);
   };
 
   const drag = e => {
@@ -77,46 +80,53 @@ const DraggableKipura = props => {
       e.preventDefault();
 
       if (e.type === "touchmove") {
-        console.log("if touch move");
         currentX = e.touches[0].clientX - initialX;
         currentY = e.touches[0].clientY - initialY;
       } else {
-        console.log("if e.type " + e.type);
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
       }
 
       xOffset = currentX;
       yOffset = currentY;
-
-      setTranslate(currentX, currentY, divContainer);
+      
+      setTranslate(currentX, currentY, container);
     }
+    
+  //  console.log('drag')
+       // console.log(dragItem);
   };
 
   const setTranslate = (xPos, yPos, el) => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    
+    console.log('setTranslate')
+        console.log(iconContainer);
   };
-
-  const classes = useStyles();
+  
+    const classes = useStyles();
   const [value, setValue] = React.useState(props.component.content);
   const handleChange = event => {
     setValue(event.target.value);
   };
 
-  return (
+ return (
     <div
       id="mydiv"
       style={{
         top: props.component.style.top,
         left: props.component.style.top
       }}
-      ref={container}
+      ref={divContainer}
       type="text"
     >
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon ref={divMoveContainer} fontSize="small" />
+            <ControlCameraIcon
+        ref={divMoveContainer}
+              fontSize="small"
+            />
           </IconButton>
           <TextField
             id="standard-textarea"
@@ -127,7 +137,6 @@ const DraggableKipura = props => {
             onChange={handleChange}
           />
         </form>
-        <InputMenu />
       </div>
     </div>
   );
@@ -136,6 +145,6 @@ const DraggableKipura = props => {
 export default DraggableKipura;
 
 /*
-
-
-*/
+<div id="container" ref={divContainer}>
+        <div id="item"></div>
+      </div>*/
