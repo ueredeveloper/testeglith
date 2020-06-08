@@ -1,18 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import InputDraggable from "./InputDraggable";
+import DraggableKipura from "./DraggableKipura";
 
 const App = () => {
   const [data, setData] = React.useState({
     components: [
       {
-        content:"Loop For",
+        content: "Loop For",
         style: {
           top: "318px",
           left: "439px"
         }
       },
       {
-        content:"Switch",
+        content: "Switch",
         style: {
           top: "120px",
           left: "150px"
@@ -25,7 +26,7 @@ const App = () => {
     <div>
       <div>Olá Mundo Brasil</div>
       {data.components.map((c, i) => (
-        <InputDraggable component={c} key={i}/>
+        <DraggableKipura component={c} key={i} />
       ))}
     </div>
   );
