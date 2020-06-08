@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DraggableKipura = props => {
-  const divIconContainer = useRef(null);
+
   const divContainer = useRef(null);
   var active = false;
   var currentX;
@@ -26,18 +26,16 @@ const DraggableKipura = props => {
   var xOffset = 0;
   var yOffset = 0;
 
-  var iconContainer, container;
+  var container;
 
   useEffect(() => {
-    iconContainer = divIconContainer.current;
+
     container = divContainer.current;
 
-    console.log(iconContainer);
-    /*
     iconContainer.addEventListener("touchstart", dragStart, false);
     iconContainer.addEventListener("touchend", dragEnd, false);
     iconContainer.addEventListener("touchmove", drag, false);
-*/
+
     iconContainer.addEventListener("mousedown", dragStart, false);
     iconContainer.addEventListener("mouseup", dragEnd, false);
     iconContainer.addEventListener("mousemove", drag, false);
@@ -87,7 +85,7 @@ const DraggableKipura = props => {
       xOffset = currentX;
       yOffset = currentY;
 
-      setTranslate(currentX, currentY, container);
+      setTranslate(currentX, currentY, iconContainer);
     } // if active
 
     //  console.log('drag')
@@ -107,7 +105,23 @@ const DraggableKipura = props => {
   };
 
   return (
-    <div
+    <div id="container" ref={divIconContainer}>
+      <IconButton className={classes.margin} size="small">
+            <ControlCameraIcon ref={divIconContainer} fontSize="small" />
+          </IconButton>
+      </div>
+  );
+};
+
+export default DraggableKipura;
+
+/*
+<div id="container" ref={divContainer}>
+        <div id="item"></div>
+      </div>*/
+
+/*
+ <div
       id="mydiv"
       style={{
         top: props.component.style.top,
@@ -131,13 +145,4 @@ const DraggableKipura = props => {
           />
         </form>
       </div>
-    </div>
-  );
-};
-
-export default DraggableKipura;
-
-/*
-<div id="container" ref={divContainer}>
-        <div id="item"></div>
-      </div>*/
+    </div>*/
