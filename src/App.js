@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InputDraggableW3 from "./InputDraggableW3";
+import InputDraggable from "./InputDraggable";
 
 const App = () => {
   const [data, setData] = useState({
@@ -7,15 +7,15 @@ const App = () => {
       {
         content: "Loop For",
         style: {
-          top: "318px",
-          left: "439px"
+          top: "400px",
+          left: "400px"
         }
       },
       {
         content: "Switch",
         style: {
-          top: "120px",
-          left: "150px"
+          top: "200px",
+          left: "200px"
         }
       }
     ]
@@ -25,7 +25,7 @@ const App = () => {
     <div>
       <div>Olá Mundo Brasil</div>
       {data.components.map((c, i) => (
-        <InputDraggableW3 component={c} key={i} />
+        <InputDraggable component={c} key={i} />
       ))}
     </div>
   );
