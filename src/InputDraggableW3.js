@@ -5,11 +5,9 @@ import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
 import InputMenu from "./InputMenu";
-import "./style.css";
+import "./styleW3.css";
 
 const InputDraggablew3 = props => {
-  //Make the DIV element draggagle:
-  //dragElement(document.getElementById("mydiv"));
 
   const divContainer = useRef(null);
   var initialX;
@@ -48,6 +46,8 @@ const InputDraggablew3 = props => {
     // set the element's new position:
     container.style.top = container.offsetTop - currentY + "px";
     container.style.left = container.offsetLeft - initialX + "px";
+
+    console.log("element drag");
   };
 
   const closeDragElement = () => {
@@ -57,8 +57,10 @@ const InputDraggablew3 = props => {
   };
 
   return (
-    <div onMouseDown={dragMouseDown} ref={divContainer}>
-      W3 DRAGGABLE
+    <div id="mydiv" ref={divContainer} onMouseDown={dragMouseDown}>
+      <div id="mydivheader">Click here to move</div>
+      <p>Move</p>
+  
     </div>
   );
 };
