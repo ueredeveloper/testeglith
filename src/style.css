@@ -1,6 +1,6 @@
 #container {
-  width: 250px;
-  height: 100px;
+  width: 230px;
+  height: 80px;
   background-color: white;
   border: 1px solid rgba(136, 136, 136, 0.5);
   border-radius: 2%;
@@ -15,6 +15,6 @@
   background-color: rgba(168, 218, 220, 1);
 }
 #container:hover {
-  cursor: pointer;
+  cursor: grab;
   border-width: 5px;
 }

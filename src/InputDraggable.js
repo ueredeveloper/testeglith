@@ -100,7 +100,7 @@ const InputDraggable = props => {
       ref={divContainer}
       type="text"
     >
-      <div id="textField">
+      <div>
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="standard-textarea"
