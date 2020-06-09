@@ -19,8 +19,8 @@ var initialY; //2
 var currentX; //3
 var currentY; //4
 
-var xOffset = 0;
-var yOffset = 0;
+//var xOffset = 0;
+//var yOffset = 0;
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -60,7 +60,7 @@ const InputDraggableW3 = props => {
     div.style.top = div.offsetTop - initialY + "px";
     div.style.left = div.offsetLeft - initialX + "px";
     
-    console.log('click div off e x' + div.offsetLeft + e.clientX)
+    console.log('click div off e x' + div.offsetLeft +' _ '+ e.clientX)
   };
 
   const closeDragElement = () => {
@@ -76,26 +76,39 @@ const InputDraggableW3 = props => {
   };
 
   const dragTouchStart = e => {
-    initialX = e.touches[0].clientX - xOffset;
-    initialY = e.touches[0].clientY - yOffset;
+    //initialX = e.touches[0].clientX - xOffset;
+    //initialY = e.touches[0].clientY - yOffset;
+    
+     currentX = e.clientX;
+    currentY = e.clientY;
+    
   };
 
   const dragTouchMove = e => {
     e.preventDefault();
     
-    currentX = e.touches[0].clientX - initialX;
-    currentY = e.touches[0].clientY - initialY;
-
-    xOffset = currentX;
-    yOffset = currentY;
+    initialX = currentX - e.touches[0].clientX;
+    initialY = currentY - e.touches[0].clientY;
+    currentX = e.touches[0].clientX;
+    currentY = e.touches[0].clientY;
 
     let div = divRef.current;
 
-    div.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0)";
+    //xOffset = currentX;
+   // yOffset = currentY;
+
+    //let div = divRef.current;
     
-    console.log( 'touch x ' + e.touches[0].clientX )
-    console.log(div.style.transform)
-    console.log(div.style.top + ', ' + div.style.left)
+    div.style.top = div.offsetTop - initialY + "px";
+    div.style.left = div.offsetLeft - initialX + "px";
+    
+
+   // div.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0)";
+    
+    //console.log( 'touch x ' + e.touches[0].clientX )
+    console.log('touch div off e x' + div.offsetLeft +' _ '+ e.touches[0].clientX)
+   // console.log(div.style.transform)
+   // console.log(div.style.top + ', ' + div.style.left)
   
     // set the element's new position:
    // div.style.top = currentX + "px";
