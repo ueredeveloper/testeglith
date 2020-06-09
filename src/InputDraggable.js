@@ -90,6 +90,9 @@ const InputDraggable = props => {
 
   const setTranslate = (xPos, yPos, el) => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+
+    //el.style.top = el.offsetTop - xPos + "px";
+    //el.style.left = el.offsetLeft - yPos + "px";
   };
 
   const classes = useStyles();
@@ -104,11 +107,7 @@ const InputDraggable = props => {
       style={{
         width: "230px",
         height: "80px",
-        backgroundColor: "ffffff",
-        border: "1px solid rgba(136, 136, 136, 0.5)",
-        borderRadius: "2%",
-        top: props.component.style.top,
-        left: props.component.style.top
+
       }}
       ref={divContainer}
       type="text"

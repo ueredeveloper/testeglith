@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InputDraggable from "./InputDraggable";
+import InputDraggableW3 from "./InputDraggableW3";
 
 const App = () => {
   const [data, setData] = useState({
