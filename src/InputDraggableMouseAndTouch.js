@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 const InputDraggableMouseAndTouch = props => {
   const divRef = useRef(null);
 
-  const dragMouseDown = e => {
+  const onMouseDown = e => {
     e = e || window.event;
     e.preventDefault();
     // get the mouse cursor position at startup:
@@ -36,10 +36,12 @@ const InputDraggableMouseAndTouch = props => {
     currentY = e.clientY;
     document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
+    document.onmousemove = onMouseMove;
+
+    console.log("on mouse down");
   };
 
-  const elementDrag = e => {
+  const onMouseMove = e => {
     e = e || window.event;
     e.preventDefault();
     // calculate the new cursor position:
@@ -53,6 +55,8 @@ const InputDraggableMouseAndTouch = props => {
     // set the element's new position:
     div.style.top = div.offsetTop - initialY + "px";
     div.style.left = div.offsetLeft - initialX + "px";
+    
+    console.log('on mouse move')
   };
 
   const closeDragElement = () => {
@@ -110,7 +114,7 @@ const InputDraggableMouseAndTouch = props => {
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">
             <ControlCameraIcon
-              onMouseDown={dragMouseDown}
+              onMouseDown={onMouseDown}
               onTouchStart={dragTouchStart}
               onTouchMove={dragTouchMove}
               onTouchEnd={dragTouchEnd}

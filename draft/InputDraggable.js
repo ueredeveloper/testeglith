@@ -8,12 +8,6 @@ import IconButton from "@material-ui/core/IconButton";
 import "./style.css";
 import InputMenu from "./InputMenu";
 
-/*
-var pos1 = 0,
-  pos2 = 0,
-  pos3 = 0,
-  pos4 = 0;*/
-
 var initialX; //1
 var initialY; //2
 var currentX; //3
@@ -34,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 const InputDraggable = props => {
   const divRef = useRef(null);
 
-  const dragMouseDown = e => {
+  const onMouseDown = e => {
     e = e || window.event;
     e.preventDefault();
     // get the mouse cursor position at startup:
@@ -43,6 +37,8 @@ const InputDraggable = props => {
     document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
+    
+    console.log('drag mouse down')
   };
 
   const elementDrag = e => {
@@ -115,10 +111,8 @@ const InputDraggable = props => {
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">
             <ControlCameraIcon
-              onMouseDown={dragMouseDown}
-              onTouchStart={dragTouchStart}
-              onTouchMove={dragTouchMove}
-              onTouchEnd={dragTouchEnd}
+              onMouseDown={onMouseDown}
+           
               fontSize="small"
             />
           </IconButton>
@@ -139,9 +133,3 @@ const InputDraggable = props => {
 
 export default InputDraggable;
 
-/*
-
-     onTouchStart={dragTouchStart}
-              onTouchEnd={dragTouchEnd}
-              
-              */
