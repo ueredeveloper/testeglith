@@ -15,6 +15,6 @@
   background-color: rgba(168, 218, 220, 1);
 }
 #container:hover {
-  cursor: grab;
+  cursor: move;
   border-width: 5px;
 }

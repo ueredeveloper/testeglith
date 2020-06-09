@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
 import InputMenu from "./InputMenu";
-import "./style.css";
+//import "./style.css";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -15,6 +15,14 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1)
   }
 }));
+
+const divStyle = {
+  width: "230px",
+  height: "80px",
+  backgroundColor: "white",
+  border: "1px solid rgba(136, 136, 136, 0.5)",
+  borderRadius: "2%"
+};
 
 const InputDraggable = props => {
   const divContainer = useRef(null);
@@ -59,7 +67,7 @@ const InputDraggable = props => {
     initialY = currentY;
 
     active = false;
-    console.log('dragEnd' + active)
+    console.log("dragEnd" + active);
   };
 
   const drag = e => {
@@ -92,8 +100,12 @@ const InputDraggable = props => {
 
   return (
     <div
-      id="container"
       style={{
+        width: "230px",
+        height: "80px",
+        backgroundColor: "white",
+        border: "1px solid rgba(136, 136, 136, 0.5)",
+        borderRadius: "2%",
         top: props.component.style.top,
         left: props.component.style.top
       }}
@@ -111,9 +123,8 @@ const InputDraggable = props => {
             onChange={handleChange}
           />
         </form>
-       
       </div>
-       <InputMenu />
+      <InputMenu />
     </div>
   );
 };
