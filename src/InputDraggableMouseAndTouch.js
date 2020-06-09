@@ -37,8 +37,8 @@ const InputDraggableMouseAndTouch = props => {
     // get the mouse cursor position at startup:
     currentX = e.clientX;
     currentY = e.clientY;
+
     document.onmouseup = onMouseUp;
-    // call a function whenever the cursor moves:
     document.onmousemove = onMouseMove;
   };
 
@@ -46,8 +46,8 @@ const InputDraggableMouseAndTouch = props => {
     e = e || window.event;
     e.preventDefault();
     // calculate the new cursor position:
-    
-    console.log('initialx ' + initialX + ' current' + currentX)
+
+    console.log("initialx " + initialX + " current" + currentX);
     initialX = currentX - e.clientX;
     initialY = currentY - e.clientY;
     currentX = e.clientX;
