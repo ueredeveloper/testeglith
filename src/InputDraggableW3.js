@@ -8,19 +8,10 @@ import IconButton from "@material-ui/core/IconButton";
 import "./styleW3.css";
 import InputMenu from "./InputMenu";
 
-/*
-var pos1 = 0,
-  pos2 = 0,
-  pos3 = 0,
-  pos4 = 0;*/
-
 var initialX; //1
 var initialY; //2
 var currentX; //3
 var currentY; //4
-
-//var xOffset = 0;
-//var yOffset = 0;
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -34,13 +25,13 @@ const useStyles = makeStyles(theme => ({
 const InputDraggableW3 = props => {
   const divRef = useRef(null);
 
-  const dragMouseDown = e => {
+  const onMouseDown = e => {
     e = e || window.event;
     e.preventDefault();
     // get the mouse cursor position at startup:
     currentX = e.clientX;
     currentY = e.clientY;
-    document.onmouseup = closeDragElement;
+    document.onmouseup = onMouseUp;
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
   };
@@ -59,14 +50,14 @@ const InputDraggableW3 = props => {
     // set the element's new position:
     div.style.top = div.offsetTop - initialY + "px";
     div.style.left = div.offsetLeft - initialX + "px";
-    
-    console.log('click div off e x' + div.offsetLeft +' _ '+ e.clientX)
+  
   };
 
-  const closeDragElement = () => {
+  const onMouseUp = () => {
     /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
+    console.log('onMouseUp')
   };
 
   const classes = useStyles();
@@ -134,7 +125,7 @@ const InputDraggableW3 = props => {
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">
             <ControlCameraIcon
-              onMouseDown={dragMouseDown}
+              onMouseDown={onMouseDown}
               onTouchStart={dragTouchStart}
               onTouchMove={dragTouchMove}
               onTouchEnd={dragTouchEnd}
