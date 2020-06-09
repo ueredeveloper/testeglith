@@ -7,15 +7,15 @@ const App = () => {
       {
         content: "Loop For",
         style: {
-          top: "200px",
-          left: "200"
+          top: "50px",
+          left: "10px"
         }
       },
       {
         content: "Switch",
         style: {
-          top: "300px",
-          left: "200px"
+          top: "180px",
+          left: "10px"
         }
       }
     ]

@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
+import AddIcon from '@material-ui/icons/Add';
 import InputMenu from "./InputMenu";
 import "./style.css";
 
@@ -108,7 +109,7 @@ const InputDraggable = props => {
       id="container"
       style={{
         top: props.component.style.top,
-        left: props.component.style.top
+        left: props.component.style.left
       }}
       ref={divRef}
     >
