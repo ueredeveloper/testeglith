@@ -59,6 +59,8 @@ const InputDraggableW3 = props => {
     // set the element's new position:
     div.style.top = div.offsetTop - initialY + "px";
     div.style.left = div.offsetLeft - initialX + "px";
+    
+    console.log('click div off e x' + div.offsetLeft + e.clientX)
   };
 
   const closeDragElement = () => {
@@ -90,7 +92,11 @@ const InputDraggableW3 = props => {
     let div = divRef.current;
 
     div.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0)";
-
+    
+    console.log( 'touch x ' + e.touches[0].clientX )
+    console.log(div.style.transform)
+    console.log(div.style.top + ', ' + div.style.left)
+  
     // set the element's new position:
    // div.style.top = currentX + "px";
    // div.style.left = currentX + "px";
