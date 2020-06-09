@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
 import InputMenu from "./InputMenu";
-//import "./style.css";
+import "./style.css";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -100,10 +100,11 @@ const InputDraggable = props => {
 
   return (
     <div
+      id="container"
       style={{
         width: "230px",
         height: "80px",
-        backgroundColor: "white",
+        backgroundColor: "ffffff",
         border: "1px solid rgba(136, 136, 136, 0.5)",
         borderRadius: "2%",
         top: props.component.style.top,
@@ -116,7 +117,7 @@ const InputDraggable = props => {
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="standard-textarea"
-            label="Multiline Placeholder"
+            label="New Idea"
             placeholder="Placeholder"
             multiline
             value={value}
