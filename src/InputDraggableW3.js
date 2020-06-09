@@ -33,10 +33,10 @@ const InputDraggableW3 = props => {
     currentY = e.clientY;
     document.onmouseup = onMouseUp;
     // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
+    document.onmousemove = onMouseMove;
   };
 
-  const elementDrag = e => {
+  const onMouseMove = e => {
     e = e || window.event;
     e.preventDefault();
     // calculate the new cursor position:
@@ -50,14 +50,13 @@ const InputDraggableW3 = props => {
     // set the element's new position:
     div.style.top = div.offsetTop - initialY + "px";
     div.style.left = div.offsetLeft - initialX + "px";
-  
   };
 
   const onMouseUp = () => {
     /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
-    console.log('onMouseUp')
+    console.log("onMouseUp");
   };
 
   const classes = useStyles();
@@ -66,18 +65,17 @@ const InputDraggableW3 = props => {
     setValue(event.target.value);
   };
 
-  const dragTouchStart = e => {
-    //initialX = e.touches[0].clientX - xOffset;
-    //initialY = e.touches[0].clientY - yOffset;
-    
-     currentX = e.clientX;
-    currentY = e.clientY;
-    
+  const onTouchStart = e => {
+
+    e.preventDefault();
+    currentX = e.touches[0].clientX;
+    currentY = e.touches[0].clientX;
   };
 
-  const dragTouchMove = e => {
-    e.preventDefault();
-    
+  const onTouchMove = e => {
+    e = e || window.event;
+    //e.preventDefault();
+
     initialX = currentX - e.touches[0].clientX;
     initialY = currentY - e.touches[0].clientY;
     currentX = e.touches[0].clientX;
@@ -85,30 +83,14 @@ const InputDraggableW3 = props => {
 
     let div = divRef.current;
 
-    //xOffset = currentX;
-   // yOffset = currentY;
-
-    //let div = divRef.current;
-    
     div.style.top = div.offsetTop - initialY + "px";
     div.style.left = div.offsetLeft - initialX + "px";
-    
 
-   // div.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0)";
-    
-    //console.log( 'touch x ' + e.touches[0].clientX )
-    console.log('touch div off e x' + div.offsetLeft +' _ '+ e.touches[0].clientX)
-   // console.log(div.style.transform)
-   // console.log(div.style.top + ', ' + div.style.left)
-  
-    // set the element's new position:
-   // div.style.top = currentX + "px";
-   // div.style.left = currentX + "px";
   };
 
-  const dragTouchEnd = e => {
-    initialX = currentX;
-    initialY = currentY;
+  const onTouchEnd = e => {
+    //initialX = currentX;
+    //initialY = currentY;
   };
 
   return (
@@ -126,9 +108,9 @@ const InputDraggableW3 = props => {
           <IconButton className={classes.margin} size="small">
             <ControlCameraIcon
               onMouseDown={onMouseDown}
-              onTouchStart={dragTouchStart}
-              onTouchMove={dragTouchMove}
-              onTouchEnd={dragTouchEnd}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
               fontSize="small"
             />
           </IconButton>
