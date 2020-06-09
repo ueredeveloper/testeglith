@@ -7,14 +7,14 @@ const App = () => {
       {
         content: "Loop For",
         style: {
-          top: "400px",
-          left: "400px"
+          top: "200px",
+          left: "200"
         }
       },
       {
         content: "Switch",
         style: {
-          top: "200px",
+          top: "300px",
           left: "200px"
         }
       }

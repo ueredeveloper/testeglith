@@ -37,6 +37,11 @@ const InputDraggable = props => {
     document.onmouseup = onMouseUp;
     // call a function whenever the cursor moves:
     document.onmousemove = onMouseMove;
+    
+    let div = divRef.current;
+    console.log('div ' + div.offsetTop + ' ' + div.offsetLeft)
+    
+    console.log('on mouse down ' +  e.clientX + ' ' + e.clientY)
   };
 
   const onMouseMove = e => {
@@ -100,13 +105,12 @@ const InputDraggable = props => {
   };
   return (
     <div
-      id="mydiv"
+      id="container"
       style={{
         top: props.component.style.top,
         left: props.component.style.top
       }}
       ref={divRef}
-      type="text"
     >
       <div>
         <form className={classes.root} noValidate autoComplete="off">
