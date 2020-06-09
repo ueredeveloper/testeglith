@@ -62,33 +62,33 @@ const InputDraggableW3 = props => {
     console.log(" on mouse up");
   };
 
-  const onTouchStart = e => {
-    e = e || window.event;
-    //e.preventDefault();
-
-    currentX = e.touches[0].clientX;
-    currentY = e.touches[0].clientY;
-    document.ontouchend = onTouchEnd;
-    document.ontouchmove = onTouchMove;
+  const dragTouchStart = e => {
+    initialX = e.touches[0].clientX - xOffset;
+    initialY = e.touches[0].clientY - yOffset;
   };
 
-  const onTouchMove = e => {
-    e = e || window.event;
+  const dragTouchMove = e => {
+    e.preventDefault();
 
-    initialX = currentX - e.touches[0].clientX;
-    initialY = currentY - e.touches[0].clientY;
-    currentX = e.touches[0].clientX;
-    currentY = e.touches[0].clientY;
+    currentX = e.touches[0].clientX - initialX;
+    currentY = e.touches[0].clientY - initialY;
+
+    xOffset = currentX;
+    yOffset = currentY;
 
     let div = divRef.current;
 
-    div.style.top = div.offsetTop - initialY + "px";
-    div.style.left = div.offsetLeft - initialX + "px";
+    div.style.transform =
+      "translate3d(" + currentX + "px, " + currentY + "px, 0)";
+
+    // set the element's new position:
+    // div.style.top = currentX + "px";
+    // div.style.left = currentX + "px";
   };
 
-  const onTouchEnd = e => {
-    document.ontouchend = null;
-    document.ontouchmove = null;
+  const dragTouchEnd = e => {
+    initialX = currentX;
+    initialY = currentY;
   };
 
   const classes = useStyles();
@@ -109,11 +109,7 @@ const InputDraggableW3 = props => {
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon
-              onMouseDown={onMouseDown}
-              onTouchStart={onTouchStart}
-              fontSize="small"
-            />
+            <ControlCameraIcon onMouseDown={onMouseDown} fontSize="small" />
           </IconButton>
           <TextField
             id="standard-textarea"
