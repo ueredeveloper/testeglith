@@ -59,6 +59,7 @@ const InputDraggable = props => {
     initialY = currentY;
 
     active = false;
+    console.log('dragEnd' + active)
   };
 
   const drag = e => {
