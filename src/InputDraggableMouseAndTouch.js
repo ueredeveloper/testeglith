@@ -17,20 +17,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const InputDraggableMouseAndTouch = props => {
-  var initialX;
-  var initialY;
-  var currentX;
-  var currentY;
-  
+  var initialX = 0,
+    initialY = 0,
+    currentX = 0,
+    currentY = 0;
+
   var container;
 
   const divRef = useRef(null);
-  
+
   useEffect(() => {
     container = divRef.current;
     console.log(container);
   }, []);
-  
+
   const onMouseDown = e => {
     e = e || window.event;
     e.preventDefault();
@@ -43,24 +43,21 @@ const InputDraggableMouseAndTouch = props => {
   };
 
   const onMouseMove = e => {
-     e = e || window.event;
+    e = e || window.event;
     e.preventDefault();
     // calculate the new cursor position:
+    
+    console.log('initialx ' + initialX + ' current' + currentX)
     initialX = currentX - e.clientX;
     initialY = currentY - e.clientY;
     currentX = e.clientX;
     currentY = e.clientY;
-
-   // let div = divRef.current;
-
     // set the element's new position:
     container.style.top = container.offsetTop - initialY + "px";
     container.style.left = container.offsetLeft - initialX + "px";
-    
-    console.log('client ' + e.clientX + ' ' + e.clientY)
-    
-    
-    console.log('initial' + initialX + ' ' + initialY )
+
+    console.log("client " + e.clientX + " " + e.clientY);
+    console.log("initial" + initialX + " " + initialY);
   };
 
   const onMouseUp = () => {
