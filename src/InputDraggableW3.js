@@ -70,6 +70,8 @@ const InputDraggableW3 = props => {
     currentY = e.touches[0].clientY;
     document.ontouchend = onTouchEnd;
     document.ontouchmove = onTouchMove;
+    
+    console.log('on touch start')
   };
 
   const onTouchMove = e => {
@@ -84,11 +86,15 @@ const InputDraggableW3 = props => {
 
     div.style.top = div.offsetTop - initialY + "px";
     div.style.left = div.offsetLeft - initialX + "px";
+    
+    console.log('on touch move')
   };
 
   const onTouchEnd = e => {
     document.ontouchend = null;
     document.ontouchmove = null;
+    
+    console.log('on touch  end')
   };
 
   const classes = useStyles();
