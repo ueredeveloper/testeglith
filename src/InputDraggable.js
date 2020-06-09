@@ -4,18 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
-import AddIcon from '@material-ui/icons/Add';
+
 import InputMenu from "./InputMenu";
 import "./style.css";
-
-
-var initialX; //1
-var initialY; //2
-var currentX; //3
-var currentY; //4
-
-var xOffset = 0;
-var yOffset = 0;
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -29,6 +20,8 @@ const useStyles = makeStyles(theme => ({
 const InputDraggable = props => {
   const divRef = useRef(null);
 
+  var initialX, initialY, currentX, currentY;
+
   const onMouseDown = e => {
     e = e || window.event;
     e.preventDefault();
@@ -38,11 +31,11 @@ const InputDraggable = props => {
     document.onmouseup = onMouseUp;
     // call a function whenever the cursor moves:
     document.onmousemove = onMouseMove;
-    
+
     let div = divRef.current;
-    console.log('div ' + div.offsetTop + ' ' + div.offsetLeft)
-    
-    console.log('on mouse down ' +  e.clientX + ' ' + e.clientY)
+    console.log("div " + div.offsetTop + " " + div.offsetLeft);
+
+    console.log("on mouse down " + e.clientX + " " + e.clientY);
   };
 
   const onMouseMove = e => {
@@ -64,7 +57,6 @@ const InputDraggable = props => {
     /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
-
   };
 
   const onTouchStart = e => {
@@ -75,7 +67,6 @@ const InputDraggable = props => {
     currentY = e.touches[0].clientY;
     document.ontouchend = onTouchEnd;
     document.ontouchmove = onTouchMove;
- 
   };
 
   const onTouchMove = e => {
@@ -90,13 +81,11 @@ const InputDraggable = props => {
 
     div.style.top = div.offsetTop - initialY + "px";
     div.style.left = div.offsetLeft - initialX + "px";
-    
   };
 
   const onTouchEnd = e => {
     document.ontouchend = null;
     document.ontouchmove = null;
-  
   };
 
   const classes = useStyles();

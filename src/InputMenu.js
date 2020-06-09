@@ -11,6 +11,7 @@ import SettingsIcon from "@material-ui/icons/Settings"; // setting
 import VideoCallIcon from "@material-ui/icons/VideoCall"; // video
 import InsertPhotoIcon from "@material-ui/icons/InsertPhoto"; // imagem
 import CreateIcon from "@material-ui/icons/Create"; // edit
+import AddIcon from "@material-ui/icons/Add"; // new
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -24,15 +25,15 @@ const useStyles = makeStyles(theme => ({
 const InputMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget);
     console.log("handleClick inputMenu");
   };
 
-  const handleClose = () => {
+  const handleClose = e => {
     setAnchorEl(null);
 
-    console.log("handle Close inputMenu");
+    console.log("handle Close inputMenu" + e.target.value);
   };
   const classes = useStyles();
   /* const [value, setValue] = React.useState("Controlled");
@@ -59,16 +60,19 @@ const InputMenu = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem value="1" onClick={handleClose}>
+          <AddIcon />
+        </MenuItem>
+        <MenuItem value="2" onClick={handleClose}>
           <CreateIcon />
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem value="3" onClick={handleClose}>
           <VideoCallIcon />
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem value="4" onClick={handleClose}>
           <InsertPhotoIcon />
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem value="5" onClick={handleClose}>
           <DeleteIcon />
         </MenuItem>
       </Menu>
