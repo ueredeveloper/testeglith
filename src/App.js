@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InputDraggableMouseAndTouch from "./InputDraggableMouseAndTouch";
+import InputDraggableW3 from "./InputDraggableW3";
 
 const App = () => {
   const [data, setData] = useState({
@@ -25,7 +25,7 @@ const App = () => {
     <div>
       <div>Olá Mundo Brasil</div>
       {data.components.map((c, i) => (
-        <InputDraggableMouseAndTouch component={c} key={i} />
+        <InputDraggableW3 component={c} key={i} />
       ))}
     </div>
   );
