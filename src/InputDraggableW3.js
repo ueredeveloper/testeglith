@@ -7,61 +7,60 @@ import IconButton from "@material-ui/core/IconButton";
 import InputMenu from "./InputMenu";
 import "./style.css";
 
-
-
 const InputDraggablew3 = props => {
-  
-  
   //Make the DIV element draggagle:
-dragElement(document.getElementById("mydiv"));
+  //dragElement(document.getElementById("mydiv"));
 
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    /* if present, the header is where you move the DIV from:*/
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    /* otherwise, move the DIV from anywhere inside the DIV:*/
-    elmnt.onmousedown = dragMouseDown;
-  }
+  const divContainer = useRef(null);
+  var initialX;
+  var initialY;
+  var currentX;
+  var currentY;
 
-  function dragMouseDown(e) {
+  var container;
+
+  useEffect(() => {
+    container = divContainer.current;
+    console.log(container);
+  }, []);
+
+  const dragMouseDown = e => {
     e = e || window.event;
     e.preventDefault();
     // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
+    currentX = e.clientX;
+    currentY = e.clientY;
     document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
-  }
 
-  function elementDrag(e) {
+    console.log("dragMouseDown");
+  };
+
+  const elementDrag = e => {
     e = e || window.event;
     e.preventDefault();
     // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
+    initialX = currentX - e.clientX;
+    initialY = currentY - e.clientY;
+    currentX = e.clientX;
+    currentY = e.clientY;
     // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
+    container.style.top = container.offsetTop - currentY + "px";
+    container.style.left = container.offsetLeft - initialX + "px";
+  };
 
-  function closeDragElement() {
+  const closeDragElement = () => {
     /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
-  }
-}
- 
+  };
 
   return (
-    <div>W3 DRAGGABLE</div>);
+    <div onMouseDown={dragMouseDown} ref={divContainer}>
+      W3 DRAGGABLE
+    </div>
+  );
 };
 
-
 export default InputDraggablew3;
-
-

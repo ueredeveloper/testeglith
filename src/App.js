@@ -25,7 +25,7 @@ const App = () => {
     <div>
       <div>Olá Mundo Brasil</div>
       {data.components.map((c, i) => (
-        <InputDraggable component={c} key={i} />
+        <InputDraggableW3 component={c} key={i} />
       ))}
     </div>
   );
