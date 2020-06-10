@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const InputMenu = () => {
+const InputMenu = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = e => {
@@ -33,7 +33,7 @@ const InputMenu = () => {
   const handleClose = e => {
     setAnchorEl(null);
 
-    console.log("handle Close inputMenu" + e.target.value);
+    console.log("handle Close inputMenu" + e.currentTarget.value);
   };
   const classes = useStyles();
   /* const [value, setValue] = React.useState("Controlled");
@@ -41,6 +41,19 @@ const InputMenu = () => {
     setValue(event.target.value);
   };*/
 
+  const addIdea = () => {
+    
+    let idea = {
+        content: "New Idea",
+        style: {
+          top: "50px",
+          left: "60px"
+        }
+      }
+    
+    props.addNewidea(idea)
+  };
+  
   return (
     <div>
       <IconButton
@@ -61,7 +74,7 @@ const InputMenu = () => {
         onClose={handleClose}
       >
         <MenuItem value="1" onClick={handleClose}>
-          <AddIcon />
+          <AddIcon/>
         </MenuItem>
         <MenuItem value="2" onClick={handleClose}>
           <CreateIcon />

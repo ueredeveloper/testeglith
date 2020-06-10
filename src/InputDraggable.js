@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
 
-import InputMenu from "./InputMenu";
+
 import "./style.css";
 
 const useStyles = makeStyles(theme => ({
@@ -120,7 +120,7 @@ const InputDraggable = props => {
             onChange={handleChange}
           />
         </form>
-        <InputMenu />
+       
       </div>
     </div>
   );

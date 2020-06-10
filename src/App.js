@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import InputDraggable from "./InputDraggable";
+import InputMenu from "./InputMenu";
 
 const App = () => {
   const [data, setData] = useState({
-    components: [
+    ideas: [
       {
         content: "Loop For",
         style: {
@@ -24,9 +25,11 @@ const App = () => {
   return (
     <div>
       <div>Olá Mundo Brasil</div>
-      {data.components.map((c, i) => (
-        <InputDraggable component={c} key={i} />
+      {data.components.map((id, i) => (
+        <InputDraggable ideas={id} key={i} />
       ))}
+      
+       <InputMenu />
     </div>
   );
 };
