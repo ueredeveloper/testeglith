@@ -57,8 +57,6 @@ const InputDraggable = props => {
     initialX = currentX;
     initialY = currentY;
     
-    dragItem.onmousemove=null;
-    
     console.log(dragItem.mousemove)
     console.log("drag end");
 

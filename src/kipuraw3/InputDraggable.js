@@ -18,6 +18,12 @@ const InputDraggable = props => {
   useEffect(() => {
     dragItem = divDragItem.current;
     container = divContainer.current;
+    
+    
+    dragItem.addEventListener("touchstart", dragItem); 
+    
+    
+    
   }, []);
 
   const onTouchStart = e => {
@@ -60,7 +66,7 @@ const InputDraggable = props => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
-  return <div id="item" ref={divDragItem} onTouchStart={onTouchStart}></div>;
+  return <div id="item" ref={divDragItem}></div>;
 };
 
 export default InputDraggable;
