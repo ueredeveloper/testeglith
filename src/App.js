@@ -34,36 +34,34 @@ const App = () => {
 
   const deleteIdea = id => {
     console.log("App deleteIdea " + id);
-    
+
     let ideas = data.ideas;
-    
- console.log(ideas)
+
+    console.log(ideas);
     for (var i = 0; i < ideas.length; i++) {
       if (ideas[i].id === id) {
         ideas.splice(i, 1);
       }
     }
-    
+
     setData({
       ...data,
       ideas: ideas
     });
- 
-    console.log(ideas)
-    //setData(data.ideas.filter(idea => idea.id !== id));
-    
-
-    
-    
   };
 
   return (
     <div>
       <div>Olá Mundo Brasil</div>
-      {     console.log(data.ideas)}
+      {console.log(data.ideas)}
       {data.ideas.map((idea, i) => (
         <div>
-          <InputDraggable idea={idea} key={i} addNewIdea={addNewIdea} deleteIdea={deleteIdea} />
+          <InputDraggable
+            idea={idea}
+            key={idea.id}
+            addNewIdea={addNewIdea}
+            deleteIdea={deleteIdea}
+          />
         </div>
       ))}
     </div>

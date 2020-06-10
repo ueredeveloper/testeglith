@@ -60,7 +60,7 @@ const InputMenu = props => {
     
     // gerar numero de id aleatori Math.randon...
     let idea = {
-      id:Math.floor(Math.random() * 1000),
+      id:Math.floor(Math.random() * 10000),
       content: "New Idea",
       style: {
         top: "50px",
