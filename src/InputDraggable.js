@@ -33,9 +33,9 @@ const InputDraggable = props => {
     document.onmousemove = onMouseMove;
 
     let div = divRef.current;
-    console.log("div " + div.offsetTop + " " + div.offsetLeft);
+    //console.log("div " + div.offsetTop + " " + div.offsetLeft);
 
-    console.log("on mouse down " + e.clientX + " " + e.clientY);
+    //console.log("on mouse down " + e.clientX + " " + e.clientY);
   };
 
   const onMouseMove = e => {

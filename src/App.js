@@ -42,13 +42,19 @@ const App = () => {
       }
     }
     */
+
     
-    setData(data => data.ideas.filter((idea,  i) => i !== id));
+    setData(data.ideas.filter(idea => idea.id !== id));
+    
+
+    
+    
   };
 
   return (
     <div>
       <div>Olá Mundo Brasil</div>
+      {     console.log(data.ideas)}
       {data.ideas.map((idea, i) => (
         <div>
           <InputDraggable idea={idea} key={i} addNewIdea={addNewIdea} deleteIdea={deleteIdea} />

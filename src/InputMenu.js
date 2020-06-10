@@ -27,35 +27,32 @@ const InputMenu = props => {
 
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
-    console.log("handleClick inputMenu");
+    //console.log("handleClick inputMenu");
   };
 
   const handleClose = e => {
     setAnchorEl(null);
 
     let value = e.currentTarget.value;
-console.log (value)
+    //console.log(value);
     switch (value) {
       case 1:
         addNewIdea();
         break;
-        case 5:
+      case 5:
         deleteIdea(props.id);
-        
+
         break;
       default:
-     
     }
-
   };
   const classes = useStyles();
   /* const [value, setValue] = React.useState("Controlled");
   const handleChange = event => {
     setValue(event.target.value);
   };*/
-  
-   const deleteIdea = (id) => {
-    
+
+  const deleteIdea = id => {
     props.deleteIdea(id);
   };
 
