@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InputDraggable from "./InputDraggable";
-import InputMenu from "./InputMenu";
+
 
 const App = () => {
   const [data, setData] = useState({
@@ -21,15 +21,20 @@ const App = () => {
       }
     ]
   });
+  
+  const addNewIdea=(idea)=>{
+    console.log('App add new  Idea')
+  }
 
   return (
     <div>
       <div>Olá Mundo Brasil</div>
-      {data.components.map((id, i) => (
-        <InputDraggable ideas={id} key={i} />
+      {data.ideas.map((idea, i) => (
+        <div>
+          <InputDraggable idea={idea} key={i} addNewIdea={addNewIdea} />
+         
+        </div>
       ))}
-      
-       <InputMenu />
     </div>
   );
 };

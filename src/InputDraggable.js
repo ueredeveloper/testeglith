@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
-
+import InputMenu from "./InputMenu";
 
 import "./style.css";
 
@@ -89,7 +89,7 @@ const InputDraggable = props => {
   };
 
   const classes = useStyles();
-  const [value, setValue] = React.useState(props.component.content);
+  const [value, setValue] = React.useState(props.idea.content);
   const handleChange = event => {
     setValue(event.target.value);
   };
@@ -97,8 +97,8 @@ const InputDraggable = props => {
     <div
       id="container"
       style={{
-        top: props.component.style.top,
-        left: props.component.style.left
+        top: props.idea.style.top,
+        left: props.idea.style.left
       }}
       ref={divRef}
     >
@@ -120,7 +120,7 @@ const InputDraggable = props => {
             onChange={handleChange}
           />
         </form>
-       
+        <InputMenu addNewIdea={props.addNewIdea}/>
       </div>
     </div>
   );
