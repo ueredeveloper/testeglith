@@ -78,14 +78,16 @@ const InputDraggable = props => {
   };
 
   return (
-    <div
-      id="item"
-      ref={divDragItem}
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-      onTouchMove={onTouchMove}
-      onMouseDown={onMouseDown}
-    ></div>
+    <div>
+      <div
+        id="item"
+        ref={divDragItem}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchMove={onTouchMove}
+        onMouseDown={onMouseDown}
+      ></div>
+    </div>
   );
 };
 
