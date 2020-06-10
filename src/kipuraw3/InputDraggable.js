@@ -29,7 +29,7 @@ const InputDraggable = props => {
     console.log('on touch start')
     //dragItem.ontouchend = onTouchEnd;
     //dragItem.ontouchmove = onTouchMove;
-    //dragItem.onmousedown = onMouseDown;
+   // dragItem.onmousedown = onMouseDown;
   };
 
   const onTouchMove = e => {
@@ -46,9 +46,9 @@ const InputDraggable = props => {
     initialX = currentX;
     initialY = currentY;
 
-    dragItem.ontouchend = null;
-    dragItem.ontouchmove = null;
-    dragItem.onmousedown = null;
+    //dragItem.ontouchend = null;
+    //dragItem.ontouchmove = null;
+    //dragItem.onmousedown = null;
     //dragItem.ontouchstart = null;
   };
 
@@ -63,7 +63,11 @@ const InputDraggable = props => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
-  return <div id="item" ref={divDragItem} onTouchStart={onTouchStart}></div>;
+  return <div id="item" ref={divDragItem} 
+           onTouchStart={onTouchStart}
+           onTouchEnd={onTouchEnd}
+           onTouchMove={onTouchMove}
+           onMouseDown={onMouseDown}></div>;
 };
 
 export default InputDraggable;
