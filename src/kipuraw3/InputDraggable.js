@@ -34,6 +34,7 @@ const InputDraggable = props => {
 
     document.ontouchend = onTouchEnd;
     document.ontouchmove = onTouchMove;
+    document.onmousedown = onMouseDown;
   };
 
   const onTouchMove = e => {
@@ -52,6 +53,14 @@ const InputDraggable = props => {
 
     document.ontouchend = null;
     document.ontouchmove = null;
+    document.onmousedown = null;
+  };
+
+  const onMouseDown = e => {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+    
+    console.log('on mouse down')
   };
 
   const setTranslate = (xPos, yPos, el) => {

@@ -42,8 +42,7 @@ const InputDraggable = props => {
       initialX = e.touches[0].clientX - xOffset;
       initialY = e.touches[0].clientY - yOffset;
     } else {
-      
-      console.log('dragStart ' +  e.type)
+      console.log("dragStart " + e.type);
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
     }
@@ -56,6 +55,7 @@ const InputDraggable = props => {
   const dragEnd = e => {
     initialX = currentX;
     initialY = currentY;
+    console.log("drag end");
 
     active = false;
   };
@@ -68,8 +68,7 @@ const InputDraggable = props => {
         currentX = e.touches[0].clientX - initialX;
         currentY = e.touches[0].clientY - initialY;
       } else {
-        
-        console.log('else drag ' + e.type)
+        console.log("else drag " + e.type);
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
       }
