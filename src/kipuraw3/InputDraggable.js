@@ -26,9 +26,10 @@ const InputDraggable = props => {
     initialX = e.touches[0].clientX - xOffset;
     initialY = e.touches[0].clientY - yOffset;
 
-    dragItem.ontouchend = onTouchEnd;
-    dragItem.ontouchmove = onTouchMove;
-    dragItem.onmousedown = onMouseDown;
+    console.log('on touch start')
+    //dragItem.ontouchend = onTouchEnd;
+    //dragItem.ontouchmove = onTouchMove;
+    //dragItem.onmousedown = onMouseDown;
   };
 
   const onTouchMove = e => {

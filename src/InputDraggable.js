@@ -53,8 +53,8 @@ const InputDraggable = props => {
 
   const onMouseUp = () => {
     /* stop moving when mouse button is released:*/
-    document.onmouseup = null;
-    document.onmousemove = null;
+   document.onmouseup = null;
+   document.onmousemove = null;
     
     props.idea.style.top = container.offsetTop - initialY + "px";
     props.idea.style.left = container.offsetLeft - initialX + "px";
