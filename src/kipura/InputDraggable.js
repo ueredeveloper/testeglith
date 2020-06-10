@@ -27,22 +27,23 @@ const InputDraggable = props => {
       dragItem = divDragItem.current;
       container = divContainer.current;
 
-      container.addEventListener("touchstart", dragStart, false);
-      container.addEventListener("touchend", dragEnd, false);
-      container.addEventListener("touchmove", drag, false);
+      dragItem.addEventListener("touchstart", dragStart, false);
+      dragItem.addEventListener("touchend", dragEnd, false);
+      dragItem.addEventListener("touchmove", drag, false);
 
-      container.addEventListener("mousedown", dragStart, false);
-      container.addEventListener("mouseup", dragEnd, false);
-      container.addEventListener("mousemove", drag, false);
+      dragItem.addEventListener("mousedown", dragStart, false);
+      dragItem.addEventListener("mouseup", dragEnd, false);
+      dragItem.addEventListener("mousemove", drag, false);
     });
   }, []);
 
   const dragStart = e => {
     if (e.type === "touchstart") {
+      console.log('dragStart - touch start')
       initialX = e.touches[0].clientX - xOffset;
       initialY = e.touches[0].clientY - yOffset;
     } else {
-      console.log("dragStart " + e.type);
+      console.log("dragStart - " + e.type);
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
     }
@@ -65,6 +66,8 @@ const InputDraggable = props => {
       e.preventDefault();
 
       if (e.type === "touchmove") {
+        
+        console.log('drag touch move')
         currentX = e.touches[0].clientX - initialX;
         currentY = e.touches[0].clientY - initialY;
       } else {
@@ -85,9 +88,7 @@ const InputDraggable = props => {
   };
 
   return (
-    <div id="container" ref={divContainer}>
-      <div id="item" ref={divDragItem}></div>
-    </div>
+     <div id="item" ref={divDragItem}></div>
   );
 };
 
