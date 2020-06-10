@@ -6,20 +6,15 @@ const App = () => {
     ideas: [
       {
         id: 1,
-        content: "Loop For",
+        content: "New Idea",
         style: {
-          top: "50px",
-          left: "10px"
+          width: 300,
+          height
+          top: "200px",
+          left: "50px"
         }
       },
-      {
-        id: 2,
-        content: "Switch",
-        style: {
-          top: "180px",
-          left: "10px"
-        }
-      }
+     
     ]
   });
 

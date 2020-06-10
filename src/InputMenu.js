@@ -60,16 +60,20 @@ const InputMenu = props => {
 
   const addNewIdea = () => {
     // gerar numero de id aleatori Math.randon...
-    
-    let positionY = (parseFloat(props.idea.style.top.replace(/[^\d]+/g,'')) + 50);
-    let positionX = (parseFloat(props.idea.style.top.replace(/[^\d]+/g,'')) + 50);
-    
+    // expressao regular para retirar 'px', somar com valor e concaternar novamente 'px'
+
+    let positionY =
+      parseFloat(props.idea.style.top.replace(/[^\d]+/g, "")) + 50 + "px";
+    let positionX =
+      parseFloat(props.idea.style.left.replace(/[^\d]+/g, "")) + 250 + "px";
+
+    console.log("x " + positionX + " y " + positionY);
     let idea = {
       id: Math.floor(Math.random() * 10000),
       content: "New Idea",
       style: {
-        top:  (parseFloat(props.idea.style.top.replace(/[^\d]+/g,'')) + 50) + 'px',
-        left: (parseFloat(props.idea.style.left.replace(/[^\d]+/g,'')) + 250) + 'px',
+        top: positionY,
+        left: positionX
       }
     };
 
