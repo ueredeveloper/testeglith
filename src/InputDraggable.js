@@ -31,11 +31,6 @@ const InputDraggable = props => {
     document.onmouseup = onMouseUp;
     // call a function whenever the cursor moves:
     document.onmousemove = onMouseMove;
-
-    let div = divRef.current;
-    //console.log("div " + div.offsetTop + " " + div.offsetLeft);
-
-    //console.log("on mouse down " + e.clientX + " " + e.clientY);
   };
 
   const onMouseMove = e => {
@@ -120,7 +115,11 @@ const InputDraggable = props => {
             onChange={handleChange}
           />
         </form>
-        <InputMenu id={props.idea.id} addNewIdea={props.addNewIdea} deleteIdea={props.deleteIdea}/>
+        <InputMenu
+          id={props.idea.id}
+          addNewIdea={props.addNewIdea}
+          deleteIdea={props.deleteIdea}
+        />
       </div>
     </div>
   );

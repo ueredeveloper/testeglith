@@ -47,9 +47,11 @@ const InputMenu = props => {
     }
   };
   const classes = useStyles();
-  /* const [value, setValue] = React.useState("Controlled");
-  const handleChange = event => {
-    setValue(event.target.value);
+  /* const [value, setValue] = React.useState("Controlled");*/
+  /*
+  const handleChange = e => {
+    //setValue(event.target.value);
+    console.log('handle change ' + e.target.value)
   };*/
 
   const deleteIdea = id => {
@@ -57,10 +59,9 @@ const InputMenu = props => {
   };
 
   const addNewIdea = () => {
-    
     // gerar numero de id aleatori Math.randon...
     let idea = {
-      id:Math.floor(Math.random() * 10000),
+      id: Math.floor(Math.random() * 10000),
       content: "New Idea",
       style: {
         top: "50px",
