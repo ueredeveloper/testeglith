@@ -63,15 +63,21 @@ const InputMenu = props => {
     // expressao regular para retirar 'px', somar com valor e concaternar novamente 'px'
 
     let positionY =
-      parseFloat(props.idea.style.top.replace(/[^\d]+/g, "")) + 50 + "px";
+      parseFloat(props.idea.style.top.replace(/[^\d]+/g, "")) +
+      props.idea.style.height +
+      "px";
     let positionX =
-      parseFloat(props.idea.style.left.replace(/[^\d]+/g, "")) + 250 + "px";
+      parseFloat(props.idea.style.left.replace(/[^\d]+/g, "")) +
+      props.idea.style.widht +
+      "px";
 
     console.log("x " + positionX + " y " + positionY);
     let idea = {
       id: Math.floor(Math.random() * 10000),
       content: "New Idea",
       style: {
+        width: props.idea.style.widht + "px",
+        height: props.idea.style.height + "px",
         top: positionY,
         left: positionX
       }

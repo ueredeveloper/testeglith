@@ -55,14 +55,26 @@ const InputDraggable = props => {
     /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
-
+    
     props.idea.style.top = container.offsetTop - initialY + "px";
     props.idea.style.left = container.offsetLeft - initialX + "px";
+    props.idea.style.width = container.offsetWidth;
+    props.idea.style.height = container.offsetHeight;
     
-    
-    console.log(container.offsetHeight)
-    console.log(container.off)
 
+    /*
+    props.idea = {
+      style: {
+        width: container.offsetWidth + "px",
+        height: container.offsetHeight + "px",
+        top: container.offsetTop - initialY + "px",
+        left: container.offsetLeft - initialX + "px"
+      }
+    };
+    */
+
+    //  console.log(container.offsetHeight)
+    //  console.log(container.offsetWidth)
   };
 
   const onTouchStart = e => {
@@ -93,8 +105,23 @@ const InputDraggable = props => {
 
     props.idea.style.top = container.offsetTop - initialY + "px";
     props.idea.style.left = container.offsetLeft - initialX + "px";
+    props.idea.style.width = container.offsetWidth;
+    props.idea.style.height = container.offsetHeight;
     
 
+    /*
+    props.idea = {
+      style: {
+        width: container.offsetWidth + "px",
+        height: container.offsetHeight + "px",
+        top: container.offsetTop - initialY + "px",
+        left: container.offsetLeft - initialX + "px"
+      }
+    };
+    */
+
+    //  console.log(container.offsetHeight)
+    //  console.log(container.offsetWidth)
   };
 
   const classes = useStyles();
