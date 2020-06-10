@@ -60,7 +60,8 @@ const InputDraggable = props => {
     props.idea.style.left = container.offsetLeft - initialX + "px";
     
     
-    console.log('container width ' + container)
+    console.log(container.offsetHeight)
+    console.log(container.off)
 
   };
 
