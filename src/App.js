@@ -24,8 +24,6 @@ const App = () => {
   });
 
   const addNewIdea = idea => {
-    console.log("App add new  Idea");
-
     setData({
       ...data,
       ideas: [...data.ideas, idea]
@@ -33,8 +31,6 @@ const App = () => {
   };
 
   const deleteIdea = id => {
-    console.log("App deleteIdea " + id);
-
     setData({
       ...data,
       ideas: data.ideas.filter(function(value, index, arr) {
