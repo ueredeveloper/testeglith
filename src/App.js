@@ -34,17 +34,23 @@ const App = () => {
 
   const deleteIdea = id => {
     console.log("App deleteIdea " + id);
- 
-    /*
-    for (var i = 0; i < data.ideas.length; i++) {
-      if (data.ideas[i].id === 1) {
-        data.ideas.splice(i, 1);
+    
+    let ideas = data.ideas;
+    
+ console.log(ideas)
+    for (var i = 0; i < ideas.length; i++) {
+      if (ideas[i].id === id) {
+        ideas.splice(i, 1);
       }
     }
-    */
-
     
-    setData(data.ideas.filter(idea => idea.id !== id));
+    setData({
+      ...data,
+      ideas: ideas
+    });
+ 
+    console.log(ideas)
+    //setData(data.ideas.filter(idea => idea.id !== id));
     
 
     
