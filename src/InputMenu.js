@@ -34,9 +34,9 @@ const InputMenu = props => {
     setAnchorEl(null);
 
     let value = e.currentTarget.value;
-
+console.log (value)
     switch (value) {
-      case "1":
+      case 1:
         addNewIdea();
         break;
       default:

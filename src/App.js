@@ -24,6 +24,11 @@ const App = () => {
   
   const addNewIdea=(idea)=>{
     console.log('App add new  Idea')
+    
+     setData({
+        ...data,
+        ideas: [...data.ideas, idea]
+      });
   }
 
   return (
