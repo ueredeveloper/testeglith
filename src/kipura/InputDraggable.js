@@ -56,6 +56,10 @@ const InputDraggable = props => {
   const dragEnd = e => {
     initialX = currentX;
     initialY = currentY;
+    
+    dragItem.onmousemove=null;
+    
+    console.log(dragItem.mousemove)
     console.log("drag end");
 
     active = false;
@@ -88,7 +92,7 @@ const InputDraggable = props => {
   };
 
   return (
-     <div id="item" ref={divDragItem}></div>
+     <div id="item" ref={divDragItem}>{props.idea.content}</div>
   );
 };
 
