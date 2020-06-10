@@ -22,11 +22,11 @@ const InputDraggable = props => {
   var container;
 
   var initialX, initialY, currentX, currentY;
-  
+
   useEffect(() => {
     container = divRef.current;
   });
-  
+
   const onMouseDown = e => {
     e = e || window.event;
     e.preventDefault();
@@ -46,23 +46,19 @@ const InputDraggable = props => {
     initialY = currentY - e.clientY;
     currentX = e.clientX;
     currentY = e.clientY;
- 
-    let 
-    container.style.top = newPositionY;
-    container.style.left = newPositionX;
-    
-    
-    props.idea.style.top =  newPositionY;
-    props.idea.style.left = newPositionX;
-    
-    console.log(props.idea.style)
-    
+
+    container.style.top = container.offsetTop - initialY + "px";
+    container.style.left = container.offsetLeft - initialX + "px";
   };
 
   const onMouseUp = () => {
     /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
+
+    props.idea.style.top = container.offsetTop - initialY + "px";
+    props.idea.style.left = container.offsetLeft - initialX + "px";
+
   };
 
   const onTouchStart = e => {
@@ -82,24 +78,18 @@ const InputDraggable = props => {
     initialY = currentY - e.touches[0].clientY;
     currentX = e.touches[0].clientX;
     currentY = e.touches[0].clientY;
-    
-    let newPositionX = container.offsetTop - initialY + "px";
-    let newPositionY = container.offsetLeft - initialX + "px";
 
-    container.style.top = newPositionY;
-    container.style.left = newPositionX;
-    
-    
-    props.idea.style.top =  newPositionY;
-    props.idea.style.left = newPositionX;
-    
-    console.log(props.idea.style)
-    
+    container.style.top = container.offsetTop - initialY + "px";
+    container.style.left = container.offsetLeft - initialX + "px";
   };
 
   const onTouchEnd = e => {
     document.ontouchend = null;
     document.ontouchmove = null;
+
+    props.idea.style.top = container.offsetTop - initialY + "px";
+    props.idea.style.left = container.offsetLeft - initialX + "px";
+
   };
 
   const classes = useStyles();
@@ -136,8 +126,7 @@ const InputDraggable = props => {
         </form>
         {console.log(props.idea.style.top)}
         <InputMenu
-          id={props.idea.id}
-          
+          idea={props.idea}
           addNewIdea={props.addNewIdea}
           deleteIdea={props.deleteIdea}
         />

@@ -40,7 +40,7 @@ const InputMenu = props => {
         addNewIdea();
         break;
       case 5:
-        deleteIdea(props.id);
+        deleteIdea(props.idea.id);
 
         break;
       default:
@@ -64,8 +64,8 @@ const InputMenu = props => {
       id: Math.floor(Math.random() * 10000),
       content: "New Idea",
       style: {
-        top: "50px",
-        left: "60px"
+        top: props.idea.style.top,
+        left: props.idea.style.left
       }
     };
 
