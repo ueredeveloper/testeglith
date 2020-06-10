@@ -120,7 +120,7 @@ const InputDraggable = props => {
             onChange={handleChange}
           />
         </form>
-        <InputMenu addNewIdea={props.addNewIdea}/>
+        <InputMenu id={props.idea.id} addNewIdea={props.addNewIdea} deleteIdea={props.deleteIdea}/>
       </div>
     </div>
   );

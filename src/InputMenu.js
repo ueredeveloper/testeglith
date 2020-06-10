@@ -40,7 +40,7 @@ console.log (value)
         addNewIdea();
         break;
         case 5:
-        deleteIdea();
+        deleteIdea(props.id);
         
         break;
       default:
