@@ -58,6 +58,9 @@ const InputDraggable = props => {
 
     props.idea.style.top = container.offsetTop - initialY + "px";
     props.idea.style.left = container.offsetLeft - initialX + "px";
+    
+    
+    console.log('container width ' + container)
 
   };
 
@@ -89,6 +92,7 @@ const InputDraggable = props => {
 
     props.idea.style.top = container.offsetTop - initialY + "px";
     props.idea.style.left = container.offsetLeft - initialX + "px";
+    
 
   };
 

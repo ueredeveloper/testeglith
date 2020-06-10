@@ -9,7 +9,7 @@ const App = () => {
         content: "New Idea",
         style: {
           width: 300,
-          height
+          height: 300,
           top: "200px",
           left: "50px"
         }
