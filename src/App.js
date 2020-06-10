@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 //import InputDraggable from "./InputDraggable";
-import InputDraggKipura from "./InputDraggKipura";
-
+//import InputDraggable from "./kipuraw3/InputDraggable.js";
+import InputDraggable from  '/kipura/InputDraggable'
 const App = () => {
   const [data, setData] = useState({
     ideas: [
@@ -49,7 +49,7 @@ const App = () => {
     <div>
       {data.ideas.map((idea, i) => (
         <div>
-          <InputDraggKipura
+          <InputDraggable
             idea={idea}
             key={i}
             addNewIdea={addNewIdea}

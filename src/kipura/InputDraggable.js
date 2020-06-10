@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-import "./styleKipura.css";
+import "./style.css";
 
 var active = false;
 var currentX;
@@ -12,7 +12,7 @@ var yOffset = 0;
 
 var dragItem, container;
 
-const InputDraggKipura = props => {
+const InputDraggable = props => {
   const divDragItem = useRef(null);
   const divContainer = useRef(null);
 
@@ -42,6 +42,8 @@ const InputDraggKipura = props => {
       initialX = e.touches[0].clientX - xOffset;
       initialY = e.touches[0].clientY - yOffset;
     } else {
+      
+      console.log('dragStart ' +  e.type)
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
     }
@@ -66,6 +68,8 @@ const InputDraggKipura = props => {
         currentX = e.touches[0].clientX - initialX;
         currentY = e.touches[0].clientY - initialY;
       } else {
+        
+        console.log('else drag ' + e.type)
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
       }
@@ -88,4 +92,4 @@ const InputDraggKipura = props => {
   );
 };
 
-export default InputDraggKipura;
+export default InputDraggable;
