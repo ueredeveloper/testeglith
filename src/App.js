@@ -30,6 +30,16 @@ const App = () => {
         ideas: [...data.ideas, idea]
       });
   }
+  
+    const deleteIdea =(id)=>{
+    console.log('App deleteIdea')
+    
+     setData({
+        ...data,
+        ideas: [...data.ideas, idea]
+      });
+  }
+    
 
   return (
     <div>

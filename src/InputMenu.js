@@ -39,17 +39,25 @@ console.log (value)
       case 1:
         addNewIdea();
         break;
+        case 5:
+        deleteIdea();
+        
+        break;
       default:
-        console.log("switch  default");
+     
     }
 
-    console.log("handle Close inputMenu" + e.currentTarget.value);
   };
   const classes = useStyles();
   /* const [value, setValue] = React.useState("Controlled");
   const handleChange = event => {
     setValue(event.target.value);
   };*/
+  
+   const deleteIdea = (id) => {
+    
+    props.deleteIdea(id);
+  };
 
   const addNewIdea = () => {
     let idea = {
