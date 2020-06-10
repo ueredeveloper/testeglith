@@ -156,7 +156,6 @@ const InputDraggable = props => {
             onChange={handleChange}
           />
         </form>
-        {console.log(props.idea.style.top)}
         <InputMenu
           idea={props.idea}
           addNewIdea={props.addNewIdea}

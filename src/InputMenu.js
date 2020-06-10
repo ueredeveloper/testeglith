@@ -68,7 +68,7 @@ const InputMenu = props => {
       "px";
     let positionX =
       parseFloat(props.idea.style.left.replace(/[^\d]+/g, "")) +
-      props.idea.style.widht +
+      props.idea.style.width +
       "px";
 
     console.log("x " + positionX + " y " + positionY);
@@ -76,7 +76,7 @@ const InputMenu = props => {
       id: Math.floor(Math.random() * 10000),
       content: "New Idea",
       style: {
-        width: props.idea.style.widht + "px",
+        width: props.idea.style.width + "px",
         height: props.idea.style.height + "px",
         top: positionY,
         left: positionX

@@ -8,13 +8,12 @@ const App = () => {
         id: 1,
         content: "New Idea",
         style: {
-          width: 300,
-          height: 300,
+          width: "240px",
+          height: "100px",
           top: "200px",
           left: "50px"
         }
-      },
-     
+      }
     ]
   });
 
