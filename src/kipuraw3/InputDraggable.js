@@ -9,25 +9,6 @@ var initialY;
 var xOffset = 0;
 var yOffset = 0;
 
-/* 
-funciona 
-
-  on touch
-  
-      item 2
-        on mouse down
-
-      não funciona
-      item 1
-        nada
-        
-  onclick
-        
-      nada
-    
-use effect
-  so a inicializacao da div
-*/
 
 var dragItem, container;
 
