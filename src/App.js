@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 //import InputDraggable from "./InputDraggable";
-import InputDraggable from './teste/InputDraggable.js'
-//import InputDraggable from "./kipuraw3/InputDraggable.js";
+//import InputDraggable from './teste/InputDraggable.js'
+import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./kipura/InputDraggable";
 const App = () => {
   const [data, setData] = useState({
