@@ -22,10 +22,8 @@ const InputDraggable = props => {
   };
 
   useEffect(() => {
-    longResolve().then(() => {
-      dragItem = divDragItem.current;
-      container = divContainer.current;
-    });
+    dragItem = divDragItem.current;
+    container = divContainer.current;
   }, []);
 
   const onTouchStart = e => {
@@ -54,13 +52,14 @@ const InputDraggable = props => {
     document.ontouchend = null;
     document.ontouchmove = null;
     document.onmousedown = null;
+    document.ontouchstart = null;
   };
 
   const onMouseDown = e => {
     initialX = e.clientX - xOffset;
     initialY = e.clientY - yOffset;
-    
-    console.log('on mouse down')
+
+    console.log("on mouse down");
   };
 
   const setTranslate = (xPos, yPos, el) => {

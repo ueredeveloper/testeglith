@@ -14,6 +14,36 @@ const App = () => {
           top: "200px",
           left: "50px"
         }
+      },
+       {
+        id: 1,
+        content: "New Idea",
+        style: {
+          width: "240px",
+          height: "100px",
+          top: "200px",
+          left: "50px"
+        }
+      },
+        {
+        id: 1,
+        content: "New Idea",
+        style: {
+          width: "240px",
+          height: "100px",
+          top: "200px",
+          left: "50px"
+        }
+      },
+        {
+        id: 1,
+        content: "New Idea",
+        style: {
+          width: "240px",
+          height: "100px",
+          top: "200px",
+          left: "50px"
+        }
       }
      
     ]
