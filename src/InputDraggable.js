@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -19,9 +19,14 @@ const useStyles = makeStyles(theme => ({
 
 const InputDraggable = props => {
   const divRef = useRef(null);
+  var container;
 
   var initialX, initialY, currentX, currentY;
-
+  
+  useEffect(() => {
+    container = divRef.current;
+  });
+  
   const onMouseDown = e => {
     e = e || window.event;
     e.preventDefault();
@@ -42,10 +47,8 @@ const InputDraggable = props => {
     currentX = e.clientX;
     currentY = e.clientY;
 
-    let div = divRef.current;
-
-    div.style.top = div.offsetTop - initialY + "px";
-    div.style.left = div.offsetLeft - initialX + "px";
+    container.style.top = container.offsetTop - initialY + "px";
+    container.style.left = container.offsetLeft - initialX + "px";
   };
 
   const onMouseUp = () => {
@@ -72,10 +75,8 @@ const InputDraggable = props => {
     currentX = e.touches[0].clientX;
     currentY = e.touches[0].clientY;
 
-    let div = divRef.current;
-
-    div.style.top = div.offsetTop - initialY + "px";
-    div.style.left = div.offsetLeft - initialX + "px";
+    container.style.top = container.offsetTop - initialY + "px";
+    container.style.left = container.offsetLeft - initialX + "px";
   };
 
   const onTouchEnd = e => {
@@ -115,8 +116,10 @@ const InputDraggable = props => {
             onChange={handleChange}
           />
         </form>
+        {console.log(props.idea.style.top)}
         <InputMenu
           id={props.idea.id}
+          
           addNewIdea={props.addNewIdea}
           deleteIdea={props.deleteIdea}
         />
