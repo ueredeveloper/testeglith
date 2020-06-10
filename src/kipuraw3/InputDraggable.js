@@ -15,12 +15,6 @@ const InputDraggable = props => {
   const divDragItem = useRef(null);
   const divContainer = useRef(null);
 
-  const longResolve = () => {
-    return new Promise(res => {
-      setTimeout(res, 3000);
-    });
-  };
-
   useEffect(() => {
     dragItem = divDragItem.current;
     container = divContainer.current;
@@ -30,9 +24,9 @@ const InputDraggable = props => {
     initialX = e.touches[0].clientX - xOffset;
     initialY = e.touches[0].clientY - yOffset;
 
-    document.ontouchend = onTouchEnd;
-    document.ontouchmove = onTouchMove;
-    document.onmousedown = onMouseDown;
+    dragItem.ontouchend = onTouchEnd;
+    dragItem.ontouchmove = onTouchMove;
+    dragItem.onmousedown = onMouseDown;
   };
 
   const onTouchMove = e => {
@@ -49,10 +43,10 @@ const InputDraggable = props => {
     initialX = currentX;
     initialY = currentY;
 
-    document.ontouchend = null;
-    document.ontouchmove = null;
-    document.onmousedown = null;
-    document.ontouchstart = null;
+    dragItem.ontouchend = null;
+    dragItem.ontouchmove = null;
+    dragItem.onmousedown = null;
+    dragItem.ontouchstart = null;
   };
 
   const onMouseDown = e => {
@@ -66,11 +60,7 @@ const InputDraggable = props => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
-  return (
-    <div id="container" ref={divContainer} onTouchStart={onTouchStart}>
-      <div id="item" ref={divDragItem}></div>
-    </div>
-  );
+  return <div id="item" ref={divDragItem} onTouchStart={onTouchStart}></div>;
 };
 
 export default InputDraggable;

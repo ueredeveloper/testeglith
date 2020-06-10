@@ -15,8 +15,8 @@ const App = () => {
           left: "50px"
         }
       },
-       {
-        id: 1,
+      {
+        id: 2,
         content: "New Idea",
         style: {
           width: "240px",
@@ -25,18 +25,8 @@ const App = () => {
           left: "50px"
         }
       },
-        {
-        id: 1,
-        content: "New Idea",
-        style: {
-          width: "240px",
-          height: "100px",
-          top: "200px",
-          left: "50px"
-        }
-      },
-        {
-        id: 1,
+      {
+        id: 3,
         content: "New Idea",
         style: {
           width: "240px",
@@ -45,7 +35,6 @@ const App = () => {
           left: "50px"
         }
       }
-     
     ]
   });
 
@@ -68,14 +57,12 @@ const App = () => {
   return (
     <div>
       {data.ideas.map((idea, i) => (
-        <div>
-          <InputDraggable
-            idea={idea}
-            key={i}
-            addNewIdea={addNewIdea}
-            deleteIdea={deleteIdea}
-          />
-        </div>
+        <InputDraggable
+          idea={idea}
+          key={i}
+          addNewIdea={addNewIdea}
+          deleteIdea={deleteIdea}
+        />
       ))}
     </div>
   );
