@@ -64,12 +64,10 @@ const InputMenu = props => {
 
     let positionY =
       parseFloat(props.idea.style.top.replace(/[^\d]+/g, "")) +
-      props.idea.style.height +
-      "px";
+      parseFloat(props.idea.style.height);
     let positionX =
       parseFloat(props.idea.style.left.replace(/[^\d]+/g, "")) +
-      props.idea.style.width +
-      "px";
+      parseFloat(props.idea.style.width);
 
     console.log("x " + positionX + " y " + positionY);
     let idea = {
@@ -78,8 +76,8 @@ const InputMenu = props => {
       style: {
         width: props.idea.style.width + "px",
         height: props.idea.style.height + "px",
-        top: positionY,
-        left: positionX
+        top: positionY + "px",
+        left: positionX + "px",
       }
     };
 
