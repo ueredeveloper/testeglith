@@ -46,9 +46,17 @@ const InputDraggable = props => {
     initialY = currentY - e.clientY;
     currentX = e.clientX;
     currentY = e.clientY;
-
-    container.style.top = container.offsetTop - initialY + "px";
-    container.style.left = container.offsetLeft - initialX + "px";
+ 
+    let 
+    container.style.top = newPositionY;
+    container.style.left = newPositionX;
+    
+    
+    props.idea.style.top =  newPositionY;
+    props.idea.style.left = newPositionX;
+    
+    console.log(props.idea.style)
+    
   };
 
   const onMouseUp = () => {
@@ -74,9 +82,19 @@ const InputDraggable = props => {
     initialY = currentY - e.touches[0].clientY;
     currentX = e.touches[0].clientX;
     currentY = e.touches[0].clientY;
+    
+    let newPositionX = container.offsetTop - initialY + "px";
+    let newPositionY = container.offsetLeft - initialX + "px";
 
-    container.style.top = container.offsetTop - initialY + "px";
-    container.style.left = container.offsetLeft - initialX + "px";
+    container.style.top = newPositionY;
+    container.style.left = newPositionX;
+    
+    
+    props.idea.style.top =  newPositionY;
+    props.idea.style.left = newPositionX;
+    
+    console.log(props.idea.style)
+    
   };
 
   const onTouchEnd = e => {
