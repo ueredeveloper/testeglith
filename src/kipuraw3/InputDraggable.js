@@ -20,7 +20,7 @@ const InputDraggable = props => {
     container = divContainer.current;
     
     
-    dragItem.addEventListener("touchstart", dragItem); 
+    dragItem.addEventListener("touchstart", onTouchStart); 
     
     
     
