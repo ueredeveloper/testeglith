@@ -61,7 +61,7 @@ const InputDraggable = props => {
     console.log("touch end");
     initialX = currentX;
     initialY = currentY;
-
+ 
     active = false;
     /*
     dragItem.ontouchend = null;
@@ -70,9 +70,11 @@ const InputDraggable = props => {
     dragItem.ontouchstart = null;
     */
 
+    /*
     dragItem.removeEventListener("touchend", onTouchEnd);
     dragItem.removeEventListener("touchmove", onTouchEnd);
     dragItem.removeEventListener("mousedown", onMouseDown);
+    */
   };
 
   const onMouseDown = e => {
