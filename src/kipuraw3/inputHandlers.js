@@ -1,27 +1,4 @@
-import React, { useEffect, useRef } from "react";
-
-import "./style.css";
-
-var active = false;
-var currentX;
-var currentY;
-var initialX;
-var initialY;
-var xOffset = 0;
-var yOffset = 0;
-
-var dragItem, container;
-
-const InputDraggable = props => {
-  const divDragItem = useRef(null);
-  const divContainer = useRef(null);
-
-  useEffect(() => {
-    dragItem = divDragItem.current;
-    container = divContainer.current;
-  }, []);
-
-  const onTouchStart = e => {
+ const onTouchStart = (e, initialX, initialY, xOffset, yOffset, active, dragItem) => {
     console.log("on touch start");
 
     initialX = e.touches[0].clientX - xOffset;
@@ -36,7 +13,7 @@ const InputDraggable = props => {
     }
   };
 
-  const onTouchMove = e => {
+  const onTouchMove = (e, active, currentX, currentY, xOffset, yOffset, setTranslate) => {
     console.log("touch move");
     if (active) {
       e.preventDefault();
@@ -72,25 +49,3 @@ const InputDraggable = props => {
       active = true;
     }
   };
-
-  const setTranslate = (xPos, yPos, el) => {
-    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-  };
-
-  return (
-    <div>
-      {props.data.ideas.map((idea, i) => (
-        <div
-          id="item"
-          ref={divDragItem}
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
-          onTouchMove={onTouchMove}
-          onMouseDown={onMouseDown}
-        ></div>
-      ))}
-    </div>
-  );
-};
-
-export default InputDraggable;

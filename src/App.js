@@ -61,3 +61,17 @@ const App = () => {
 };
 
 export default App;
+
+/*
+
+ <div>
+      {data.ideas.map((idea, i) => (
+        <InputDraggable
+          idea={idea}
+          key={i}
+          addNewIdea={addNewIdea}
+          deleteIdea={deleteIdea}
+        />
+      ))}
+    </div>
+    */
