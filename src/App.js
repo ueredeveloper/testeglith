@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 //import InputDraggable from "./InputDraggable";
-//import InputDraggable from './teste/InputDraggable.js'
-import InputDraggable from "./kipuraw3/InputDraggable.js";
+import InputDraggable from './teste/InputDraggable.js'
+//import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
 const App = () => {
   const [data, setData] = useState({
@@ -26,7 +26,6 @@ const App = () => {
           left: "50px"
         }
       }
-
     ]
   });
 
@@ -48,14 +47,7 @@ const App = () => {
 
   return (
     <div>
-      {data.ideas.map((idea, i) => (
-        <InputDraggable
-          idea={idea}
-          key={i}
-          addNewIdea={addNewIdea}
-          deleteIdea={deleteIdea}
-        />
-      ))}
+      <InputDraggable data={data} />
     </div>
   );
 };
