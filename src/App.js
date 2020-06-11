@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-//import InputDraggable from "./InputDraggable";
-import InputDraggable from './teste/InputDraggable.js'
+import InputDraggable from "./InputDraggable";
+//import InputDraggable from './teste/InputDraggable.js'
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
 const App = () => {
@@ -47,7 +47,14 @@ const App = () => {
 
   return (
     <div>
-      <InputDraggable data={data} />
+      {data.ideas.map((idea, i) => (
+        <InputDraggable
+          idea={idea}
+          key={i}
+          addNewIdea={addNewIdea}
+          deleteIdea={deleteIdea}
+        />
+      ))}
     </div>
   );
 };

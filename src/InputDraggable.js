@@ -89,6 +89,7 @@ const InputDraggable = props => {
 
   const onTouchMove = e => {
     e = e || window.event;
+    e.preventDefault();
 
     initialX = currentX - e.touches[0].clientX;
     initialY = currentY - e.touches[0].clientY;
