@@ -10,20 +10,20 @@ const App = () => {
         id: 1,
         content: "New Idea",
         style: {
-          width: "240px",
-          height: "100px",
-          top: "200px",
-          left: "50px"
+          width: "240",
+          height: "100",
+          top: "200",
+          left: "50"
         }
       },
       {
         id: 2,
         content: "Teste",
         style: {
-          width: "240px",
-          height: "100px",
-          top: "200px",
-          left: "50px"
+          width: "240",
+          height: "100",
+          top: "200",
+          left: "50"
         }
       }
     ]

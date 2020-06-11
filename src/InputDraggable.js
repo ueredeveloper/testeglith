@@ -34,7 +34,6 @@ const InputDraggable = props => {
     currentX = e.clientX;
     currentY = e.clientY;
     document.onmouseup = onMouseUp;
-    // call a function whenever the cursor moves:
     document.onmousemove = onMouseMove;
   };
 
@@ -52,7 +51,7 @@ const InputDraggable = props => {
   };
 
   const onMouseUp = () => {
-    /* stop moving when mouse button is released:*/
+  
    document.onmouseup = null;
    document.onmousemove = null;
     
@@ -61,26 +60,11 @@ const InputDraggable = props => {
     props.idea.style.width = container.offsetWidth;
     props.idea.style.height = container.offsetHeight;
     
-
-    /*
-    props.idea = {
-      style: {
-        width: container.offsetWidth + "px",
-        height: container.offsetHeight + "px",
-        top: container.offsetTop - initialY + "px",
-        left: container.offsetLeft - initialX + "px"
-      }
-    };
-    */
-
-    //  console.log(container.offsetHeight)
-    //  console.log(container.offsetWidth)
   };
 
   const onTouchStart = e => {
     e = e || window.event;
-    //e.preventDefault();
-
+  
     currentX = e.touches[0].clientX;
     currentY = e.touches[0].clientY;
     document.ontouchend = onTouchEnd;
@@ -97,33 +81,19 @@ const InputDraggable = props => {
     currentX = e.touches[0].clientX;
     currentY = e.touches[0].clientY;
 
-    container.style.top = container.offsetTop - initialY + "px";
-    container.style.left = container.offsetLeft - initialX + "px";
+    container.style.top = container.offsetTop - initialY;
+    container.style.left = container.offsetLeft - initialX;
   };
 
   const onTouchEnd = e => {
     document.ontouchend = null;
     document.ontouchmove = null;
 
-    props.idea.style.top = container.offsetTop - initialY + "px";
-    props.idea.style.left = container.offsetLeft - initialX + "px";
+    props.idea.style.top = container.offsetTop - initialY;
+    props.idea.style.left = container.offsetLeft - initialX;
     props.idea.style.width = container.offsetWidth;
     props.idea.style.height = container.offsetHeight;
     
-
-    /*
-    props.idea = {
-      style: {
-        width: container.offsetWidth + "px",
-        height: container.offsetHeight + "px",
-        top: container.offsetTop - initialY + "px",
-        left: container.offsetLeft - initialX + "px"
-      }
-    };
-    */
-
-    //  console.log(container.offsetHeight)
-    //  console.log(container.offsetWidth)
   };
 
   const classes = useStyles();
@@ -135,8 +105,8 @@ const InputDraggable = props => {
     <div
       id="container"
       style={{
-        top: props.idea.style.top,
-        left: props.idea.style.left
+        top: props.idea.style.top + 'px',
+        left: props.idea.style.left + 'px'
       }}
       ref={divRef}
     >
