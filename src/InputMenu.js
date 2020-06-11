@@ -77,6 +77,7 @@ const InputMenu = props => {
       parseFloat(props.idea.style.left) + parseFloat(props.idea.style.width);
 
     console.log("x " + positionX + " y " + positionY);
+    
     let idea = {
       id: Math.floor(Math.random() * 10000),
       content: "New Idea",

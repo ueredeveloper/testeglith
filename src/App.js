@@ -22,7 +22,7 @@ const App = () => {
         style: {
           width: "240",
           height: "100",
-          top: "200",
+          top: "400",
           left: "50"
         }
       }

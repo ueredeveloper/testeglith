@@ -29,7 +29,7 @@ const InputDraggable = props => {
 
   const onMouseDown = e => {
     e = e || window.event;
-    e.preventDefault();
+   // e.preventDefault();
     // get the mouse cursor position at startup:
     currentX = e.clientX;
     currentY = e.clientY;
@@ -40,6 +40,7 @@ const InputDraggable = props => {
   const onMouseMove = e => {
     e = e || window.event;
     e.preventDefault();
+    e.stopPropagation();
 
     initialX = currentX - e.clientX;
     initialY = currentY - e.clientY;
@@ -51,20 +52,18 @@ const InputDraggable = props => {
   };
 
   const onMouseUp = () => {
-  
-   document.onmouseup = null;
-   document.onmousemove = null;
-    
-    props.idea.style.top = container.offsetTop - initialY + "px";
-    props.idea.style.left = container.offsetLeft - initialX + "px";
+    document.onmouseup = null;
+    document.onmousemove = null;
+
+    props.idea.style.top = container.offsetTop - initialY;
+    props.idea.style.left = container.offsetLeft - initialX;
     props.idea.style.width = container.offsetWidth;
     props.idea.style.height = container.offsetHeight;
-    
   };
 
   const onTouchStart = e => {
     e = e || window.event;
-  
+
     currentX = e.touches[0].clientX;
     currentY = e.touches[0].clientY;
     document.ontouchend = onTouchEnd;
@@ -81,8 +80,8 @@ const InputDraggable = props => {
     currentX = e.touches[0].clientX;
     currentY = e.touches[0].clientY;
 
-    container.style.top = container.offsetTop - initialY;
-    container.style.left = container.offsetLeft - initialX;
+    container.style.top = container.offsetTop - initialY + "px";
+    container.style.left = container.offsetLeft - initialX + "px";
   };
 
   const onTouchEnd = e => {
@@ -93,7 +92,6 @@ const InputDraggable = props => {
     props.idea.style.left = container.offsetLeft - initialX;
     props.idea.style.width = container.offsetWidth;
     props.idea.style.height = container.offsetHeight;
-    
   };
 
   const classes = useStyles();
@@ -105,8 +103,8 @@ const InputDraggable = props => {
     <div
       id="container"
       style={{
-        top: props.idea.style.top + 'px',
-        left: props.idea.style.left + 'px'
+        top: props.idea.style.top + "px",
+        left: props.idea.style.left + "px"
       }}
       ref={divRef}
     >
