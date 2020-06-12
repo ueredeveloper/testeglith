@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
-//import InputMenu from "./InputMenu";
+import InputMenu from "./InputMenu";
 
 import "./style.css";
 
@@ -119,19 +119,39 @@ const InputDraggable = props => {
     setValue(event.target.value);
   };
   return (
-    <div>
-      <div
-        id="container"
-        ref={containerRef}
-        onTouchStart={onTouchStart}
-        onTouchEnd={onDragEnd}
-        onTouchMove={onTouchMove}
-        onMouseDown={onMouseDown}
-        onMouseUp={onDragEnd}
-        onMouseMove={onMouseMove}
-      >
-        <div id="item" ref={dragItemRef}></div>
-      </div>
+    <div
+      id="container"
+      style={{
+        top: props.idea.style.top + "px",
+        left: props.idea.style.left + "px"
+      }}
+      ref={containerRef}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onDragEnd}
+      onTouchMove={onTouchMove}
+      onMouseDown={onMouseDown}
+      onMouseUp={onDragEnd}
+      onMouseMove={onMouseMove}
+    >
+<div>
+        <form className={classes.root} id="item" ref={dragItemRef} noValidate autoComplete="off">
+         
+          <TextField
+            id="standard-textarea"
+            label="Multiline Placeholder"
+            placeholder="Placeholder"
+            multiline
+            value={value}
+            onChange={handleChange}
+          />
+        </form>
+        <InputMenu
+          idea={props.idea}
+          addNewIdea={props.addNewIdea}
+          deleteIdea={props.deleteIdea}
+        /></div>
+      
+
     </div>
   );
 };
