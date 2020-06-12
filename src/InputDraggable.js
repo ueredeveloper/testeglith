@@ -123,8 +123,9 @@ const InputDraggable = props => {
       onMouseUp={onDragEnd}
       onMouseMove={onMouseMove}
     >
-      <div id="item" ref={dragItemRef}>
-        <form className={classes.root} noValidate autoComplete="off">
+      
+      <div>
+         <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="standard-textarea"
             label="Multiline Placeholder"
@@ -139,6 +140,10 @@ const InputDraggable = props => {
           persistIdea={props.persistIdea}
           deleteIdea={props.deleteIdea}
         />
+        <div id="item" ref={dragItemRef}>
+      </div>
+      
+       
       </div>
     </div>
   );
