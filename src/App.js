@@ -17,7 +17,16 @@ const App = () => {
         height: "100",
         top: "200",
         left: "50"
+      },
+      id: 2,
+      content: "New Idea",
+      style: {
+        width: "240",
+        height: "100",
+        top: "400",
+        left: "50"
       }
+    
     }
   ]);
 

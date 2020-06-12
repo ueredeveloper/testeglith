@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
 import InputMenu from "./InputMenu";
+import InputForm from './InputForm';
 
 import "./style.css";
 
@@ -66,12 +67,14 @@ const InputDraggable = props => {
     active = false;
 
     // parse int retira as casas decimais no caso de touchmove
+    /*
     props.idea.style.top = parseInt(initialY, 10);
     props.idea.style.left = parseInt(initialX, 10);
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
+    */
 
-    props.updateIdea(props.idea);
+   // props.updateIdea(props.idea);
   };
 
   const onTouchStart = e => {
@@ -104,7 +107,7 @@ const InputDraggable = props => {
   };
 
   const classes = useStyles();
-  const [value, setValue] = React.useState(props.idea.content);
+  const [value, setValue] = React.useState('Olá Mundo');
   const handleChange = event => {
     setValue(event.target.value);
   };
@@ -121,16 +124,7 @@ const InputDraggable = props => {
     >
       {props.ideas.map((idea, i) => (
         <div key={i} id="item" ref={dragItemRef}>
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField
-              id="standard-textarea"
-              label="Multiline Placeholder"
-              placeholder="Placeholder"
-              multiline
-              value={value}
-              onChange={handleChange}
-            />
-          </form>
+          <InptForm idea={idea}/>
           <InputMenu idea={idea} />
         </div>
       ))}
