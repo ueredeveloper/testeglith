@@ -62,15 +62,6 @@ const InputMenu = props => {
     // gerar numero de id aleatori Math.randon...
     // expressao regular para retirar 'px', somar com valor e concaternar novamente 'px'
 
-    /*
-    let positionY =
-      parseFloat(props.idea.style.top.replace(/[^\d]+/g, "")) +
-      parseFloat(props.idea.style.height);
-    let positionX =
-      parseFloat(props.idea.style.left.replace(/[^\d]+/g, "")) +
-      parseFloat(props.idea.style.width);
-      */
-
     let positionY =
       parseFloat(props.idea.style.top) + parseFloat(props.idea.style.height);
     let positionX =

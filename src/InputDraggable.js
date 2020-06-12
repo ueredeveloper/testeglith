@@ -65,11 +65,13 @@ const InputDraggable = props => {
 
     active = false;
 
+    console.log("initialX " + initialX);
+    console.log("offsetWidth " + dragItem.offsetWidth);
+
     props.idea.style.top = initialY;
     props.idea.style.left = initialX;
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
-    
   };
 
   const onTouchStart = e => {
@@ -98,10 +100,8 @@ const InputDraggable = props => {
   };
 
   const setTranslate = (xPos, yPos, el) => {
-    
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
-
 
   const classes = useStyles();
   const [value, setValue] = React.useState(props.idea.content);

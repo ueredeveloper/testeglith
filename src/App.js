@@ -22,7 +22,7 @@ const App = () => {
         style: {
           width: "240",
           height: "100",
-          top: "400",
+          top: "500",
           left: "50"
         }
       }
@@ -54,7 +54,9 @@ const App = () => {
           addNewIdea={addNewIdea}
           deleteIdea={deleteIdea}
         />
+     
       ))}
+         {console.log(data.ideas)}
     </div>
   );
 };
