@@ -4,9 +4,6 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
 
-import Container from "./Container";
-
-
 const App = () => {
   const [ideas, setIdea] = useState([
     {
@@ -26,7 +23,6 @@ const App = () => {
         top: "400",
         left: "50"
       }
-    
     }
   ]);
 
@@ -54,13 +50,9 @@ const App = () => {
       );
   };
 
-
-
   return (
     <div>
-      
-        <InputDraggable ideas={ideas}/>
-      
+      <InputDraggable ideas={ideas} />
     </div>
   );
 };

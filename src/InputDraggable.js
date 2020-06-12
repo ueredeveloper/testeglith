@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
 import InputMenu from "./InputMenu";
-import InputForm from './InputForm';
+import InputForm from "./InputForm";
 
 import "./style.css";
 
@@ -74,7 +74,7 @@ const InputDraggable = props => {
     props.idea.style.height = dragItem.offsetHeight;
     */
 
-   // props.updateIdea(props.idea);
+    // props.updateIdea(props.idea);
   };
 
   const onTouchStart = e => {
@@ -107,7 +107,7 @@ const InputDraggable = props => {
   };
 
   const classes = useStyles();
-  const [value, setValue] = React.useState('Olá Mundo');
+  const [value, setValue] = React.useState("Olá Mundo");
   const handleChange = event => {
     setValue(event.target.value);
   };
@@ -124,10 +124,10 @@ const InputDraggable = props => {
     >
       {props.ideas.map((idea, i) => (
         <div key={i} id="item" ref={dragItemRef}>
-          <InptForm idea={idea}/>
-          <InputMenu idea={idea} />
+         
         </div>
       ))}
+      {props.ideas.map((idea, i) => console.log(idea))}
     </div>
   );
 };
