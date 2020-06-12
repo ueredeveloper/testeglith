@@ -32,18 +32,21 @@ const App = () => {
   };
 
   const deleteIdea = id => {
-    /*
-    setIdea({
-      ...ideas.filter(function(value, index, arr) {
-        return value.id !== id;
-      })
-    });
-    */
     setIdea([
       ...ideas.filter(function(value, index, arr) {
         return value.id !== id;
       })
     ]);
+  };
+
+  const updateIdea = idea => {
+    return event =>
+      setIdea(
+        ideas.map(i => {
+          if (i === idea) return { ...idea, value: event.target.value };
+          return i;
+        })
+      );
   };
 
   return (
@@ -54,6 +57,7 @@ const App = () => {
           key={i}
           persistIdea={persistIdea}
           deleteIdea={deleteIdea}
+          updateIdea={updateIdea}
         />
       ))}
       {console.log(ideas)}

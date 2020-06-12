@@ -5,7 +5,7 @@ display: flex;
   width: 240px;
   height: 100px;
   background-color: white;
-  border: 5px solid rgba(136, 136, 136, 0.5);
+  border: 20px solid rgba(136, 136, 136, 0.5);
   border-radius: 5px;
   touch-action: none;
   user-select: none;
@@ -15,5 +15,5 @@ display: flex;
 }
 #item:hover {
   cursor: move;
-  border-width: 6px;
+ 
 }

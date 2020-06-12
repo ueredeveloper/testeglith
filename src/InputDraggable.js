@@ -73,7 +73,7 @@ const InputDraggable = props => {
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
     
-  // props.persistIdea(props.idea);
+    props.updateIdea(props.idea);
     
   };
 
