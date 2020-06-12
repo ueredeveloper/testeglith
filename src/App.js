@@ -31,11 +31,18 @@ const App = () => {
 
   const mergeIdea = idea => {
     
-    
+    setData({
+      ...data,
+      ideas: data.ideas.filter(function(value, index, arr) {
+        return value.id !== idea.id;
+      })
+    });
+   
     setData({
       ...data,
       ideas: [...data.ideas, idea]
     });
+   
   };
 
   const deleteIdea = id => {
