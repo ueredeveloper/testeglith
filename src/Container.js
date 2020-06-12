@@ -82,7 +82,7 @@ const Container = props => {
   const setTranslate = (xPos, yPos, el) => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
-
+  
   return (
     <div
       onTouchStart={onTouchStart}
