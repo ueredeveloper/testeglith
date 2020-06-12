@@ -73,7 +73,7 @@ const InputDraggable = props => {
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
     
-  // props.mergeIdea(props.idea);
+  // props.persistIdea(props.idea);
     
   };
 
@@ -139,7 +139,7 @@ const InputDraggable = props => {
         </form>
         <InputMenu
           idea={props.idea}
-          mergeIdea={props.mergeIdea}
+          persistIdea={props.persistIdea}
           deleteIdea={props.deleteIdea}
         />
       </div>

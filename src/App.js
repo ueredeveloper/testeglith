@@ -5,43 +5,45 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from "./InputDraggable";
 const App = () => {
   const [ideas, setIdea] = useState([
-      {
-        id: 1,
-        content: "New Idea",
-        style: {
-          width: "240",
-          height: "100",
-          top: "200",
-          left: "50"
-        }
-      },
-      {
-        id: 2,
-        content: "Teste",
-        style: {
-          width: "240",
-          height: "100",
-          top: "500",
-          left: "50"
-        }
+    {
+      id: 1,
+      content: "New Idea",
+      style: {
+        width: "240",
+        height: "100",
+        top: "200",
+        left: "50"
       }
-    ]
-  );
+    },
+    {
+      id: 2,
+      content: "Teste",
+      style: {
+        width: "240",
+        height: "100",
+        top: "500",
+        left: "50"
+      }
+    }
+  ]);
 
-  const mergeIdea = idea => {
-  
-    setIdea({
-      ...ideas: [...ideas, idea]
-    });
-   
+  const persistIdea = idea => {
+    setIdea([...ideas, idea]);
   };
 
   const deleteIdea = id => {
+    /*
     setIdea({
       ...ideas.filter(function(value, index, arr) {
         return value.id !== id;
       })
     });
+    */
+    setIdea([
+      ...ideas.filter(function(value, index, arr) {
+        return value.id !== id;
+      })
+    ]);
   };
 
   return (
@@ -50,15 +52,13 @@ const App = () => {
         <InputDraggable
           idea={idea}
           key={i}
-          mergeIdea={mergeIdea}
+          persistIdea={persistIdea}
           deleteIdea={deleteIdea}
         />
-     
       ))}
-         {console.log(ideas)}
+      {console.log(ideas)}
     </div>
   );
 };
 
 export default App;
-

@@ -37,7 +37,7 @@ const InputMenu = props => {
     //console.log(value);
     switch (value) {
       case 1:
-        mergeIdea();
+        persistIdea();
         break;
       case 5:
         deleteIdea(props.idea.id);
@@ -58,7 +58,7 @@ const InputMenu = props => {
     props.deleteIdea(id);
   };
 
-  const mergeIdea = () => {
+  const persistIdea = () => {
     // gerar numero de id aleatori Math.randon...
     // expressao regular para retirar 'px', somar com valor e concaternar novamente 'px'
 
@@ -80,7 +80,9 @@ const InputMenu = props => {
       }
     };
 
-    props.mergeIdea(idea);
+    
+    console.log('menu add idea')
+    props.persistIdea(idea);
   };
 
   return (
