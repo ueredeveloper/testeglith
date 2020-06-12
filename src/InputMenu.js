@@ -59,13 +59,11 @@ const InputMenu = props => {
   };
 
   const persistIdea = () => {
-    // gerar numero de id aleatori Math.randon...
-    // expressao regular para retirar 'px', somar com valor e concaternar novamente 'px'
-
+ 
     let positionY =
-      parseFloat(props.idea.style.top) + parseFloat(props.idea.style.height);
+      props.idea.style.top + props.idea.style.height;
     let positionX =
-      parseFloat(props.idea.style.left) + parseFloat(props.idea.style.width);
+      props.idea.style.left + props.idea.style.width;
 
     console.log("x " + positionX + " y " + positionY);
     
@@ -80,8 +78,6 @@ const InputMenu = props => {
       }
     };
 
-    
-    console.log('menu add idea')
     props.persistIdea(idea);
   };
 

@@ -62,11 +62,12 @@ const InputDraggable = props => {
   const onDragEnd = () => {
     initialX = currentX;
     initialY = currentY;
-
+   
     active = false;
 
-    props.idea.style.top = initialY;
-    props.idea.style.left = initialX;
+    // parse int retira as casas decimais no caso de touchmove
+    props.idea.style.top = parseInt(initialY, 10);
+    props.idea.style.left = parseInt(initialX, 10);
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
 
