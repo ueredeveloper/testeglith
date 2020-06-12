@@ -15,5 +15,5 @@ display: flex;
 }
 #item:hover {
   cursor: move;
-  border-width: 20px;
+  border-width: 10px;
 }
