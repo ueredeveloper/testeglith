@@ -4,7 +4,8 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
 const App = () => {
-  const [ideas, setIdea] = useState([
+  const [data, setData] = useState({
+    ideas: [
       {
         id: 1,
         content: "New Idea",
@@ -26,19 +27,28 @@ const App = () => {
         }
       }
     ]
-  );
+  });
 
   const mergeIdea = idea => {
-  
-    setIdea({
-      ...ideas: [...ideas, idea]
+    
+    setData({
+      ...data,
+      ideas: data.ideas.filter(function(value, index, arr) {
+        return value.id !== idea.id;
+      })
+    });
+   
+    setData({
+      ...data,
+      ideas: [...data.ideas, idea]
     });
    
   };
 
   const deleteIdea = id => {
-    setIdea({
-      ...ideas.filter(function(value, index, arr) {
+    setData({
+      ...data,
+      ideas: data.ideas.filter(function(value, index, arr) {
         return value.id !== id;
       })
     });
@@ -46,7 +56,7 @@ const App = () => {
 
   return (
     <div>
-      {ideas.map((idea, i) => (
+      {data.ideas.map((idea, i) => (
         <InputDraggable
           idea={idea}
           key={i}
@@ -55,7 +65,7 @@ const App = () => {
         />
      
       ))}
-         {console.log(ideas)}
+         {console.log(data.ideas)}
     </div>
   );
 };

@@ -73,7 +73,7 @@ const InputDraggable = props => {
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
     
-    props.mergeIdea(props.idea);
+  // props.mergeIdea(props.idea);
     
   };
 
