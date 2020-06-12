@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 const InputDraggable = props => {
   const dragItemRef = useRef(null);
   const containerRef = useRef(null);
-  var container;
+  var dragItem, container;
 
   var active = false;
   var initialX;
@@ -30,8 +30,6 @@ const InputDraggable = props => {
 
   var xOffset = 0;
   var yOffset = 0;
-
-  var dragItem, container;
 
   useEffect(() => {
     dragItem = dragItemRef.current;
@@ -66,8 +64,8 @@ const InputDraggable = props => {
   };
 
   const onMouseUp = () => {
-    dragItem.onmouseup = null;
-    dragItem.onmousemove = null;
+    // container.onmouseup = null;
+    //container.onmousemove = null;
 
     props.idea.style.top = container.offsetTop - initialY;
     props.idea.style.left = container.offsetLeft - initialX;
@@ -80,12 +78,9 @@ const InputDraggable = props => {
     initialX = e.touches[0].clientX - xOffset;
     initialY = e.touches[0].clientY - yOffset;
 
-    dragItem.ontouchmove = onTouchMove;
-    dragItem.ontouchend = onTouchEnd;
-    dragItem.onmousedowon = onMouseDown;
-
+    if (e.target === dragItem) {
       active = true;
-    
+    }
   };
 
   const onTouchMove = e => {
@@ -108,14 +103,12 @@ const InputDraggable = props => {
   };
 
   const onTouchEnd = e => {
-    console.log("touch end");
-    dragItem.ontouchend = null;
-    dragItem.ontouchmove = null;
-    dragItem.onmousedown = null;
+  
     initialX = currentX;
     initialY = currentY;
 
     active = false;
+
 
     /*
     props.idea.style.top = container.offsetTop - initialY;
@@ -131,8 +124,14 @@ const InputDraggable = props => {
   };
   return (
     <div>
-      <div id="container" ref={containerRef}>
-        <div id="item" ref={dragItemRef} onTouchStart={onTouchStart}></div>
+      <div
+        id="container"
+        ref={containerRef}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchMove={onTouchMove}
+      >
+        <div id="item" ref={dragItemRef}></div>
       </div>
     </div>
   );
