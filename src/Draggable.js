@@ -18,13 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Draggable = props => {
-  const dragItemRef = useRef(null);
-
-  var dragItem;
-
-  useEffect(() => {
-    dragItem = dragItemRef.current;
-  });
+  
 
   const classes = useStyles();
   const [value, setValue] = React.useState(props.idea.content);
@@ -32,7 +26,7 @@ const Draggable = props => {
     setValue(event.target.value);
   };
   return (
-    <div id="item" ref={dragItemRef}>
+    <div id="item">
       <form className={classes.root} noValidate autoComplete="off">
         <TextField
           id="standard-textarea"

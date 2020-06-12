@@ -1,17 +1,9 @@
 import React, { useEffect, useRef } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import ControlCameraIcon from "@material-ui/icons/ControlCamera";
-import IconButton from "@material-ui/core/IconButton";
-import InputMenu from "./InputMenu";
-
 import "./style.css";
 
 const Container = props => {
-  const containerRef = useRef(null);
-  var container;
-
+ 
   var active = false;
   var initialX = 0;
   var initialY = 0;
@@ -21,10 +13,7 @@ const Container = props => {
   var xOffset = 0;
   var yOffset = 0;
 
-  useEffect(() => {
-    container = containerRef.current;
-  });
-
+  
   const onMouseDown = e => {
     initialX = e.clientX - xOffset;
     initialY = e.clientY - yOffset;
@@ -44,7 +33,7 @@ const Container = props => {
       xOffset = currentX;
       yOffset = currentY;
 
-      setTranslate(currentX, currentY, props.dragable);
+      setTranslate(currentX, currentY, props.draggable);
     }
   };
 
@@ -96,7 +85,6 @@ const Container = props => {
     <div
       id="container"
       
-      ref={containerRef}
       onTouchStart={onTouchStart}
       onTouchEnd={onDragEnd}
       onTouchMove={onTouchMove}

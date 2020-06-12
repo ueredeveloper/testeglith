@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import InputDraggable from "./InputDraggable";
 //import InputDraggable from './teste/InputDraggable.js'
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
@@ -32,6 +32,10 @@ const App = () => {
       })
     ]);
   };
+  
+  
+  
+     
 
   const updateIdea = idea => {
     
@@ -45,10 +49,32 @@ const App = () => {
         })
       );
   };
+  
+  const containerRef = useRef(null);
+  const dragItemRef = useRef(null);
+  var container, draggable;
+
+   useEffect(() => {
+    container = containerRef.current;
+    draggable = dragItemRef.current;
+  });
+  
+ 
+
+  var dragItem;
 
   return (
     <div>
-      <Container ></Container>
+      <Container  ref={containerRef}>
+      {ideas.map((idea, i) => (
+        <Draggable
+          idea={idea}
+          key={i}
+          persistIdea={persistIdea}
+          deleteIdea={deleteIdea}
+          updateIdea={updateIdea}
+        />
+      ))}</Container>
     </div>
   );
 };
