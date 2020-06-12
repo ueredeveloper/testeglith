@@ -29,7 +29,9 @@ const App = () => {
     ]
   });
 
-  const addNewIdea = idea => {
+  const mergeIdea = idea => {
+    
+    
     setData({
       ...data,
       ideas: [...data.ideas, idea]
@@ -51,7 +53,7 @@ const App = () => {
         <InputDraggable
           idea={idea}
           key={i}
-          addNewIdea={addNewIdea}
+          mergeIdea={mergeIdea}
           deleteIdea={deleteIdea}
         />
      
@@ -63,16 +65,3 @@ const App = () => {
 
 export default App;
 
-/*
-
- <div>
-      {data.ideas.map((idea, i) => (
-        <InputDraggable
-          idea={idea}
-          key={i}
-          addNewIdea={addNewIdea}
-          deleteIdea={deleteIdea}
-        />
-      ))}
-    </div>
-    */

@@ -23,10 +23,10 @@ const InputDraggable = props => {
   var dragItem, container;
 
   var active = false;
-  var initialX;
-  var initialY;
-  var currentX;
-  var currentY;
+  var initialX = 0;
+  var initialY = 0;
+  var currentX = 0;
+  var currentY = 0;
 
   var xOffset = 0;
   var yOffset = 0;
@@ -136,7 +136,7 @@ const InputDraggable = props => {
         </form>
         <InputMenu
           idea={props.idea}
-          addNewIdea={props.addNewIdea}
+          mergeIdea={props.mergeIdea}
           deleteIdea={props.deleteIdea}
         />
       </div>
