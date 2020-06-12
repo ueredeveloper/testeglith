@@ -69,9 +69,8 @@ const InputDraggable = props => {
     props.idea.style.left = initialX;
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
-    
+
     props.updateIdea(props.idea);
-    
   };
 
   const onTouchStart = e => {
