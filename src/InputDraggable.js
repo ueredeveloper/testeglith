@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
-import InputMenu from "./InputMenu";
+//import InputMenu from "./InputMenu";
 
 import "./style.css";
 
@@ -18,42 +18,52 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const InputDraggable = props => {
-  const divRef = useRef(null);
-  var container;
+  const dragItemRef = useRef(null);
+  const containerRef = useRef(null);
+  var dragItem, container;
 
-  var initialX, initialY, currentX, currentY;
+  var active = false;
+  var initialX;
+  var initialY;
+  var currentX;
+  var currentY;
+
+  var xOffset = 0;
+  var yOffset = 0;
 
   useEffect(() => {
-    container = divRef.current;
+    dragItem = dragItemRef.current;
+    container = containerRef.current;
   });
 
   const onMouseDown = e => {
-    e = e || window.event;
-   // e.preventDefault();
-    // get the mouse cursor position at startup:
-    currentX = e.clientX;
-    currentY = e.clientY;
-    document.onmouseup = onMouseUp;
-    document.onmousemove = onMouseMove;
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+
+    if (e.target === dragItem) {
+      active = true;
+    }
   };
 
   const onMouseMove = e => {
-    e = e || window.event;
-    e.preventDefault();
-    e.stopPropagation();
+    if (active) {
+      e.preventDefault();
 
-    initialX = currentX - e.clientX;
-    initialY = currentY - e.clientY;
-    currentX = e.clientX;
-    currentY = e.clientY;
+      currentX = e.clientX - initialX;
+      currentY = e.clientY - initialY;
 
-    container.style.top = container.offsetTop - initialY + "px";
-    container.style.left = container.offsetLeft - initialX + "px";
+      xOffset = currentX;
+      yOffset = currentY;
+
+      setTranslate(currentX, currentY, dragItem);
+    }
   };
 
-  const onMouseUp = () => {
-    document.onmouseup = null;
-    document.onmousemove = null;
+  const onDragEnd = () => {
+    initialX = currentX;
+    initialY = currentY;
+
+    active = false;
 
     props.idea.style.top = container.offsetTop - initialY;
     props.idea.style.left = container.offsetLeft - initialX;
@@ -62,36 +72,45 @@ const InputDraggable = props => {
   };
 
   const onTouchStart = e => {
-    e = e || window.event;
+    console.log("touch start");
+    initialX = e.touches[0].clientX - xOffset;
+    initialY = e.touches[0].clientY - yOffset;
 
-    currentX = e.touches[0].clientX;
-    currentY = e.touches[0].clientY;
-    document.ontouchend = onTouchEnd;
-    document.ontouchmove = onTouchMove;
+    if (e.target === dragItem) {
+      active = true;
+    }
   };
 
   const onTouchMove = e => {
-    e = e || window.event;
-    e.preventDefault();
-    e.stopPropagation();
+    console.log("touch move");
+    if (active) {
+      e.preventDefault();
 
-    initialX = currentX - e.touches[0].clientX;
-    initialY = currentY - e.touches[0].clientY;
-    currentX = e.touches[0].clientX;
-    currentY = e.touches[0].clientY;
+      currentX = e.touches[0].clientX - initialX;
+      currentY = e.touches[0].clientY - initialY;
 
-    container.style.top = container.offsetTop - initialY + "px";
-    container.style.left = container.offsetLeft - initialX + "px";
+      xOffset = currentX;
+      yOffset = currentY;
+
+      setTranslate(currentX, currentY, dragItem);
+    }
+  };
+
+  const setTranslate = (xPos, yPos, el) => {
+    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
   const onTouchEnd = e => {
-    document.ontouchend = null;
-    document.ontouchmove = null;
+    initialX = currentX;
+    initialY = currentY;
 
+    active = false;
+
+    /*
     props.idea.style.top = container.offsetTop - initialY;
     props.idea.style.left = container.offsetLeft - initialX;
     props.idea.style.width = container.offsetWidth;
-    props.idea.style.height = container.offsetHeight;
+    props.idea.style.height = container.offsetHeight;*/
   };
 
   const classes = useStyles();
@@ -100,37 +119,18 @@ const InputDraggable = props => {
     setValue(event.target.value);
   };
   return (
-    <div
-      id="container"
-      style={{
-        top: props.idea.style.top + "px",
-        left: props.idea.style.left + "px"
-      }}
-      ref={divRef}
-    >
-      <div>
-        <form className={classes.root} noValidate autoComplete="off">
-          <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon
-              onMouseDown={onMouseDown}
-              onTouchStart={onTouchStart}
-              fontSize="small"
-            />
-          </IconButton>
-          <TextField
-            id="standard-textarea"
-            label="Multiline Placeholder"
-            placeholder="Placeholder"
-            multiline
-            value={value}
-            onChange={handleChange}
-          />
-        </form>
-        <InputMenu
-          idea={props.idea}
-          addNewIdea={props.addNewIdea}
-          deleteIdea={props.deleteIdea}
-        />
+    <div>
+      <div
+        id="container"
+        ref={containerRef}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onDragEnd}
+        onTouchMove={onTouchMove}
+        onMouseDown={onMouseDown}
+        onMouseUp={onDragEnd}
+        onMouseMove={onMouseMove}
+      >
+        <div id="item" ref={dragItemRef}></div>
       </div>
     </div>
   );

@@ -1,20 +1,12 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
-
-import "./style.css";
 import InputMenu from "./InputMenu";
 
-var initialX; //1
-var initialY; //2
-var currentX; //3
-var currentY; //4
-
-var xOffset = 0;
-var yOffset = 0;
+import "./style.css";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -27,92 +19,101 @@ const useStyles = makeStyles(theme => ({
 
 const InputDraggable = props => {
   const divRef = useRef(null);
+  var container;
+
+  var initialX, initialY, currentX, currentY;
+
+  useEffect(() => {
+    container = divRef.current;
+  });
 
   const onMouseDown = e => {
     e = e || window.event;
-    e.preventDefault();
+   // e.preventDefault();
     // get the mouse cursor position at startup:
     currentX = e.clientX;
     currentY = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-    
-    console.log('drag mouse down')
+    document.onmouseup = onMouseUp;
+    document.onmousemove = onMouseMove;
   };
 
-  const elementDrag = e => {
+  const onMouseMove = e => {
     e = e || window.event;
     e.preventDefault();
-    // calculate the new cursor position:
+    e.stopPropagation();
+
     initialX = currentX - e.clientX;
     initialY = currentY - e.clientY;
     currentX = e.clientX;
     currentY = e.clientY;
 
-    let div = divRef.current;
-
-    // set the element's new position:
-    div.style.top = div.offsetTop - initialY + "px";
-    div.style.left = div.offsetLeft - initialX + "px";
+    container.style.top = container.offsetTop - initialY + "px";
+    container.style.left = container.offsetLeft - initialX + "px";
   };
 
-  const closeDragElement = () => {
-    /* stop moving when mouse button is released:*/
+  const onMouseUp = () => {
     document.onmouseup = null;
     document.onmousemove = null;
+
+    props.idea.style.top = container.offsetTop - initialY;
+    props.idea.style.left = container.offsetLeft - initialX;
+    props.idea.style.width = container.offsetWidth;
+    props.idea.style.height = container.offsetHeight;
+  };
+
+  const onTouchStart = e => {
+    e = e || window.event;
+
+    currentX = e.touches[0].clientX;
+    currentY = e.touches[0].clientY;
+    document.ontouchend = onTouchEnd;
+    document.ontouchmove = onTouchMove;
+  };
+
+  const onTouchMove = e => {
+    e = e || window.event;
+    e.preventDefault();
+    e.stopPropagation();
+
+    initialX = currentX - e.touches[0].clientX;
+    initialY = currentY - e.touches[0].clientY;
+    currentX = e.touches[0].clientX;
+    currentY = e.touches[0].clientY;
+
+    container.style.top = container.offsetTop - initialY + "px";
+    container.style.left = container.offsetLeft - initialX + "px";
+  };
+
+  const onTouchEnd = e => {
+    document.ontouchend = null;
+    document.ontouchmove = null;
+
+    props.idea.style.top = container.offsetTop - initialY;
+    props.idea.style.left = container.offsetLeft - initialX;
+    props.idea.style.width = container.offsetWidth;
+    props.idea.style.height = container.offsetHeight;
   };
 
   const classes = useStyles();
-  const [value, setValue] = React.useState(props.component.content);
+  const [value, setValue] = React.useState(props.idea.content);
   const handleChange = event => {
     setValue(event.target.value);
   };
-
-  const dragTouchStart = e => {
-    initialX = e.touches[0].clientX - xOffset;
-    initialY = e.touches[0].clientY - yOffset;
-  };
-
-  const dragTouchMove = e => {
-    e.preventDefault();
-    
-    currentX = e.touches[0].clientX - initialX;
-    currentY = e.touches[0].clientY - initialY;
-
-    xOffset = currentX;
-    yOffset = currentY;
-
-    let div = divRef.current;
-
-    div.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0)";
-
-    // set the element's new position:
-   // div.style.top = currentX + "px";
-   // div.style.left = currentX + "px";
-  };
-
-  const dragTouchEnd = e => {
-    initialX = currentX;
-    initialY = currentY;
-  };
-
   return (
     <div
-      id="mydiv"
+      id="container"
       style={{
-        top: props.component.style.top,
-        left: props.component.style.top
+        top: props.idea.style.top + "px",
+        left: props.idea.style.left + "px"
       }}
       ref={divRef}
-      type="text"
     >
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <IconButton className={classes.margin} size="small">
             <ControlCameraIcon
               onMouseDown={onMouseDown}
-           
+              onTouchStart={onTouchStart}
               fontSize="small"
             />
           </IconButton>
@@ -125,11 +126,14 @@ const InputDraggable = props => {
             onChange={handleChange}
           />
         </form>
-        <InputMenu />
+        <InputMenu
+          idea={props.idea}
+          addNewIdea={props.addNewIdea}
+          deleteIdea={props.deleteIdea}
+        />
       </div>
     </div>
   );
 };
 
 export default InputDraggable;
-

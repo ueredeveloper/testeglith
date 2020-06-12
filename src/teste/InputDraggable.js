@@ -40,32 +40,30 @@ const InputDraggable = props => {
     initialX = e.clientX - xOffset;
     initialY = e.clientY - yOffset;
 
-    console.log("e.target " + e.target);
-
     if (e.target === dragItem) {
       active = true;
     }
-    // dragItem.onmouseup = onMouseUp;
-    // dragItem.onmousemove = onMouseMove;
   };
 
   const onMouseMove = e => {
-    e = e || window.event;
-    e.preventDefault();
-    e.stopPropagation();
+    if (active) {
+      e.preventDefault();
 
-    initialX = currentX - e.clientX;
-    initialY = currentY - e.clientY;
-    currentX = e.clientX;
-    currentY = e.clientY;
+      currentX = e.clientX - initialX;
+      currentY = e.clientY - initialY;
 
-    // container.style.top = container.offsetTop - initialY + "px";
-    //container.style.left = container.offsetLeft - initialX + "px";
+      xOffset = currentX;
+      yOffset = currentY;
+
+      setTranslate(currentX, currentY, dragItem);
+    }
   };
 
-  const onMouseUp = () => {
-    // container.onmouseup = null;
-    //container.onmousemove = null;
+  const onDragEnd = () => {
+    initialX = currentX;
+    initialY = currentY;
+
+    active = false;
 
     props.idea.style.top = container.offsetTop - initialY;
     props.idea.style.left = container.offsetLeft - initialX;
@@ -103,12 +101,10 @@ const InputDraggable = props => {
   };
 
   const onTouchEnd = e => {
-  
     initialX = currentX;
     initialY = currentY;
 
     active = false;
-
 
     /*
     props.idea.style.top = container.offsetTop - initialY;
@@ -128,8 +124,11 @@ const InputDraggable = props => {
         id="container"
         ref={containerRef}
         onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
+        onTouchEnd={onDragEnd}
         onTouchMove={onTouchMove}
+        onMouseDown={onMouseDown}
+        onMouseUp={onDragEnd}
+        onMouseMove={onMouseMove}
       >
         <div id="item" ref={dragItemRef}></div>
       </div>
