@@ -5,7 +5,7 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from "./InputDraggable";
 
 import Container from "./Container";
-import Draggable from "./Draggable";
+
 
 const App = () => {
   const [ideas, setIdea] = useState([
@@ -45,21 +45,13 @@ const App = () => {
       );
   };
 
-  const containerRef = useRef(null);
-  const dragItemRef = useRef(null);
-  var container, draggable;
 
-  useEffect(() => {
-    container = containerRef.current;
-    draggable = dragItemRef.current;
-  });
 
   return (
     <div>
-      <div id="container" ref={containerRef}>
-        <Container container={container} />
-        <div id="item" ref={dragItemRef}></div>
-      </div>
+      
+        <Container/>
+      
     </div>
   );
 };

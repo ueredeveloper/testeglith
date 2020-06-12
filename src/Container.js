@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-
+import Draggable from "./Draggable";
 import "./style.css";
 
 const Container = props => {
@@ -11,13 +11,22 @@ const Container = props => {
 
   var xOffset = 0;
   var yOffset = 0;
+  
+  const containerRef = useRef(null);
+  const dragItemRef = useRef(null);
+  var container, draggable;
+
+  useEffect(() => {
+    container = containerRef.current;
+    draggable = dragItemRef.current;
+  });
 
   const onMouseDown = e => {
     console.log("on mouse down");
     initialX = e.clientX - xOffset;
     initialY = e.clientY - yOffset;
 
-    if (e.target === props.draggable) {
+    if (e.target === draggable) {
       active = true;
     }
   };
@@ -34,7 +43,7 @@ const Container = props => {
       xOffset = currentX;
       yOffset = currentY;
 
-      setTranslate(currentX, currentY, props.draggable);
+      setTranslate(currentX, currentY, draggable);
     }
   };
 
@@ -48,8 +57,8 @@ const Container = props => {
     // parse int retira as casas decimais no caso de touchmove
     props.idea.style.top = parseInt(initialY, 10);
     props.idea.style.left = parseInt(initialX, 10);
-    props.idea.style.width = props.draggable.offsetWidth;
-    props.idea.style.height = props.draggable.offsetHeight;
+    props.idea.style.width = draggable.offsetWidth;
+    props.idea.style.height = draggable.offsetHeight;
 
     props.updateIdea(props.idea);
   };
@@ -59,7 +68,7 @@ const Container = props => {
     initialX = e.touches[0].clientX - xOffset;
     initialY = e.touches[0].clientY - yOffset;
 
-    if (e.target === props.draggable) {
+    if (e.target === draggable) {
       active = true;
     }
   };
@@ -75,7 +84,7 @@ const Container = props => {
       xOffset = currentX;
       yOffset = currentY;
 
-      setTranslate(currentX, currentY, props.draggable);
+      setTranslate(currentX, currentY, draggable);
     }
   };
 
@@ -84,14 +93,18 @@ const Container = props => {
   };
   
   return (
-    <div
+    <div id="container" ref={containerRef}
       onTouchStart={onTouchStart}
       onTouchEnd={onDragEnd}
       onTouchMove={onTouchMove}
       onMouseDown={onMouseDown}
       onMouseUp={onDragEnd}
       onMouseMove={onMouseMove}
-    ></div>
+    >
+    <div id="item" ref={dragItemRef}>
+      <Draggable idea={props.idea}/>
+      </div>
+    </div>
   );
 };
 
