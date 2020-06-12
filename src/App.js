@@ -55,13 +55,14 @@ const App = () => {
   });
 
   var dragItem;
-
+  
+ const divContainer = React.createElement('div', {id:'container', ref:{containerRef}});
+ 
   return (
     <div>
-      <div id="container" ref={containerRef}>
-        <Container container={container}/>
-        <div id="item" ref={dragItemRef}></div>
-      </div>
+
+        <Container DivContainer={DivContainer}/>
+  
     </div>
   );
 };
