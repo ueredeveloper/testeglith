@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from "react";
 import "./style.css";
 
 const Container = props => {
- 
   var active = false;
   var initialX = 0;
   var initialY = 0;
@@ -13,7 +12,6 @@ const Container = props => {
   var xOffset = 0;
   var yOffset = 0;
 
-  
   const onMouseDown = e => {
     initialX = e.clientX - xOffset;
     initialY = e.clientY - yOffset;
@@ -83,8 +81,6 @@ const Container = props => {
 
   return (
     <div
-      id="container"
-      
       onTouchStart={onTouchStart}
       onTouchEnd={onDragEnd}
       onTouchMove={onTouchMove}

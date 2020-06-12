@@ -4,8 +4,8 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
 
-import Container from './Container';
-import Draggable from  './Draggable';
+import Container from "./Container";
+import Draggable from "./Draggable";
 
 const App = () => {
   const [ideas, setIdea] = useState([
@@ -32,15 +32,10 @@ const App = () => {
       })
     ]);
   };
-  
-  
-  
-     
 
   const updateIdea = idea => {
-    
-    console.log('update' )
-    console.log(idea.style)
+    console.log("update");
+    console.log(idea.style);
     return event =>
       setIdea(
         ideas.map(i => {
@@ -49,37 +44,49 @@ const App = () => {
         })
       );
   };
-  
+
   const containerRef = useRef(null);
   const dragItemRef = useRef(null);
   var container, draggable;
 
-   useEffect(() => {
+  useEffect(() => {
     container = containerRef.current;
     draggable = dragItemRef.current;
   });
-  
- 
 
   var dragItem;
 
   return (
     <div>
-      <Container  ref={containerRef}>
-      {ideas.map((idea, i) => (
-        <Draggable
-          idea={idea}
-          key={i}
-          persistIdea={persistIdea}
-          deleteIdea={deleteIdea}
-          updateIdea={updateIdea}
-        />
-      ))}</Container>
+      <div id="container" ref={containerRef}>
+        <Container></Container>
+        <div id="item" ref={dragItemRef}></div>
+      </div>
     </div>
   );
 };
 
 export default App;
+
+
+/*
+<div>
+      <div id="container" ref={containerRef}>
+        <Container>
+          {ideas.map((idea, i) => (
+            <div key={i} id="item" ref={dragItemRef}>
+              <Draggable
+                idea={idea}
+                persistIdea={persistIdea}
+                deleteIdea={deleteIdea}
+                updateIdea={updateIdea}
+              />
+            </div>
+          ))}
+        </Container>
+      </div>
+    </div>
+    */
 
 /*
 

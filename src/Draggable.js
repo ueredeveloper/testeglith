@@ -18,15 +18,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Draggable = props => {
-  
-
   const classes = useStyles();
   const [value, setValue] = React.useState(props.idea.content);
   const handleChange = event => {
     setValue(event.target.value);
   };
   return (
-    <div id="item">
+    <div >
       <form className={classes.root} noValidate autoComplete="off">
         <TextField
           id="standard-textarea"
