@@ -65,10 +65,11 @@ const InputDraggable = props => {
 
     active = false;
 
-    props.idea.style.top = container.offsetTop - initialY;
-    props.idea.style.left = container.offsetLeft - initialX;
-    props.idea.style.width = container.offsetWidth;
-    props.idea.style.height = container.offsetHeight;
+    props.idea.style.top = initialY;
+    props.idea.style.left = initialX;
+    props.idea.style.width = dragItem.offsetWidth;
+    props.idea.style.height = dragItem.offsetHeight;
+    
   };
 
   const onTouchStart = e => {
@@ -100,18 +101,6 @@ const InputDraggable = props => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
-  const onTouchEnd = e => {
-    initialX = currentX;
-    initialY = currentY;
-
-    active = false;
-
-    /*
-    props.idea.style.top = container.offsetTop - initialY;
-    props.idea.style.left = container.offsetLeft - initialX;
-    props.idea.style.width = container.offsetWidth;
-    props.idea.style.height = container.offsetHeight;*/
-  };
 
   const classes = useStyles();
   const [value, setValue] = React.useState(props.idea.content);
@@ -133,9 +122,8 @@ const InputDraggable = props => {
       onMouseUp={onDragEnd}
       onMouseMove={onMouseMove}
     >
-<div>
-        <form className={classes.root} id="item" ref={dragItemRef} noValidate autoComplete="off">
-         
+      <div id="item" ref={dragItemRef}>
+        <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="standard-textarea"
             label="Multiline Placeholder"
@@ -149,9 +137,8 @@ const InputDraggable = props => {
           idea={props.idea}
           addNewIdea={props.addNewIdea}
           deleteIdea={props.deleteIdea}
-        /></div>
-      
-
+        />
+      </div>
     </div>
   );
 };
