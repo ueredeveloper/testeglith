@@ -13,6 +13,7 @@ const Container = props => {
   var yOffset = 0;
 
   const onMouseDown = e => {
+    console.log('on mouse down')
     initialX = e.clientX - xOffset;
     initialY = e.clientY - yOffset;
 
@@ -22,6 +23,9 @@ const Container = props => {
   };
 
   const onMouseMove = e => {
+    
+     console.log('on mouse move')
+    
     if (active) {
       e.preventDefault();
 
@@ -36,6 +40,8 @@ const Container = props => {
   };
 
   const onDragEnd = () => {
+    
+     console.log('on drag end ')
     initialX = currentX;
     initialY = currentY;
 

@@ -59,7 +59,7 @@ const App = () => {
   return (
     <div>
       <div id="container" ref={containerRef}>
-        <Container></Container>
+        <Container container={container}/>
         <div id="item" ref={dragItemRef}></div>
       </div>
     </div>
