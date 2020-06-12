@@ -18,18 +18,29 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const InputDraggable = props => {
-  const divRef = useRef(null);
+  const dragItemRef = useRef(null);
+  const containerRef = useRef(null);
   var container;
 
-  var initialX, initialY, currentX, currentY;
+  var active = false;
+  var initialX;
+  var initialY;
+  var currentX;
+  var currentY;
+
+  var xOffset = 0;
+  var yOffset = 0;
+
+  var dragItem, container;
 
   useEffect(() => {
-    container = divRef.current;
+    dragItem = dragItemRef.current;
+    container = containerRef.current;
   });
 
   const onMouseDown = e => {
     e = e || window.event;
-   // e.preventDefault();
+    // e.preventDefault();
     // get the mouse cursor position at startup:
     currentX = e.clientX;
     currentY = e.clientY;
@@ -47,10 +58,14 @@ const InputDraggable = props => {
     currentX = e.clientX;
     currentY = e.clientY;
 
-   // container.style.top = container.offsetTop - initialY + "px";
+    // container.style.top = container.offsetTop - initialY + "px";
     //container.style.left = container.offsetLeft - initialX + "px";
-       container.style.transform = "translate3d(" 
-      + container.offsetLeft - initialX + "px, " + container.offsetTop - initialY + "px, 0)";
+    container.style.transform =
+      "translate3d(" +
+      (container.offsetLeft - initialX) +
+      "px, " +
+      (container.offsetTop - initialY) +
+      "px, 0)";
   };
 
   const onMouseUp = () => {
@@ -64,12 +79,15 @@ const InputDraggable = props => {
   };
 
   const onTouchStart = e => {
-    e = e || window.event;
+    initialX = e.touches[0].clientX - xOffset;
+    initialY = e.touches[0].clientY - yOffset;
 
-    currentX = e.touches[0].clientX;
-    currentY = e.touches[0].clientY;
     document.ontouchend = onTouchEnd;
     document.ontouchmove = onTouchMove;
+
+    if (e.target === dragItem) {
+      active = true;
+    }
   };
 
   const onTouchMove = e => {
@@ -82,21 +100,31 @@ const InputDraggable = props => {
     currentX = e.touches[0].clientX;
     currentY = e.touches[0].clientY;
 
-   // container.style.top = container.offsetTop - initialY + "px";
-   // container.style.left = container.offsetLeft - initialX + "px";
-    
-    container.style.transform = "translate3d(" 
-      + container.offsetLeft - initialX + "px, " + container.offsetTop - initialY + "px, 0)";
+    // container.style.top = container.offsetTop - initialY + "px";
+    // container.style.left = container.offsetLeft - initialX + "px";
+
+    container.style.transform =
+      "translate3d(" +
+      (container.offsetLeft - initialX) +
+      "px, " +
+      (container.offsetTop - initialY) +
+      "px, 0)";
   };
 
   const onTouchEnd = e => {
     document.ontouchend = null;
     document.ontouchmove = null;
 
+    initialX = currentX;
+    initialY = currentY;
+
+    active = false;
+
+    /*
     props.idea.style.top = container.offsetTop - initialY;
     props.idea.style.left = container.offsetLeft - initialX;
     props.idea.style.width = container.offsetWidth;
-    props.idea.style.height = container.offsetHeight;
+    props.idea.style.height = container.offsetHeight;*/
   };
 
   const classes = useStyles();
@@ -105,33 +133,9 @@ const InputDraggable = props => {
     setValue(event.target.value);
   };
   return (
-    <div
-      id="container"
-      style={{
-        top: props.idea.style.top + "px",
-        left: props.idea.style.left + "px"
-      }}
-      ref={divRef}
-    >
-      <div>
-        <form className={classes.root} noValidate autoComplete="off">
-          <IconButton className={classes.margin} size="small">
-            <ControlCameraIcon
-              onMouseDown={onMouseDown}
-              onTouchStart={onTouchStart}
-              fontSize="small"
-            />
-          </IconButton>
-          <TextField
-            id="standard-textarea"
-            label="Multiline Placeholder"
-            placeholder="Placeholder"
-            multiline
-            value={value}
-            onChange={handleChange}
-          />
-        </form>
-        
+    <div>
+      <div id="container">
+        <div id="item" onTouchStart={onTouchStart}></div>
       </div>
     </div>
   );
