@@ -111,10 +111,6 @@ const InputDraggable = props => {
   return (
     <div
       id="container"
-      style={{
-        top: props.idea.style.top + "px",
-        left: props.idea.style.left + "px"
-      }}
       ref={containerRef}
       onTouchStart={onTouchStart}
       onTouchEnd={onDragEnd}
@@ -123,25 +119,29 @@ const InputDraggable = props => {
       onMouseUp={onDragEnd}
       onMouseMove={onMouseMove}
     >
-      <div id="item" ref={dragItemRef}>
-        <form className={classes.root} noValidate autoComplete="off">
-          <TextField
-            id="standard-textarea"
-            label="Multiline Placeholder"
-            placeholder="Placeholder"
-            multiline
-            value={value}
-            onChange={handleChange}
-          />
-        </form>
-        <InputMenu
-          idea={props.idea}
-          persistIdea={props.persistIdea}
-          deleteIdea={props.deleteIdea}
-        />
-      </div>
+      {props.ideas.map((idea, i) => (
+        <div key={i} id="item" ref={dragItemRef}>
+          <form className={classes.root} noValidate autoComplete="off">
+            <TextField
+              id="standard-textarea"
+              label="Multiline Placeholder"
+              placeholder="Placeholder"
+              multiline
+              value={value}
+              onChange={handleChange}
+            />
+          </form>
+          <InputMenu idea={idea} />
+        </div>
+      ))}
     </div>
   );
 };
 
 export default InputDraggable;
+
+/*
+style={{
+        top: props.idea.style.top + "px",
+        left: props.idea.style.left + "px"
+      }}*/
