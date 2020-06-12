@@ -14,16 +14,6 @@ const App = () => {
         top: "200",
         left: "50"
       }
-    },
-    {
-      id: 2,
-      content: "Teste",
-      style: {
-        width: "240",
-        height: "100",
-        top: "500",
-        left: "50"
-      }
     }
   ]);
 
@@ -40,6 +30,9 @@ const App = () => {
   };
 
   const updateIdea = idea => {
+    
+    console.log('update' )
+    console.log(idea.style)
     return event =>
       setIdea(
         ideas.map(i => {
@@ -60,7 +53,9 @@ const App = () => {
           updateIdea={updateIdea}
         />
       ))}
-      {console.log(ideas)}
+      {ideas.map((idea, i) => (
+        console.log(idea.style)
+      ))}
     </div>
   );
 };

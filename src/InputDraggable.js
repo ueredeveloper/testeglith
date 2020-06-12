@@ -65,9 +65,6 @@ const InputDraggable = props => {
 
     active = false;
 
-    console.log("initialX " + initialX);
-    console.log("offsetWidth " + dragItem.offsetWidth);
-
     props.idea.style.top = initialY;
     props.idea.style.left = initialX;
     props.idea.style.width = dragItem.offsetWidth;
