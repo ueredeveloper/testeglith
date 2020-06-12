@@ -3,6 +3,10 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from './teste/InputDraggable.js'
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
+
+import Container from './Container';
+import Draggable from  './Draggable';
+
 const App = () => {
   const [ideas, setIdea] = useState([
     {
@@ -44,7 +48,16 @@ const App = () => {
 
   return (
     <div>
-      {ideas.map((idea, i) => (
+      <Container ></Container>
+    </div>
+  );
+};
+
+export default App;
+
+/*
+
+ {ideas.map((idea, i) => (
         <InputDraggable
           idea={idea}
           key={i}
@@ -56,8 +69,5 @@ const App = () => {
       {ideas.map((idea, i) => (
         console.log(idea.style)
       ))}
-    </div>
-  );
-};
-
-export default App;
+      
+      */
