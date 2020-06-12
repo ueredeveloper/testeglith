@@ -39,13 +39,16 @@ const InputDraggable = props => {
   });
 
   const onMouseDown = e => {
-    e = e || window.event;
-    // e.preventDefault();
-    // get the mouse cursor position at startup:
-    currentX = e.clientX;
-    currentY = e.clientY;
-    dragItem.onmouseup = onMouseUp;
-    dragItem.onmousemove = onMouseMove;
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+
+    console.log("e.target " + e.target);
+
+    if (e.target === dragItem) {
+      active = true;
+    }
+    // dragItem.onmouseup = onMouseUp;
+    // dragItem.onmousemove = onMouseMove;
   };
 
   const onMouseMove = e => {
@@ -60,12 +63,6 @@ const InputDraggable = props => {
 
     // container.style.top = container.offsetTop - initialY + "px";
     //container.style.left = container.offsetLeft - initialX + "px";
-    container.style.transform =
-      "translate3d(" +
-      (container.offsetLeft - initialX) +
-      "px, " +
-      (container.offsetTop - initialY) +
-      "px, 0)";
   };
 
   const onMouseUp = () => {
@@ -85,10 +82,10 @@ const InputDraggable = props => {
 
     dragItem.ontouchmove = onTouchMove;
     dragItem.ontouchend = onTouchEnd;
+    dragItem.onmousedowon = onMouseDown;
 
-    if (e.target === dragItem) {
       active = true;
-    }
+    
   };
 
   const onTouchMove = e => {
@@ -114,7 +111,7 @@ const InputDraggable = props => {
     console.log("touch end");
     dragItem.ontouchend = null;
     dragItem.ontouchmove = null;
-
+    dragItem.onmousedown = null;
     initialX = currentX;
     initialY = currentY;
 

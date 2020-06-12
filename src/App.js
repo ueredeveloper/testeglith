@@ -15,6 +15,16 @@ const App = () => {
           top: "200",
           left: "50"
         }
+      },
+      {
+        id: 2,
+        content: "Teste",
+        style: {
+          width: "240",
+          height: "100",
+          top: "400",
+          left: "50"
+        }
       }
     ]
   });
