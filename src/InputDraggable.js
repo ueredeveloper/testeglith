@@ -62,7 +62,7 @@ const InputDraggable = props => {
   const onDragEnd = () => {
     initialX = currentX;
     initialY = currentY;
-   
+
     active = false;
 
     // parse int retira as casas decimais no caso de touchmove
@@ -123,9 +123,8 @@ const InputDraggable = props => {
       onMouseUp={onDragEnd}
       onMouseMove={onMouseMove}
     >
-      
-      <div>
-         <form className={classes.root} noValidate autoComplete="off">
+      <div id="item" ref={dragItemRef}>
+        <form className={classes.root} noValidate autoComplete="off">
           <TextField
             id="standard-textarea"
             label="Multiline Placeholder"
@@ -140,10 +139,6 @@ const InputDraggable = props => {
           persistIdea={props.persistIdea}
           deleteIdea={props.deleteIdea}
         />
-        <div id="item" ref={dragItemRef}>
-      </div>
-      
-       
       </div>
     </div>
   );

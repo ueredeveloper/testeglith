@@ -1,12 +1,12 @@
 #container {
-display: flex;
-  background-color:red
+  display: flex;
+  background-color: red;
 }
 #item {
   width: 240px;
   height: 100px;
   background-color: white;
-  border: 20px solid rgba(136, 136, 136, 0.5);
+  border-bottom: 20px solid red;
   border-radius: 5px;
   touch-action: none;
   user-select: none;
@@ -16,5 +16,4 @@ display: flex;
 }
 #item:hover {
   cursor: move;
- 
 }
