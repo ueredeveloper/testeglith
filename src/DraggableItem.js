@@ -107,10 +107,8 @@ const DraggableItem = props => {
   };
 
   const updateIdea = (dragItem, initialY, initialX) => {
-   
-    alert('initial y' + initialY + ' x ' + initialX)
-    
-    
+    //alert('initial y' + initialY + ' x ' + initialX)
+
     props.idea.style.top = parseInt(initialY, 10);
     props.idea.style.left = parseInt(initialX, 10);
     props.idea.style.width = dragItem.offsetWidth;
@@ -145,8 +143,8 @@ const DraggableItem = props => {
   };
 
   const setTranslate = (xPos, yPos, el) => {
-    console.log('DraggableItem - setTranslate')
-    console.log(xPos + ' e ' + yPos)
+    console.log("DraggableItem - setTranslate");
+    console.log(xPos + " e " + yPos);
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
@@ -155,12 +153,12 @@ const DraggableItem = props => {
       id="item"
       ref={draggableItemRef}
       style={{
-        top: props.idea.style.top + "px",
-        left: props.idea.style.left + "px",
+        top: props.idea.style.top,
+        left: props.idea.style.left,
         maxWidth: "220px"
       }}
     >
-      {/*alert(props.idea.style.top)*/}
+      {alert(props.idea.style.top)}
       <InputForm idea={props.idea} />
       <InputMenu
         idea={props.idea}
