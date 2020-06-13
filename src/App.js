@@ -7,11 +7,12 @@ import DraggableItem from "./DraggableItem";
 import "./style.css";
 
 const App = () => {
-  const divContainerRef = useRef(null);
-  var container;
+  const divContainerRef = useRef();
+  const [container, setContainer] = useState(null);
+
   useEffect(() => {
-    container = divContainerRef.current;
-  });
+    if (divContainerRef.current) setContainer(divContainerRef.current);
+  }, []);
 
   const [ideas, setIdea] = useState([
     {
