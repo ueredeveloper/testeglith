@@ -3,6 +3,7 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from './teste/InputDraggable.js'
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
+import { useContainer } from "./useContainer";
 
 const App = () => {
   const [ideas, setIdea] = useState([
@@ -50,6 +51,10 @@ const App = () => {
       );
   };
 
+  const divContainerRef = useRef(null);
+  const container = useContainer(divContainerRef);
+  
+  
   return (
     <div>
       <InputDraggable ideas={ideas} />
