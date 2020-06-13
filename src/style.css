@@ -1,5 +1,6 @@
 #container {
   display: flex;
+  background-color:blue;
 }
 #item {
   width: 300px;

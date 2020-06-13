@@ -149,10 +149,11 @@ const DraggableItem = props => {
   return (
     <div id="item" ref={draggableItemRef}>
       <InputForm idea={props.idea} />
-      <inputMenu
+      <InputMenu
         idea={props.idea}
-        addNewIdea={props.addNewIdea}
-        deleteIdea={props.deleteIdea}
+        persistIdea={props.persistIdea}
+          deleteIdea={props.deleteIdea}
+          updateIdea={props.updateIdea}
       />
     </div>
   );
