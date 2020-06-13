@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import InputDraggable from "./InputDraggable";
+//import InputDraggable from "./InputDraggable";
 //import InputDraggable from './teste/InputDraggable.js'
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
@@ -7,12 +7,6 @@ import DraggableItem from "./DraggableItem";
 import "./style.css";
 
 const App = () => {
-  const divContainerRef = useRef();
-  const [container, setContainer] = useState(null);
-
-  useEffect(() => {
-    setContainer(divContainerRef.current);
-  }, []);
 
   const [ideas, setIdea] = useState([
     {

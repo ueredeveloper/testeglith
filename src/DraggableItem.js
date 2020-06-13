@@ -34,45 +34,43 @@ const DraggableItem = props => {
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
- 
-   
-      document.addEventListener("touchstart", onTouchStart, false);
-      document.addEventListener("touchend", onDragEnd, false);
-      document.addEventListener("touchmove", onTouchMove, false);
 
-      document.addEventListener("mousedown", e => {
-        console.log("on mouse down");
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
+    document.addEventListener("touchstart", onTouchStart, false);
+    document.addEventListener("touchend", onDragEnd, false);
+    document.addEventListener("touchmove", onTouchMove, false);
 
-        if (e.target === dragItem) {
-          active = true;
-        }
-      });
+    document.addEventListener("mousedown", e => {
+      console.log("on mouse down");
+      initialX = e.clientX - xOffset;
+      initialY = e.clientY - yOffset;
 
-      document.addEventListener("mousemove", e => {
-        if (active) {
-          e.preventDefault();
+      if (e.target === dragItem) {
+        active = true;
+      }
+    });
 
-          currentX = e.clientX - initialX;
-          currentY = e.clientY - initialY;
+    document.addEventListener("mousemove", e => {
+      if (active) {
+        e.preventDefault();
 
-          xOffset = currentX;
-          yOffset = currentY;
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
 
-          setTranslate(currentX, currentY, dragItem);
-        }
-      });
+        xOffset = currentX;
+        yOffset = currentY;
 
-      window.addEventListener("mouseup", e => {
-        initialX = currentX;
-        initialY = currentY;
+        setTranslate(currentX, currentY, dragItem);
+      }
+    });
 
-        active = false;
+    window.addEventListener("mouseup", e => {
+      initialX = currentX;
+      initialY = currentY;
 
-        updateIdea(dragItem, initialY, initialX);
-      });
-  
+      active = false;
+
+      updateIdea(dragItem, initialY, initialX);
+    });
   });
 
   const onMouseDown = e => {
@@ -109,9 +107,8 @@ const DraggableItem = props => {
   };
 
   const updateIdea = (dragItem, initialY, initialX) => {
-    
-    console.log(dragItem.offsetWidth + ' , ' + dragItem.offsetHeight)
-    
+    console.log(dragItem.offsetWidth + " , " + dragItem.offsetHeight);
+
     props.idea.style.top = parseInt(initialY, 10);
     props.idea.style.left = parseInt(initialX, 10);
     props.idea.style.width = dragItem.offsetWidth;
@@ -150,17 +147,17 @@ const DraggableItem = props => {
   };
 
   return (
-    <div 
-      id="item" 
+    <div
+      id="item"
       ref={draggableItemRef}
       style={{
-        top: 500+ "px",
-        left: 500 + "px"
+        top: props.idea.style.top + "px",
+        left: props.idea.style.left + "px"
       }}
-      >
+    >
       <InputForm idea={props.idea} />
       <InputMenu
-        a={props.idea}
+        idea={props.idea}
         persistIdea={props.persistIdea}
         deleteIdea={props.deleteIdea}
         updateIdea={props.updateIdea}

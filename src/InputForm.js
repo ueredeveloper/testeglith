@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
   extendedIcon: {
     marginRight: theme.spacing(1)
   }
-  
 }));
 
 const InputForm = props => {
@@ -22,9 +21,8 @@ const InputForm = props => {
     setValue(event.target.value);
   };
   return (
-    <div >
+    <div id="divForm">
       <form className={classes.root} noValidate autoComplete="off">
-        
         <TextField
           id="standard-textarea"
           label="Multiline Placeholder"

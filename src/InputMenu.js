@@ -51,7 +51,7 @@ const InputMenu = props => {
 
   const handleChange = e => {
     //setValue(event.target.value);
-    console.log('handle change ' + e.target.value)
+    console.log("handle change " + e.target.value);
   };
 
   const deleteIdea = id => {
@@ -59,14 +59,12 @@ const InputMenu = props => {
   };
 
   const persistIdea = () => {
- 
-    let positionY =
-      props.idea.style.top + props.idea.style.height;
-    let positionX =
-      props.idea.style.left + props.idea.style.width;
+
+    let positionY = props.idea.style.top + props.idea.style.height;
+    let positionX = props.idea.style.left + props.idea.style.width;
 
     console.log("x " + positionX + " y " + positionY);
-    
+
     let idea = {
       id: Math.floor(Math.random() * 10000),
       content: "New Idea",
@@ -82,7 +80,7 @@ const InputMenu = props => {
   };
 
   return (
-    <div >
+    <div id="divMenu">
       <IconButton
         className={classes.margin}
         size="small"
