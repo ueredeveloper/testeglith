@@ -26,12 +26,12 @@ const DraggableItem = props => {
   var active = false;
   var initialX = props.idea.style.left;
   var initialY = props.idea.style.top;
-  var currentX;
-  var currentY;
-  alert(initialY)
+  var currentX = props.idea.style.left;
+  var currentY = props.idea.style.top;
+  //alert(initialY)
 
-  var xOffset;
-  var yOffset;
+  var xOffset = 0;
+  var yOffset = 0;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
