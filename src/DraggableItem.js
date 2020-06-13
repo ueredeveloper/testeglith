@@ -24,13 +24,13 @@ const DraggableItem = props => {
   var dragItem;
 
   var active = false;
-  var initialX;
-  var initialY;
+  var initialX = props.idea.style.left;
+  var initialY = props.idea.style.top;
   var currentX;
   var currentY;
 
-  var xOffset = 0;
-  var yOffset = 0;
+  var xOffset = 30;
+  var yOffset = 30;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
@@ -47,7 +47,7 @@ const DraggableItem = props => {
       console.log('m down idea id e offset ' + props.idea.id + ': ' + props.idea.style.left + ' ' + xOffset )
 
       
-      console.log('id: '+ props.idea.id +  ' ' + dragItem.offsetLeft + ' e off set' + xOffset)
+      console.log('id: '+ props.idea.id +  ' off wid ' + dragItem.offsetWidth + ' e off set' + xOffset)
       if (e.target === dragItem) {
         active = true;
       }
@@ -77,7 +77,7 @@ const DraggableItem = props => {
 
       active = false;
 
-      updateIdea(dragItem, initialY, initialX);
+      updateIdea(dragItem, currentX, currentY);
     });
   });
 
@@ -111,14 +111,14 @@ const DraggableItem = props => {
 
     active = false;
 
-    updateIdea(dragItem, initialY, initialX);
+    updateIdea(dragItem, currentX, currentY);
   };
 
-  const updateIdea = (dragItem, initialY, initialX) => {
+  const updateIdea = (dragItem, curX, curY) => {
     //alert('initial y' + initialY + ' x ' + initialX)
     //alert (initialY !== null + initialY)
-    props.idea.style.top = initialY;
-    props.idea.style.left = initialY;
+    props.idea.style.top = curX;
+    props.idea.style.left = curY;
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
 
