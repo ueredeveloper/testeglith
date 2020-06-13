@@ -41,18 +41,48 @@ const DraggableItem = props => {
       props.container.ontouchend = onDragEnd;
       props.container.ontouchmove = onTouchMove;
        */
-      
-     /* props.container.onmousedown = onMouseDown;
-      props.container.onmouseup = onDragEnd;
-      props.container.onmousemove = onMouseMove;
-     */
 
-      //props.container.addEventListener("touchstart", onTouchStart, false);
-     // props.container.addEventListener("touchend", onDragEnd, false);
-     // props.container.addEventListener("touchmove", onTouchMove, false);
-      props.container.addEventListener("mousedown ", onMouseDown, false);
-      props.container.addEventListener("mouseup", onDragEnd, false);
-      props.container.addEventListener("mousemove", onMouseMove, false);
+      // props.container.onmousedown = onMouseDown;
+      //  props.container.onmouseup = onDragEnd;
+      //props.container.onmousemove = onMouseMove;
+
+      props.container.addEventListener("touchstart", onTouchStart, false);
+      props.container.addEventListener("touchend", onDragEnd, false);
+      props.container.addEventListener("touchmove", onTouchMove, false);
+      //props.container.addEventListener("mousedown ", onMouseDown, false);
+      //props.container.addEventListener("mouseup", onDragEnd, false);
+      //props.container.addEventListener("mousemove", onMouseMove, false);
+
+      props.container.addEventListener("mousedown", e => {
+        console.log("on mouse down");
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+
+        if (e.target === dragItem) {
+          active = true;
+        }
+      });
+
+      props.container.addEventListener("mousemove", e => {
+        if (active) {
+          e.preventDefault();
+
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+
+          xOffset = currentX;
+          yOffset = currentY;
+
+          setTranslate(currentX, currentY, dragItem);
+        }
+      });
+
+      window.addEventListener("mouseup", e => {
+        initialX = currentX;
+        initialY = currentY;
+
+        active = false;
+      });
     }
   });
 
