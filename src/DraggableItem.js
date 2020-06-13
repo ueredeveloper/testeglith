@@ -24,20 +24,17 @@ const DraggableItem = props => {
   var dragItem;
 
   var active = false;
-  var initialX;
-  var initialY;
+  var initialX = props.idea.style.left;
+  var initialY = props.idea.style.top;
   var currentX;
   var currentY;
  
-  var xOffset;
+  var xOffset 0;
   var yOffset;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
 
-    initialX = props.idea.style.left;
-    initialY = props.idea.style.top;
-console.log('use ef ini x left'  + initialX)
     document.addEventListener("touchstart", onTouchStart, false);
     document.addEventListener("touchend", onDragEnd, false);
     document.addEventListener("touchmove", onTouchMove, false);
@@ -53,12 +50,12 @@ console.log('use ef ini x left'  + initialX)
     });
 
     document.addEventListener("mousemove", e => {
-      console.log("mousemove");
+    //  console.log("mousemove");
       if (active) {
         e.preventDefault();
 
-        
-        console.log('e - inix ' + e.clientX - initialX);
+        console.log('m move ' + e.clientX)
+        console.log('m move - event - inix ' + (e.clientX - initialX));
         
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
@@ -71,12 +68,13 @@ console.log('use ef ini x left'  + initialX)
     });
 
     window.addEventListener("mouseup", e => {
+
       initialX = currentX;
       initialY = currentY;
 
       active = false;
       
-      console.log('ini X ' + initialX + ' , cur X' + currentX + ', offser X' +  xOffset)
+      console.log('m up - ini X ' + initialX + ' , cur X' + currentX + ', offser X' +  xOffset)
 
       updateIdea(dragItem, initialY, initialX);
     });
@@ -152,7 +150,7 @@ console.log('use ef ini x left'  + initialX)
   };
 
   const setTranslate = (xPos, yPos, el) => {
-    console.log("DraggableItem - setTranslate");
+   // console.log("DraggableItem - setTranslate");
     // alert(xPos + " e " + yPos);
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
