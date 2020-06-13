@@ -36,23 +36,23 @@ const DraggableItem = props => {
     dragItem = draggableItemRef.current;
     console.log(props.container);
     if (props.container) {
-      //props.container.onmousedown = onMouseDown;
+      /*
       props.container.ontouchstart = onTouchStart;
       props.container.ontouchend = onDragEnd;
       props.container.ontouchmove = onTouchMove;
-      props.container.onmousedown = onMouseDown;
+       */
+      
+     /* props.container.onmousedown = onMouseDown;
       props.container.onmouseup = onDragEnd;
       props.container.onmousemove = onMouseMove;
-      
-      
-      props.container.addEventListener('touchstart', onTouchStart, false);
-      props.container.addEventListener('touchend', onDragEnd, false);
-props.container.addEventListener('touchmove', onTouchMove, false);
-props.container.addEventListener('mousedown ', onMouseDown, false);
-props.container.addEventListener('mouseup', onDragEnd, false);
-      props.container.addEventListener('mousemove', onMouseMove, false);
-      
-      
+     */
+
+      //props.container.addEventListener("touchstart", onTouchStart, false);
+     // props.container.addEventListener("touchend", onDragEnd, false);
+     // props.container.addEventListener("touchmove", onTouchMove, false);
+      props.container.addEventListener("mousedown ", onMouseDown, false);
+      props.container.addEventListener("mouseup", onDragEnd, false);
+      props.container.addEventListener("mousemove", onMouseMove, false);
     }
   });
 

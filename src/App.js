@@ -16,6 +16,17 @@ const App = () => {
 
   const [ideas, setIdea] = useState([
     {
+      id: 0,
+      content: "New Idea",
+      style: {
+        width: "240",
+        height: "100",
+        top: "200",
+        left: "50"
+      }
+    },
+
+    {
       id: 1,
       content: "New Idea",
       style: {
@@ -23,22 +34,15 @@ const App = () => {
         height: "100",
         top: "200",
         left: "50"
-      },
+      }
+    },
+    {
       id: 2,
       content: "New Idea",
       style: {
         width: "240",
         height: "100",
-        top: "400",
-        left: "50"
-      }
-      ,
-      id: 3,
-      content: "New Idea",
-      style: {
-        width: "240",
-        height: "100",
-        top: "400",
+        top: "200",
         left: "50"
       }
     }
@@ -80,6 +84,7 @@ const App = () => {
           updateIdea={updateIdea}
         />
       ))}
+      {console.log(ideas)}
     </div>
   );
 };
