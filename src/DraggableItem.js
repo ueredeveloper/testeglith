@@ -36,22 +36,9 @@ const DraggableItem = props => {
     dragItem = draggableItemRef.current;
     console.log(props.container);
     if (props.container) {
-      /*
-      props.container.ontouchstart = onTouchStart;
-      props.container.ontouchend = onDragEnd;
-      props.container.ontouchmove = onTouchMove;
-       */
-
-      // props.container.onmousedown = onMouseDown;
-      //  props.container.onmouseup = onDragEnd;
-      //props.container.onmousemove = onMouseMove;
-
       props.container.addEventListener("touchstart", onTouchStart, false);
       props.container.addEventListener("touchend", onDragEnd, false);
       props.container.addEventListener("touchmove", onTouchMove, false);
-      //props.container.addEventListener("mousedown ", onMouseDown, false);
-      //props.container.addEventListener("mouseup", onDragEnd, false);
-      //props.container.addEventListener("mousemove", onMouseMove, false);
 
       props.container.addEventListener("mousedown", e => {
         console.log("on mouse down");
@@ -82,6 +69,8 @@ const DraggableItem = props => {
         initialY = currentY;
 
         active = false;
+
+        updateIdea(dragItem, initialY, initialX);
       });
     }
   });
@@ -116,15 +105,16 @@ const DraggableItem = props => {
 
     active = false;
 
-    // parse int retira as casas decimais no caso de touchmove
-    /*
+    updateIdea(dragItem, initialY, initialX);
+  };
+
+  const updateIdea = (dragItem, initialY, initialX) => {
     props.idea.style.top = parseInt(initialY, 10);
     props.idea.style.left = parseInt(initialX, 10);
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
-    */
 
-    // props.updateIdea(props.idea);
+    props.updateIdea(props.idea);
   };
 
   const onTouchStart = e => {
@@ -156,7 +146,12 @@ const DraggableItem = props => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
-  return <div id="item" ref={draggableItemRef}></div>;
+  return (
+    <div id="item" ref={draggableItemRef}>
+      <InputForm idea={props.idea} />
+      <inputMenu idea={props.idea} />
+    </div>
+  );
 };
 
 export default DraggableItem;
