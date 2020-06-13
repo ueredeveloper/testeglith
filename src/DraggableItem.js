@@ -30,11 +30,14 @@ const DraggableItem = props => {
   var currentY = props.idea.style.top;
   //alert(initialY)
 
-  var xOffset = 0;
-  var yOffset = 0;
+  var xOffset = props.idea.style.left;
+  var yOffset = props.idea.style.left;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
+    
+    xOffset = currentX;
+    yOffset = currentY
 
     document.addEventListener("touchstart", onTouchStart, false);
     document.addEventListener("touchend", onDragEnd, false);
