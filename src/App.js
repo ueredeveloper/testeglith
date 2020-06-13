@@ -19,30 +19,9 @@ const App = () => {
       id: 0,
       content: "New Idea",
       style: {
-        width: "240",
+        width: "300",
         height: "100",
         top: "200",
-        left: "50"
-      }
-    },
-
-    {
-      id: 1,
-      content: "New Idea",
-      style: {
-        width: "240",
-        height: "100",
-        top: "400",
-        left: "50"
-      }
-    },
-    {
-      id: 2,
-      content: "New Idea",
-      style: {
-        width: "240",
-        height: "100",
-        top: "800",
         left: "50"
       }
     }

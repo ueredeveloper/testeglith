@@ -109,6 +109,9 @@ const DraggableItem = props => {
   };
 
   const updateIdea = (dragItem, initialY, initialX) => {
+    
+    console.log(dragItem.offsetWidth + ' , ' + dragItem.offsetHeight)
+    
     props.idea.style.top = parseInt(initialY, 10);
     props.idea.style.left = parseInt(initialX, 10);
     props.idea.style.width = dragItem.offsetWidth;
@@ -147,13 +150,20 @@ const DraggableItem = props => {
   };
 
   return (
-    <div id="item" ref={draggableItemRef}>
+    <div 
+      id="item" 
+      ref={draggableItemRef}
+      style={{
+        top: 500+ "px",
+        left: 500 + "px"
+      }}
+      >
       <InputForm idea={props.idea} />
       <InputMenu
-        idea={props.idea}
+        a={props.idea}
         persistIdea={props.persistIdea}
-          deleteIdea={props.deleteIdea}
-          updateIdea={props.updateIdea}
+        deleteIdea={props.deleteIdea}
+        updateIdea={props.updateIdea}
       />
     </div>
   );
