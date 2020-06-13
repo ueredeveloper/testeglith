@@ -29,8 +29,8 @@ const DraggableItem = props => {
   var currentX;
   var currentY;
 
-  var xOffset = 250;
-  var yOffset = 100;
+  var xOffset = 0;
+  var yOffset = 0;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
@@ -46,6 +46,8 @@ const DraggableItem = props => {
       
       console.log('m down idea id e offset ' + props.idea.id + ': ' + props.idea.style.left + ' ' + xOffset )
 
+      
+      console.log('id: '+ props.idea.id +  ' ' + dragItem.offsetLeft + ' e off set' + xOffset)
       if (e.target === dragItem) {
         active = true;
       }

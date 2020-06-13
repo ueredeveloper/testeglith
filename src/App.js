@@ -47,7 +47,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <>
       {ideas.map((idea, i) => (
         <DraggableItem
           key={i}
@@ -57,7 +57,7 @@ const App = () => {
           updateIdea={updateIdea}
         />
       ))}
-    </div>
+    </>
   );
 };
 
