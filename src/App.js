@@ -32,6 +32,15 @@ const App = () => {
         top: "400",
         left: "50"
       }
+      ,
+      id: 3,
+      content: "New Idea",
+      style: {
+        width: "240",
+        height: "100",
+        top: "400",
+        left: "50"
+      }
     }
   ]);
 
