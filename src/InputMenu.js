@@ -82,7 +82,7 @@ const InputMenu = props => {
   };
 
   return (
-    <div>
+    <div >
       <IconButton
         className={classes.margin}
         size="small"

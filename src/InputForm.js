@@ -2,7 +2,6 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
 import InputMenu from "./InputMenu";
 
@@ -13,6 +12,7 @@ const useStyles = makeStyles(theme => ({
   extendedIcon: {
     marginRight: theme.spacing(1)
   }
+  
 }));
 
 const InputForm = props => {
@@ -22,11 +22,9 @@ const InputForm = props => {
     setValue(event.target.value);
   };
   return (
-    <div>
+    <div >
       <form className={classes.root} noValidate autoComplete="off">
-        <IconButton className={classes.margin} size="small">
-          <ControlCameraIcon fontSize="small" />
-        </IconButton>
+        
         <TextField
           id="standard-textarea"
           label="Multiline Placeholder"

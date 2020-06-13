@@ -19,7 +19,7 @@ const App = () => {
       id: 0,
       content: "New Idea",
       style: {
-        width: "300",
+        width: "200",
         height: "100",
         top: "200",
         left: "50"
