@@ -29,8 +29,8 @@ const DraggableItem = props => {
   var currentX;
   var currentY;
 
-  var xOffset = 30;
-  var yOffset = 30;
+  var xOffset = 0;
+  var yOffset = 0;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
@@ -39,27 +39,28 @@ const DraggableItem = props => {
     document.addEventListener("touchend", onDragEnd, false);
     document.addEventListener("touchmove", onTouchMove, false);
 
-    document.addEventListener("mousedown", e => {
-      //console.log("on mouse down");
-      initialX = e.clientX - xOffset;
-      initialY = e.clientY - yOffset;
-      
-      console.log('m down idea id e offset ' + props.idea.id + ': ' + props.idea.style.left + ' ' + xOffset )
+    document.addEventListener(
+      "mousedown",
+      e => {
+        //console.log("on mouse down");
 
-      
-      console.log('id: '+ props.idea.id +  ' off wid ' + dragItem.offsetWidth + ' e off set' + xOffset)
-      if (e.target === dragItem) {
-        active = true;
-      }
-    }, []);
+        xOffset = currentX;
+        yOffset = currentY;
+
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+
+        if (e.target === dragItem) {
+          active = true;
+        }
+      },
+      []
+    );
 
     document.addEventListener("mousemove", e => {
       //  console.log("mousemove");
       if (active) {
         e.preventDefault();
-
-        console.log("m move " + e.clientX);
-        console.log("m move - event - inix " + (e.clientX - initialX));
 
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
@@ -95,6 +96,9 @@ const DraggableItem = props => {
     if (active) {
       e.preventDefault();
 
+      xOffset = currentX;
+      yOffset = currentY;
+
       currentX = e.clientX - initialX;
       currentY = e.clientY - initialY;
 
@@ -115,8 +119,6 @@ const DraggableItem = props => {
   };
 
   const updateIdea = (dragItem, curX, curY) => {
-    //alert('initial y' + initialY + ' x ' + initialX)
-    //alert (initialY !== null + initialY)
     props.idea.style.top = curX;
     props.idea.style.left = curY;
     props.idea.style.width = dragItem.offsetWidth;
@@ -151,8 +153,6 @@ const DraggableItem = props => {
   };
 
   const setTranslate = (xPos, yPos, el) => {
-    // console.log("DraggableItem - setTranslate");
-    // alert(xPos + " e " + yPos);
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
