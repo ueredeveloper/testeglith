@@ -24,21 +24,20 @@ const DraggableItem = props => {
   var dragItem;
 
   var active = false;
-  var initialX = props.idea.style.left;
-  var initialY= props.idea.style.top;
-  var currentX ;
-  var currentY ;
-  //alert(initialY) 
-
+  var initialX;
+  var initialY;
+  var currentX;
+  var currentY;
+ 
   var xOffset;
   var yOffset;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
 
-    xOffset = currentX;
-    yOffset = currentY;
-
+    initialX = props.idea.style.left;
+    initialY = props.idea.style.top;
+console.log('use ef ini x left'  + initialX)
     document.addEventListener("touchstart", onTouchStart, false);
     document.addEventListener("touchend", onDragEnd, false);
     document.addEventListener("touchmove", onTouchMove, false);
@@ -54,11 +53,13 @@ const DraggableItem = props => {
     });
 
     document.addEventListener("mousemove", e => {
-      
-      console.log('mousemove')
+      console.log("mousemove");
       if (active) {
         e.preventDefault();
 
+        
+        console.log('e - inix ' + e.clientX - initialX);
+        
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
 
@@ -74,6 +75,8 @@ const DraggableItem = props => {
       initialY = currentY;
 
       active = false;
+      
+      console.log('ini X ' + initialX + ' , cur X' + currentX + ', offser X' +  xOffset)
 
       updateIdea(dragItem, initialY, initialX);
     });
@@ -115,8 +118,8 @@ const DraggableItem = props => {
   const updateIdea = (dragItem, initialY, initialX) => {
     //alert('initial y' + initialY + ' x ' + initialX)
     //alert (initialY !== null + initialY)
-    props.idea.style.top = initialY
-    props.idea.style.left = initialY
+    props.idea.style.top = initialY;
+    props.idea.style.left = initialY;
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
 
