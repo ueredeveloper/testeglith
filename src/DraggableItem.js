@@ -24,13 +24,13 @@ const DraggableItem = props => {
   var dragItem;
 
   var active = false;
-  var initialX = props.idea.style.left;
-  var initialY = props.idea.style.top;
+  var initialX;
+  var initialY;
   var currentX;
   var currentY;
- 
-  var xOffset 0;
-  var yOffset;
+
+  var xOffset = props.idea.style
+  var yOffset = 5;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
@@ -43,6 +43,8 @@ const DraggableItem = props => {
       //console.log("on mouse down");
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
+      
+      console.log('m down idea id e offset' + props.idea.id + ': ' + props.idea.style.left + ' ' + xOffset )
 
       if (e.target === dragItem) {
         active = true;
@@ -50,13 +52,13 @@ const DraggableItem = props => {
     });
 
     document.addEventListener("mousemove", e => {
-    //  console.log("mousemove");
+      //  console.log("mousemove");
       if (active) {
         e.preventDefault();
 
-        console.log('m move ' + e.clientX)
-        console.log('m move - event - inix ' + (e.clientX - initialX));
-        
+        console.log("m move " + e.clientX);
+        console.log("m move - event - inix " + (e.clientX - initialX));
+
         currentX = e.clientX - initialX;
         currentY = e.clientY - initialY;
 
@@ -68,13 +70,10 @@ const DraggableItem = props => {
     });
 
     window.addEventListener("mouseup", e => {
-
       initialX = currentX;
       initialY = currentY;
 
       active = false;
-      
-      console.log('m up - ini X ' + initialX + ' , cur X' + currentX + ', offser X' +  xOffset)
 
       updateIdea(dragItem, initialY, initialX);
     });
@@ -150,7 +149,7 @@ const DraggableItem = props => {
   };
 
   const setTranslate = (xPos, yPos, el) => {
-   // console.log("DraggableItem - setTranslate");
+    // console.log("DraggableItem - setTranslate");
     // alert(xPos + " e " + yPos);
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
