@@ -108,6 +108,9 @@ const DraggableItem = props => {
 
   const updateIdea = (dragItem, initialY, initialX) => {
    
+    alert(initialY)
+    
+    
     props.idea.style.top = parseInt(initialY, 10);
     props.idea.style.left = parseInt(initialX, 10);
     props.idea.style.width = dragItem.offsetWidth;
@@ -157,6 +160,7 @@ const DraggableItem = props => {
         maxWidth: "220px"
       }}
     >
+      {alert(props.idea.style.top)}
       <InputForm idea={props.idea} />
       <InputMenu
         idea={props.idea}
