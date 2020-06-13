@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -16,25 +16,27 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const InputForm = props => {
- 
   const classes = useStyles();
-  const [value, setValue] = React.useState('Olá Mundo');
+  const [value, setValue] = React.useState("Olá Mundo");
   const handleChange = event => {
     setValue(event.target.value);
   };
   return (
-    
-          <form className={classes.root} noValidate autoComplete="off">
-            <TextField
-              id="standard-textarea"
-              label="Multiline Placeholder"
-              placeholder="Placeholder"
-              multiline
-              value={props.idea.content}
-              onChange={handleChange}
-            />
-          </form>
-
+    <div>
+      <form className={classes.root} noValidate autoComplete="off">
+        <IconButton className={classes.margin} size="small">
+          <ControlCameraIcon fontSize="small" />
+        </IconButton>
+        <TextField
+          id="standard-textarea"
+          label="Multiline Placeholder"
+          placeholder="Placeholder"
+          multiline
+          value={value}
+          onChange={handleChange}
+        />
+      </form>
+    </div>
   );
 };
 

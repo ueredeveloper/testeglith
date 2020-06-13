@@ -47,12 +47,12 @@ const InputMenu = props => {
     }
   };
   const classes = useStyles();
-  /* const [value, setValue] = React.useState("Controlled");*/
-  /*
+  const [value, setValue] = React.useState("Controlled");
+
   const handleChange = e => {
     //setValue(event.target.value);
     console.log('handle change ' + e.target.value)
-  };*/
+  };
 
   const deleteIdea = id => {
     props.deleteIdea(id);
