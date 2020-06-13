@@ -152,7 +152,8 @@ const DraggableItem = props => {
       ref={draggableItemRef}
       style={{
         top: props.idea.style.top + "px",
-        left: props.idea.style.left + "px"
+        left: props.idea.style.left + "px",
+        maxWidth: "220px"
       }}
     >
       <InputForm idea={props.idea} />

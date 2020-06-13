@@ -7,13 +7,12 @@ import DraggableItem from "./DraggableItem";
 import "./style.css";
 
 const App = () => {
-
   const [ideas, setIdea] = useState([
     {
       id: 0,
       content: "New Idea",
       style: {
-        width: "200",
+        width: "220",
         height: "100",
         top: "200",
         left: "50"
@@ -26,11 +25,13 @@ const App = () => {
   };
 
   const deleteIdea = id => {
-    setIdea([
-      ...ideas.filter(function(value, index, arr) {
-        return value.id !== id;
-      })
-    ]);
+    //nao deletar o primeiro quadro
+    if (id !== 0)
+      setIdea([
+        ...ideas.filter(function(value, index, arr) {
+          return value.id !== id;
+        })
+      ]);
   };
 
   const updateIdea = idea => {
@@ -61,4 +62,3 @@ const App = () => {
 };
 
 export default App;
-

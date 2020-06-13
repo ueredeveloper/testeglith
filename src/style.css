@@ -1,6 +1,4 @@
-
 #item {
-  
   border-bottom: 20px solid red;
   border-radius: 5px;
   touch-action: none;
@@ -13,4 +11,9 @@
   cursor: move;
 }
 
-
+#divForm {
+  float: left;
+}
+#divMenu {
+  overfloat: right;
+}
