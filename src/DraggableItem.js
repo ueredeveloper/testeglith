@@ -29,8 +29,8 @@ const DraggableItem = props => {
   var currentX;
   var currentY;
 
-  var xOffset = props.idea.style
-  var yOffset = 5;
+  var xOffset = 250;
+  var yOffset = 100;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
@@ -44,12 +44,12 @@ const DraggableItem = props => {
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
       
-      console.log('m down idea id e offset' + props.idea.id + ': ' + props.idea.style.left + ' ' + xOffset )
+      console.log('m down idea id e offset ' + props.idea.id + ': ' + props.idea.style.left + ' ' + xOffset )
 
       if (e.target === dragItem) {
         active = true;
       }
-    });
+    }, []);
 
     document.addEventListener("mousemove", e => {
       //  console.log("mousemove");
