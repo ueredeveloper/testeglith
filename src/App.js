@@ -5,6 +5,8 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from "./InputDraggable";
 import { useContainer } from "./useContainer";
 
+import "./style.css";
+
 const App = () => {
   const [ideas, setIdea] = useState([
     {
@@ -52,14 +54,15 @@ const App = () => {
   };
 
   const divContainerRef = useRef(null);
-  const container = useContainer(divContainerRef);
+  const { container, setContainer } = useState(null);
+  useEffect(() => {
+    setContainer(divContainerRef.current);
+  }, []);
   
   
-  return (
-    <div>
-      <InputDraggable ideas={ideas} />
-    </div>
-  );
+  
+  return <div id="container" ref={divContainerRef}>
+  </div>;
 };
 
 export default App;
