@@ -24,13 +24,13 @@ const DraggableItem = props => {
   var dragItem;
 
   var active = false;
-  var initialX = 0;
-  var initialY = 0;
-  var currentX = 0;
-  var currentY = 0;
+  var initialX = 5;
+  var initialY = 5;
+  var currentX = 5;
+  var currentY = 5;
 
-  var xOffset = 0;
-  var yOffset = 0;
+  var xOffset = 5;
+  var yOffset = 5;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
@@ -144,7 +144,7 @@ const DraggableItem = props => {
 
   const setTranslate = (xPos, yPos, el) => {
     console.log("DraggableItem - setTranslate");
-    alert(xPos + " e " + yPos);
+   // alert(xPos + " e " + yPos);
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
@@ -153,8 +153,8 @@ const DraggableItem = props => {
       id="item"
       ref={draggableItemRef}
       style={{
-        top: props.idea.style.top,
-        left: props.idea.style.left,
+        top: props.idea.style.top + 'px',
+        left: props.idea.style.left + 'px,',
         maxWidth: "220px"
       }}
     >

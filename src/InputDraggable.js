@@ -24,17 +24,17 @@ const InputDraggable = props => {
   var dragItem, container;
 
   var active = false;
-  var initialX = 0;
-  var initialY = 0;
-  var currentX = 0;
-  var currentY = 0;
+  var initialX;
+  var initialY;
+  var currentX;
+  var currentY;
 
-  var xOffset = 0;
-  var yOffset = 0;
+  var xOffset;
+  var yOffset;
 
   useEffect(() => {
     dragItem = dragItemRef.current;
-    container = containerRef.current;
+   container = containerRef.current;
   });
 
   const onMouseDown = e => {
@@ -72,9 +72,9 @@ const InputDraggable = props => {
     props.idea.style.left = parseInt(initialX, 10);
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
-    */
+    
 
-    // props.updateIdea(props.idea);
+    props.updateIdea(props.idea);*/
   };
 
   const onTouchStart = e => {
