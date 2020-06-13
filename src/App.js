@@ -73,7 +73,7 @@ const App = () => {
   };
 
   return (
-    <div id="container" ref={divContainerRef}>
+    <div id="container"style={{width:'900px', height:'900px'}} ref={divContainerRef}>
       {ideas.map((idea, i) => (
         <DraggableItem
           key={i}
@@ -84,7 +84,7 @@ const App = () => {
           updateIdea={updateIdea}
         />
       ))}
-      {console.log(ideas)}
+      {console.log(ideas.length)}
     </div>
   );
 };
