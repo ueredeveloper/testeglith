@@ -3,7 +3,6 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from './teste/InputDraggable.js'
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
-import { useContainer } from "./useContainer";
 
 import "./style.css";
 
@@ -54,9 +53,9 @@ const App = () => {
   };
 
   const divContainerRef = useRef(null);
-  const { container, setContainer } = useState(null);
+  var container;
   useEffect(() => {
-    setContainer(divContainerRef.current);
+   container = divContainerRef.current;
   }, []);
   
   
