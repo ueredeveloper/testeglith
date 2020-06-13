@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DraggableItem = props => {
-  const dragItemRef = useRef(null);
+  const draggableItemRef = useRef(null);
  
   var dragItem;
 
@@ -33,8 +33,9 @@ const DraggableItem = props => {
   var yOffset = 0;
 
   useEffect(() => {
-    dragItem = dragItemRef.current;
-    props.container.onmousedown = onMouseDown;
+    dragItem = draggableItemRef.current;
+    console.log(props.container)
+   // props.container.onmousedown = onMouseDown;
   });
 
   const onMouseDown = e => {
@@ -108,7 +109,7 @@ const DraggableItem = props => {
   };
 
   
-  return <div id="item" ref={dragItemRef}></div>;
+  return <div id="item" ref={draggableItemRef}></div>;
 };
 
 export default DraggableItem;

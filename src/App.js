@@ -3,10 +3,16 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from './teste/InputDraggable.js'
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
-
+import DraggableItem from "./DraggableItem";
 import "./style.css";
 
 const App = () => {
+  const divContainerRef = useRef(null);
+  var container;
+  useEffect(() => {
+    container = divContainerRef.current;
+  });
+
   const [ideas, setIdea] = useState([
     {
       id: 1,
@@ -52,16 +58,20 @@ const App = () => {
       );
   };
 
-  const divContainerRef = useRef(null);
-  var container;
-  useEffect(() => {
-   container = divContainerRef.current;
-  }, []);
-  
-  
-  
-  return <div id="container" ref={divContainerRef}>
-  </div>;
+  return (
+    <div id="container" ref={divContainerRef}>
+      {ideas.map((idea, i) => (
+        <DraggableItem
+          key={i}
+          idea={idea}
+          container={container}
+          persistIdea={persistIdea}
+          deleteIdea={deleteIdea}
+          updateIdea={updateIdea}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default App;
