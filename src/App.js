@@ -35,8 +35,8 @@ const App = () => {
   };
 
   const updateIdea = idea => {
-    console.log("update");
-    console.log(idea.style);
+    //console.log("update");
+    //console.log(idea.style);
     return event =>
       setIdea(
         ideas.map(i => {

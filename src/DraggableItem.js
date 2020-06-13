@@ -107,8 +107,7 @@ const DraggableItem = props => {
   };
 
   const updateIdea = (dragItem, initialY, initialX) => {
-    console.log(dragItem.offsetWidth + " , " + dragItem.offsetHeight);
-
+   
     props.idea.style.top = parseInt(initialY, 10);
     props.idea.style.left = parseInt(initialX, 10);
     props.idea.style.width = dragItem.offsetWidth;
@@ -143,6 +142,8 @@ const DraggableItem = props => {
   };
 
   const setTranslate = (xPos, yPos, el) => {
+    console.log('DraggableItem - setTranslate')
+    console.log(xPos + ' e ' + yPos)
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
