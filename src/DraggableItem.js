@@ -144,7 +144,7 @@ const DraggableItem = props => {
 
   const setTranslate = (xPos, yPos, el) => {
     console.log("DraggableItem - setTranslate");
-    console.log(xPos + " e " + yPos);
+    alert(xPos + " e " + yPos);
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
@@ -158,7 +158,7 @@ const DraggableItem = props => {
         maxWidth: "220px"
       }}
     >
-      {alert(props.idea.style.top)}
+      {/*alert(props.idea.style.top)*/}
       <InputForm idea={props.idea} />
       <InputMenu
         idea={props.idea}
