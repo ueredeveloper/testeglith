@@ -32,7 +32,7 @@ const App = () => {
       style: {
         width: "240",
         height: "100",
-        top: "400",
+        top: "200",
         left: "50"
       }
     },
@@ -42,7 +42,7 @@ const App = () => {
       style: {
         width: "240",
         height: "100",
-        top: "800",
+        top: "200",
         left: "50"
       }
     }
@@ -73,19 +73,56 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div id="container"style={{width:'900px', height:'900px'}} ref={divContainerRef}>
       {ideas.map((idea, i) => (
         <DraggableItem
           key={i}
           idea={idea}
+          container={container}
           persistIdea={persistIdea}
           deleteIdea={deleteIdea}
           updateIdea={updateIdea}
         />
       ))}
+      {console.log(ideas.length)}
     </div>
   );
 };
 
 export default App;
 
+/*
+<div>
+      <div id="container" ref={containerRef}>
+        <Container>
+          {ideas.map((idea, i) => (
+            <div key={i} id="item" ref={dragItemRef}>
+              <Draggable
+                idea={idea}
+                persistIdea={persistIdea}
+                deleteIdea={deleteIdea}
+                updateIdea={updateIdea}
+              />
+            </div>
+          ))}
+        </Container>
+      </div>
+    </div>
+    */
+
+/*
+
+ {ideas.map((idea, i) => (
+        <InputDraggable
+          idea={idea}
+          key={i}
+          persistIdea={persistIdea}
+          deleteIdea={deleteIdea}
+          updateIdea={updateIdea}
+        />
+      ))}
+      {ideas.map((idea, i) => (
+        console.log(idea.style)
+      ))}
+      
+      */

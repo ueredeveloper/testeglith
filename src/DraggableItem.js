@@ -34,13 +34,13 @@ const DraggableItem = props => {
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
-    console.log(props.container);
-    if (props.container) {
-      props.container.addEventListener("touchstart", onTouchStart, false);
-      props.container.addEventListener("touchend", onDragEnd, false);
-      props.container.addEventListener("touchmove", onTouchMove, false);
+ 
+   
+      document.addEventListener("touchstart", onTouchStart, false);
+      document.addEventListener("touchend", onDragEnd, false);
+      document.addEventListener("touchmove", onTouchMove, false);
 
-      props.container.addEventListener("mousedown", e => {
+      document.addEventListener("mousedown", e => {
         console.log("on mouse down");
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
@@ -50,7 +50,7 @@ const DraggableItem = props => {
         }
       });
 
-      props.container.addEventListener("mousemove", e => {
+      document.addEventListener("mousemove", e => {
         if (active) {
           e.preventDefault();
 
@@ -72,7 +72,7 @@ const DraggableItem = props => {
 
         updateIdea(dragItem, initialY, initialX);
       });
-    }
+  
   });
 
   const onMouseDown = e => {
