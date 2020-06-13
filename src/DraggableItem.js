@@ -25,26 +25,26 @@ const DraggableItem = props => {
 
   var active = false;
   var initialX = props.idea.style.left;
-  var initialY = props.idea.style.top;
-  var currentX = props.idea.style.left;
-  var currentY = props.idea.style.top;
-  //alert(initialY)
+  var initialY= props.idea.style.top;
+  var currentX ;
+  var currentY ;
+  //alert(initialY) 
 
-  var xOffset = props.idea.style.left;
-  var yOffset = props.idea.style.left;
+  var xOffset;
+  var yOffset;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
-    
+
     xOffset = currentX;
-    yOffset = currentY
+    yOffset = currentY;
 
     document.addEventListener("touchstart", onTouchStart, false);
     document.addEventListener("touchend", onDragEnd, false);
     document.addEventListener("touchmove", onTouchMove, false);
 
     document.addEventListener("mousedown", e => {
-      console.log("on mouse down");
+      //console.log("on mouse down");
       initialX = e.clientX - xOffset;
       initialY = e.clientY - yOffset;
 
@@ -54,6 +54,8 @@ const DraggableItem = props => {
     });
 
     document.addEventListener("mousemove", e => {
+      
+      console.log('mousemove')
       if (active) {
         e.preventDefault();
 
@@ -78,7 +80,7 @@ const DraggableItem = props => {
   });
 
   const onMouseDown = e => {
-    console.log("on mouse down");
+    //console.log("on mouse down");
     initialX = e.clientX - xOffset;
     initialY = e.clientY - yOffset;
 
@@ -112,9 +114,9 @@ const DraggableItem = props => {
 
   const updateIdea = (dragItem, initialY, initialX) => {
     //alert('initial y' + initialY + ' x ' + initialX)
-    //alert (initialY !== null + initialY) 
-    props.idea.style.top = parseInt(initialY, 10);
-    props.idea.style.left = parseInt(initialX, 10);
+    //alert (initialY !== null + initialY)
+    props.idea.style.top = initialY
+    props.idea.style.left = initialY
     props.idea.style.width = dragItem.offsetWidth;
     props.idea.style.height = dragItem.offsetHeight;
 
@@ -122,7 +124,7 @@ const DraggableItem = props => {
   };
 
   const onTouchStart = e => {
-    console.log("touch start");
+    // console.log("touch start");
     initialX = e.touches[0].clientX - xOffset;
     initialY = e.touches[0].clientY - yOffset;
 
