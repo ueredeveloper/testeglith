@@ -50,6 +50,7 @@ const App = () => {
     <div>
       {ideas.map((idea, i) => (
         <DraggableItem
+          style={{ top: idea.style.top, left: idea.style.left }}
           key={i}
           idea={idea}
           persistIdea={persistIdea}
