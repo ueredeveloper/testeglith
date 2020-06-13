@@ -25,7 +25,7 @@ const App = () => {
   };
 
   const deleteIdea = id => {
-    //nao deletar o primeiro quadro
+    //id=0 - nao deletar o primeiro quadro
     if (id !== 0)
       setIdea([
         ...ideas.filter(function(value, index, arr) {
@@ -35,8 +35,7 @@ const App = () => {
   };
 
   const updateIdea = idea => {
-    //console.log("update");
-    //console.log(idea.style);
+
     return event =>
       setIdea(
         ideas.map(i => {
