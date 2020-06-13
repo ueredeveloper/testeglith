@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 const DraggableItem = props => {
   const draggableItemRef = useRef(null);
- 
+
   var dragItem;
 
   var active = false;
@@ -34,12 +34,20 @@ const DraggableItem = props => {
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
-    console.log(props.container)
-   // props.container.onmousedown = onMouseDown;
+    console.log(props.container);
+    if (props.container) {
+      //props.container.onmousedown = onMouseDown;
+      props.container.ontouchstart = onTouchStart;
+      props.container.ontouchend = onDragEnd;
+      props.container.ontouchmove = onTouchMove;
+      props.container.onmousedown = onMouseDown;
+      props.container.onmouseup = onDragEnd;
+      props.container.onmousemove = onMouseMove;
+    }
   });
 
   const onMouseDown = e => {
-    console.log('on mouse down')
+    console.log("on mouse down");
     initialX = e.clientX - xOffset;
     initialY = e.clientY - yOffset;
 
@@ -108,7 +116,6 @@ const DraggableItem = props => {
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
   };
 
-  
   return <div id="item" ref={draggableItemRef}></div>;
 };
 

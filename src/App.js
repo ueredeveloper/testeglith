@@ -11,7 +11,7 @@ const App = () => {
   const [container, setContainer] = useState(null);
 
   useEffect(() => {
-    if (divContainerRef.current) setContainer(divContainerRef.current);
+    setContainer(divContainerRef.current);
   }, []);
 
   const [ideas, setIdea] = useState([
