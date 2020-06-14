@@ -14,8 +14,8 @@ const App = () => {
       style: {
         width: "220",
         height: "100",
-        top: "200",
-        left: "50"
+        top: "5",
+        left: "5"
       }
     }
   ]);
