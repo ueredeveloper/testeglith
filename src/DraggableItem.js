@@ -34,6 +34,9 @@ const DraggableItem = props => {
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
+    
+    
+    setTranslate(initialX, initialY, dragItem);
 
     document.addEventListener("touchstart", onTouchStart, false);
     document.addEventListener("touchend", onDragEnd, false);
