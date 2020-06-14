@@ -24,19 +24,18 @@ const DraggableItem = props => {
   var dragItem;
 
   var active = false;
-  var initialX = props.idea.style.left;
-  var initialY = props.idea.style.top;
+  var initialX;
+  var initialY;
   var currentX;
   var currentY;
 
-  var xOffset = 0;
-  var yOffset = 0;
+  var xOffset = props.idea.style.left;
+  var yOffset = props.idea.style.top;
 
   useEffect(() => {
     dragItem = draggableItemRef.current;
-    
-    
-    setTranslate(initialX, initialY, dragItem);
+
+    setTranslate(props.idea.style.left, props.idea.style.top, dragItem);
 
     document.addEventListener("touchstart", onTouchStart, false);
     document.addEventListener("touchend", onDragEnd, false);
@@ -113,12 +112,14 @@ const DraggableItem = props => {
   };
 
   const updateIdea = (dragItem, curX, curY) => {
-    props.idea.style.top = curX;
-    props.idea.style.left = curY;
-    props.idea.style.width = dragItem.offsetWidth;
-    props.idea.style.height = dragItem.offsetHeight;
+    if (!(typeof curX === "undefined")) {
+      props.idea.style.top = curX;
+      props.idea.style.left = curY;
+      props.idea.style.width = dragItem.offsetWidth;
+      props.idea.style.height = dragItem.offsetHeight;
 
-    props.updateIdea(props.idea);
+      props.updateIdea(props.idea);
+    }
   };
 
   const onTouchStart = e => {
