@@ -60,8 +60,9 @@ const InputMenu = props => {
 
   const persistIdea = () => {
 
+    let positionX = props.idea.style.left + 220;
     let positionY = props.idea.style.top + props.idea.style.height;
-    let positionX = props.idea.style.left + props.idea.style.width;
+  
 
     console.log("x " + positionX + " y " + positionY);
 
