@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-import "./style.css";
+import "./index.css";
 
 var active = false;
 var currentX;

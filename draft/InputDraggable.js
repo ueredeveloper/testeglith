@@ -6,7 +6,7 @@ import ControlCameraIcon from "@material-ui/icons/ControlCamera";
 import IconButton from "@material-ui/core/IconButton";
 import InputMenu from "./InputMenu";
 
-import "./style.css";
+import "./index.css";
 
 const useStyles = makeStyles(theme => ({
   margin: {

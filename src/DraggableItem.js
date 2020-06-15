@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import InputMenu from "./InputMenu";
 import InputForm from "./InputForm";
 
-import "./style.css";
+import "./index.css";
 
 const DraggableItem = props => {
     const draggableItemRef = useRef(null);

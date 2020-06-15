@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
 import DraggableItem from "./DraggableItem";
-import "./style.css";
+import "./index.css";
 
 const App = () => {
   const [ideas, setIdea] = useState([
@@ -12,9 +12,8 @@ const App = () => {
       id: 0,
       content: "New Idea",
       style: {
-        left: "200",
-        top: "200",
-
+        left: "10",
+        top: "10",
       }
     }
   ]);

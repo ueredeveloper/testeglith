@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import InputMenu from "./InputMenu";
 import InputForm from "./InputForm";
 
-import "./style.css";
+import "./index.css";
 
 const useStyles = makeStyles(theme => ({
   margin: {

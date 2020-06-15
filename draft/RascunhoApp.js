@@ -4,7 +4,7 @@ import InputDraggable from "./InputDraggable";
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
 //import InputDraggable from "./InputDraggable";
 import DraggableItem from "./DraggableItem";
-import "./style.css";
+import "./index.css";
 
 const App = () => {
   const divContainerRef = useRef();
