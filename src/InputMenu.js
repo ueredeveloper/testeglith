@@ -58,27 +58,27 @@ const InputMenu = props => {
     props.deleteIdea(id);
   };
 
-  const persistIdea = () => {
+   const persistIdea = () => {
 
-    let positionX = props.idea.style.left + 220;
-    let positionY = props.idea.style.top + props.idea.style.height;
-  
+    let positionX = parseInt( props.idea.style.left, 10) + 240;
+    let positionY =  parseInt(props.idea.style.top, 10) - 80;
 
-    console.log("x " + positionX + " y " + positionY);
+
+    console.log('persist idea x y ' + props.idea.style.left + ' ' + props.idea.style.top)
 
     let idea = {
       id: Math.floor(Math.random() * 10000),
       content: "New Idea",
       style: {
-        width: props.idea.style.width,
-        height: props.idea.style.height,
-        top: positionY,
-        left: positionX
+        left: positionX,
+        top: positionY
+       
       }
     };
 
     props.persistIdea(idea);
   };
+
 
   return (
     <div id="divMenu">

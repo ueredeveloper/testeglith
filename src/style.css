@@ -1,6 +1,12 @@
+#container {
+  position: relative;
+}
 #item {
+  position: absolute;
   border-bottom: 20px solid red;
   border-radius: 5px;
+  height:100px;
+  width:220px;
 }
 #item:active {
   background-color: rgba(168, 218, 220, 1);
@@ -13,5 +19,5 @@
   float: left;
 }
 #divMenu {
-  overfloat: right;
+  float: right;
 }

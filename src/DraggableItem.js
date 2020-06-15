@@ -1,176 +1,143 @@
 import React, { useEffect, useRef } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import ControlCameraIcon from "@material-ui/icons/ControlCamera";
-import IconButton from "@material-ui/core/IconButton";
 import InputMenu from "./InputMenu";
 import InputForm from "./InputForm";
 
 import "./style.css";
 
-const useStyles = makeStyles(theme => ({
-  margin: {
-    margin: theme.spacing(1)
-  },
-  extendedIcon: {
-    marginRight: theme.spacing(1)
-  }
-}));
-
 const DraggableItem = props => {
-  const draggableItemRef = useRef(null);
+    const draggableItemRef = useRef(null);
 
-  var dragItem;
+    var dragItem;
 
-  var active = false;
-  var initialX;
-  var initialY;
-  var currentX;
-  var currentY;
+    var active = false;
+    var initialX;
+    var initialY;
+    var currentX;
+    var currentY;
 
-  var xOffset = props.idea.style.left;
-  var yOffset = props.idea.style.top;
+    var xOffset = props.idea.style.left;
+    var yOffset = props.idea.style.top;
 
-  useEffect(() => {
-    dragItem = draggableItemRef.current;
+    useEffect(() => {
 
-    setTranslate(props.idea.style.left, props.idea.style.top, dragItem);
+        if (!dragItem) {
+            console.log('inicialização da ideia')
+        }
+        dragItem = draggableItemRef.current;
 
-    document.addEventListener("touchstart", onTouchStart, false);
-    document.addEventListener("touchend", onDragEnd, false);
-    document.addEventListener("touchmove", onTouchMove, false);
+        setTranslate(props.idea.style.left, props.idea.style.top, dragItem);
 
-    document.addEventListener("mousedown", e => {
-      initialX = e.clientX - xOffset;
-      initialY = e.clientY - yOffset;
+        document.addEventListener("touchstart", onTouchStart, false);
+        document.addEventListener("touchend", onDragEnd, false);
+        document.addEventListener("touchmove", onTouchMove, false);
 
-      if (e.target === dragItem) {
-        active = true;
-      }
-    });
+        document.addEventListener("mousedown", ev => { onMouseDown(ev); });
+        document.addEventListener("mousemove", ev => { onMouseMove(ev) });
+        window.addEventListener("mouseup", ev => { onDragEnd(ev) });
 
-    document.addEventListener("mousemove", e => {
-      //  console.log("mousemove");
-      if (active) {
-        e.preventDefault();
+    }, []);
 
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
+    const onMouseDown = e => {
+       //console.log("mouse down ");
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
 
-        xOffset = currentX;
-        yOffset = currentY;
+        xOffset = e.clientX - initialX;
+        yOffset = e.clientY - initialY;
 
-        setTranslate(currentX, currentY, dragItem);
-      }
-    });
+        if (e.target === dragItem) {
+            active = true;
+        }
+    };
 
-    window.addEventListener("mouseup", e => {
-      initialX = currentX;
-      initialY = currentY;
+    const onMouseMove = e => {
 
-      active = false;
+        //console.log('on m m')
+        if (active) {
+            e.preventDefault();
 
-      updateIdea(dragItem, currentX, currentY);
-    });
-  }, []);
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
 
-  const onMouseDown = e => {
-    //console.log("on mouse down");
-    initialX = e.clientX - xOffset;
-    initialY = e.clientY - yOffset;
+            xOffset = currentX;
+            yOffset = currentY;
 
-    if (e.target === dragItem) {
-      active = true;
-    }
-  };
+            setTranslate(currentX, currentY, dragItem);
+        }
+    };
 
-  const onMouseMove = e => {
-    if (active) {
-      e.preventDefault();
+    const onDragEnd = () => {
 
-      xOffset = currentX;
-      yOffset = currentY;
+       // console.log(' m end ')
+        initialX = currentX;
+        initialY = currentY;
 
-      currentX = e.clientX - initialX;
-      currentY = e.clientY - initialY;
+        active = false;
 
-      xOffset = currentX;
-      yOffset = currentY;
+        updateIdea(currentX, currentY);
+    };
 
-      setTranslate(currentX, currentY, dragItem);
-    }
-  };
+    const updateIdea = (curX, curY) => {
 
-  const onDragEnd = () => {
-    initialX = currentX;
-    initialY = currentY;
+        if (! (typeof curX === 'undefined')){
+            props.idea.style.left = curX;
+            props.idea.style.top = curY;
+          
+            props.updateIdea(props.idea);
 
-    active = false;
+        }
 
-    updateIdea(dragItem, currentX, currentY);
-  };
+      
+    };
 
-  const updateIdea = (dragItem, curX, curY) => {
-    if (!(typeof curX === "undefined")) {
-      props.idea.style.top = curX;
-      props.idea.style.left = curY;
-      props.idea.style.width = dragItem.offsetWidth;
-      props.idea.style.height = dragItem.offsetHeight;
+    const onTouchStart = e => {
+        // console.log("touch start");
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
 
-      props.updateIdea(props.idea);
-    }
-  };
+        if (e.target === dragItem) {
+            active = true;
+        }
+    };
 
-  const onTouchStart = e => {
-    // console.log("touch start");
-    initialX = e.touches[0].clientX - xOffset;
-    initialY = e.touches[0].clientY - yOffset;
+    const onTouchMove = e => {
+        //console.log("touch move");
+        if (active) {
+            e.preventDefault();
 
-    if (e.target === dragItem) {
-      active = true;
-    }
-  };
+            currentX = e.touches[0].clientX - initialX;
+            currentY = e.touches[0].clientY - initialY;
 
-  const onTouchMove = e => {
-    console.log("touch move");
-    if (active) {
-      e.preventDefault();
+            xOffset = currentX;
+            yOffset = currentY;
 
-      currentX = e.touches[0].clientX - initialX;
-      currentY = e.touches[0].clientY - initialY;
+            setTranslate(currentX, currentY, dragItem);
+        }
+    };
 
-      xOffset = currentX;
-      yOffset = currentY;
+    const setTranslate = (xPos, yPos, el) => {
 
-      setTranslate(currentX, currentY, dragItem);
-    }
-  };
+       // el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+       el.style.left = xPos + 'px';
+       el.style.top = yPos + 'px';
+ 
+    };
 
-  const setTranslate = (xPos, yPos, el) => {
-    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-  };
-
-  return (
-    <div
-      id="item"
-      ref={draggableItemRef}
-      style={{
-        top: props.idea.style.top + "px",
-        left: props.idea.style.left + "px,",
-        maxWidth: "220px"
-      }}
-    >
-      {/*alert(props.idea.style.top)*/}
-      <InputForm idea={props.idea} />
-      <InputMenu
-        idea={props.idea}
-        persistIdea={props.persistIdea}
-        deleteIdea={props.deleteIdea}
-        updateIdea={props.updateIdea}
-      />
-    </div>
-  );
+    return (
+        <div
+            id='item'
+            ref={draggableItemRef}
+        >
+            <InputForm idea={props.idea} style={{top:'10px'}}/>
+            <InputMenu
+                idea={props.idea}
+                persistIdea={props.persistIdea}
+                deleteIdea={props.deleteIdea}
+                updateIdea={props.updateIdea}
+            />
+        </div>
+    );
 };
 
 export default DraggableItem;

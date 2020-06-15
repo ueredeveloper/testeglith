@@ -8,14 +8,13 @@ import "./style.css";
 
 const App = () => {
   const [ideas, setIdea] = useState([
-    {
+   {
       id: 0,
       content: "New Idea",
       style: {
-        width: "220",
-        height: "100",
-        top: "5",
-        left: "5"
+        left: "200",
+        top: "200",
+
       }
     }
   ]);
@@ -46,7 +45,7 @@ const App = () => {
   };
 
   return (
-    <>
+     <div id='container'>
       {ideas.map((idea, i) => (
         <DraggableItem
           key={i}
@@ -56,7 +55,7 @@ const App = () => {
           updateIdea={updateIdea}
         />
       ))}
-    </>
+    </div>
   );
 };
 
