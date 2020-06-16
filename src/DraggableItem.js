@@ -77,7 +77,7 @@ const DraggableItem = props => {
 
         updateIdea(currentX, currentY);
       
-      
+      document.html.classList.remove('overflow')
       document.body.classList.remove('overflow')
     };
 
@@ -98,7 +98,8 @@ const DraggableItem = props => {
         initialX = e.touches[0].clientX - xOffset;
         initialY = e.touches[0].clientY - yOffset;
       
-      document.body.classList.add('overflow');
+      document.html.classList.add('overflow');
+            document.body.classList.add('overflow');
 
         if (e.target === dragItem) {
             active = true;
@@ -110,7 +111,8 @@ const DraggableItem = props => {
         if (active) {
             e.preventDefault();
           
-            document.body.classList.add('overflow')
+             document.html.classList.add('overflow');
+            document.body.classList.add('overflow');
 
 
             currentX = e.touches[0].clientX - initialX;
