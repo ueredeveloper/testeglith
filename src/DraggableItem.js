@@ -6,147 +6,136 @@ import InputForm from "./InputForm";
 import "./index.css";
 
 const DraggableItem = props => {
-    const draggableItemRef = useRef(null);
+  const draggableItemRef = useRef(null);
 
-    var dragItem;
+  var dragItem;
 
-    var active = false;
-    var initialX;
-    var initialY;
-    var currentX;
-    var currentY;
+  var active = false;
+  var initialX;
+  var initialY;
+  var currentX;
+  var currentY;
 
-    var xOffset = props.idea.style.left;
-    var yOffset = props.idea.style.top;
+  var xOffset = props.idea.style.left;
+  var yOffset = props.idea.style.top;
 
-    useEffect(() => {
+  useEffect(() => {
+    if (!dragItem) {
+      console.log("inicialização da ideia");
+    }
+    dragItem = draggableItemRef.current;
 
-        if (!dragItem) {
-            console.log('inicialização da ideia')
-        }
-        dragItem = draggableItemRef.current;
+    setTranslate(props.idea.style.left, props.idea.style.top, dragItem);
 
-        setTranslate(props.idea.style.left, props.idea.style.top, dragItem);
+    document.addEventListener("touchstart", onTouchStart, false);
+    document.addEventListener("touchend", onDragEnd, false);
+    document.addEventListener("touchmove", onTouchMove, false);
 
-        document.addEventListener("touchstart", onTouchStart, false);
-        document.addEventListener("touchend", onDragEnd, false);
-        document.addEventListener("touchmove", onTouchMove, false);
+    document.addEventListener("mousedown", ev => {
+      onMouseDown(ev);
+    });
+    document.addEventListener("mousemove", ev => {
+      onMouseMove(ev);
+    });
+    window.addEventListener("mouseup", ev => {
+      onDragEnd(ev);
+    });
+  }, []);
 
-        document.addEventListener("mousedown", ev => { onMouseDown(ev); });
-        document.addEventListener("mousemove", ev => { onMouseMove(ev) });
-        window.addEventListener("mouseup", ev => { onDragEnd(ev) });
+  const onMouseDown = e => {
+    //console.log("mouse down ");
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
 
-    }, []);
+    xOffset = e.clientX - initialX;
+    yOffset = e.clientY - initialY;
 
-    const onMouseDown = e => {
-       //console.log("mouse down ");
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
+    if (e.target === dragItem) {
+      active = true;
+    }
+  };
 
-        xOffset = e.clientX - initialX;
-        yOffset = e.clientY - initialY;
+  const onMouseMove = e => {
+    //console.log('on m m')
+    if (active) {
+      e.preventDefault();
 
-        if (e.target === dragItem) {
-            active = true;
-        }
-    };
+      currentX = e.clientX - initialX;
+      currentY = e.clientY - initialY;
 
-    const onMouseMove = e => {
+      xOffset = currentX;
+      yOffset = currentY;
 
-        //console.log('on m m')
-        if (active) {
-            e.preventDefault();
+      setTranslate(currentX, currentY, dragItem);
+    }
+  };
 
-            currentX = e.clientX - initialX;
-            currentY = e.clientY - initialY;
+  const onDragEnd = () => {
+    // console.log(' m end ')
+    initialX = currentX;
+    initialY = currentY;
 
-            xOffset = currentX;
-            yOffset = currentY;
+    active = false;
 
-            setTranslate(currentX, currentY, dragItem);
-        }
-    };
+    updateIdea(currentX, currentY);
 
-    const onDragEnd = () => {
+    document.body.classList.remove("modal-overflow");
+  };
 
-       // console.log(' m end ')
-        initialX = currentX;
-        initialY = currentY;
+  const updateIdea = (curX, curY) => {
+    if (!(typeof curX === "undefined")) {
+      props.idea.style.left = curX;
+      props.idea.style.top = curY;
 
-        active = false;
+      props.updateIdea(props.idea);
+    }
+  };
 
-        updateIdea(currentX, currentY);
+  const onTouchStart = e => {
+    // console.log("touch start");
+    initialX = e.touches[0].clientX - xOffset;
+    initialY = e.touches[0].clientY - yOffset;
+
+    if (e.target === dragItem) {
+      active = true;
+    }
+  };
+
+  const onTouchMove = e => {
+    //console.log("touch move");
+    if (active) {
+      e.preventDefault();
+
       
-      document.html.classList.remove('overflow')
-      document.body.classList.remove('overflow')
-    };
+      document.body.classList.add("modal-overflow");
 
-    const updateIdea = (curX, curY) => {
+      currentX = e.touches[0].clientX - initialX;
+      currentY = e.touches[0].clientY - initialY;
 
-        if (! (typeof curX === 'undefined')){
-            props.idea.style.left = curX;
-            props.idea.style.top = curY;
-          
-            props.updateIdea(props.idea);
+      xOffset = currentX;
+      yOffset = currentY;
 
-        }
+      setTranslate(currentX, currentY, dragItem);
+    }
+  };
 
-    };
+  const setTranslate = (xPos, yPos, el) => {
+    // el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    el.style.left = xPos + "px";
+    el.style.top = yPos + "px";
+  };
 
-    const onTouchStart = e => {
-        // console.log("touch start");
-        initialX = e.touches[0].clientX - xOffset;
-        initialY = e.touches[0].clientY - yOffset;
-      
-      document.html.classList.add('overflow');
-            document.body.classList.add('overflow');
-
-        if (e.target === dragItem) {
-            active = true;
-        }
-    };
-
-    const onTouchMove = e => {
-        //console.log("touch move");
-        if (active) {
-            e.preventDefault();
-          
-             document.html.classList.add('overflow');
-            document.body.classList.add('overflow');
-
-
-            currentX = e.touches[0].clientX - initialX;
-            currentY = e.touches[0].clientY - initialY;
-
-            xOffset = currentX;
-            yOffset = currentY;
-
-            setTranslate(currentX, currentY, dragItem);
-        }
-    };
-
-    const setTranslate = (xPos, yPos, el) => {
-
-       // el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-       el.style.left = xPos + 'px';
-       el.style.top = yPos + 'px';
- 
-    };
-
-    return (
-        <div
-            id='item'
-            ref={draggableItemRef}
-        >
-            <InputForm idea={props.idea} style={{top:'10px'}}/>
-            <InputMenu
-                idea={props.idea}
-                persistIdea={props.persistIdea}
-                deleteIdea={props.deleteIdea}
-                updateIdea={props.updateIdea}
-            />
-        </div>
-    );
+  return (
+    <div id="item" ref={draggableItemRef}>
+      <InputForm idea={props.idea} style={{ top: "10px" }} />
+      <InputMenu
+        idea={props.idea}
+        persistIdea={props.persistIdea}
+        deleteIdea={props.deleteIdea}
+        updateIdea={props.updateIdea}
+      />
+    </div>
+  );
 };
 
 export default DraggableItem;
