@@ -91,7 +91,6 @@ const DraggableItem = props => {
 
         }
 
-      
     };
 
     const onTouchStart = e => {
