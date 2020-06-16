@@ -105,6 +105,9 @@ const DraggableItem = props => {
         //console.log("touch move");
         if (active) {
             e.preventDefault();
+          
+            dragItem.style = {overflow:'hidden'}
+
 
             currentX = e.touches[0].clientX - initialX;
             currentY = e.touches[0].clientY - initialY;
