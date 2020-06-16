@@ -76,6 +76,9 @@ const DraggableItem = props => {
         active = false;
 
         updateIdea(currentX, currentY);
+      
+      
+      document.body.classList.remove('overflow')
     };
 
     const updateIdea = (curX, curY) => {
@@ -106,7 +109,7 @@ const DraggableItem = props => {
         if (active) {
             e.preventDefault();
           
-            dragItem.style = {overflow:'hidden'}
+            document.body.classList.add('overflow')
 
 
             currentX = e.touches[0].clientX - initialX;
