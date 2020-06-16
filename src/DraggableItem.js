@@ -98,6 +98,8 @@ const DraggableItem = props => {
         // console.log("touch start");
         initialX = e.touches[0].clientX - xOffset;
         initialY = e.touches[0].clientY - yOffset;
+      
+      document.body.classList.add('overflow');
 
         if (e.target === dragItem) {
             active = true;
