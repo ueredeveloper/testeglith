@@ -49,6 +49,7 @@ const DraggableItem = props => {
 
     xOffset = e.clientX - initialX;
     yOffset = e.clientY - initialY;
+    
 
     if (e.target === dragItem) {
       active = true;
@@ -59,6 +60,8 @@ const DraggableItem = props => {
     //console.log('on m m')
     if (active) {
       e.preventDefault();
+      
+      document.body.classList.add("modal-overflow");
 
       currentX = e.clientX - initialX;
       currentY = e.clientY - initialY;
@@ -79,7 +82,7 @@ const DraggableItem = props => {
 
     updateIdea(currentX, currentY);
 
-    document.body.classList.remove("modal-overflow");
+   document.body.classList.remove("modal-overflow");
   };
 
   const updateIdea = (curX, curY) => {
@@ -107,7 +110,7 @@ const DraggableItem = props => {
       e.preventDefault();
 
       
-      document.body.classList.add("modal-overflow");
+     document.body.classList.add("modal-overflow");
 
       currentX = e.touches[0].clientX - initialX;
       currentY = e.touches[0].clientY - initialY;
