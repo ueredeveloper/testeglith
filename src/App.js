@@ -12,8 +12,8 @@ const App = () => {
       id: 0,
       content: "New Idea",
       style: {
-        left: "10",
-        top: "10",
+        left: "100",
+        top: "100",
       }
     }
   ]);

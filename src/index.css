@@ -24,7 +24,9 @@
 }
 
 .modal-overflow{
-  overflow:hidden;
-  height: 100%;
-  width: 100%;
+  overflow-x:hidden !important;
+  overflow-y:hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  overflow: hidden !important;
+  background-color:red;
 } 
