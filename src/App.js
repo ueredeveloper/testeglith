@@ -12,8 +12,8 @@ const App = () => {
       id: 0,
       content: "New Idea",
       style: {
-        left: "100",
-        top: "100",
+        left: "10",
+        top: "10",
       }
     }
   ]);
@@ -37,7 +37,7 @@ const App = () => {
     return event =>
       setIdea(
         ideas.map(i => {
-          if (i === idea) return { ...idea, value: event.target.value };
+          if (i === idea) return { i, [i.style.top] : idea.style.top};
           return i;
         })
       );
