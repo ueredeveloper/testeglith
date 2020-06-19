@@ -33,14 +33,22 @@ const App = () => {
   };
 
   const updateIdea = idea => {
+ 
+    let listIdeas = [...ideas];
+    
+    listIdeas.map(i => {
+      if(i.id===idea.id) return {i.style:{}}
+    }
+    /*
 
     return event =>
       setIdea(
-        ideas.map(i => {
+        ideap.map(x => {x.productType = "free"; return x})s.map(i => {
           if (i === idea) return { i, [i.style.top] : idea.style.top};
           return i;
         })
       );
+      */
   };
 
   return (
