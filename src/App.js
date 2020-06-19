@@ -37,8 +37,8 @@ const App = () => {
     let listIdeas = [...ideas];
     
     listIdeas.map(i => {
-      if(i.id===idea.id) return {[i.style:{}}
-    }
+      if(i.id===idea.id) return {[i.style]:{left:idea.left, top:idea.top}}
+    })
     /*
 
     return event =>
