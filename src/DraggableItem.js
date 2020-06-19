@@ -109,7 +109,6 @@ const DraggableItem = props => {
         updateIdea(currentX, currentY);
     };
 
-
     const updateIdea = (curX, curY) => {
 
         if (!(typeof curX === 'undefined')) {
