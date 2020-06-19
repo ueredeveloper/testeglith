@@ -7,8 +7,6 @@ import "./index.css";
 
 const DraggableItem = props => {
 
-    var i = 0;
-    
     const draggableItemRef = useRef(null);
 
     var active = false;
