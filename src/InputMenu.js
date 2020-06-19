@@ -27,7 +27,7 @@ const InputMenu = props => {
 
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
-    //console.log("handleClick inputMenu");
+    console.log(props.idea.id + ' style x y ' + props.idea.style.left + ' ' + props.idea.style.top);
   };
 
   const handleClose = e => {
@@ -40,31 +40,32 @@ const InputMenu = props => {
         persistIdea();
         break;
       case 5:
-        deleteIdea(props.idea.id);
+        deleteIdea(props.idea);
 
         break;
       default:
     }
   };
   const classes = useStyles();
+  /*
   const [value, setValue] = React.useState("Controlled");
 
   const handleChange = e => {
     //setValue(event.target.value);
     console.log("handle change " + e.target.value);
   };
+  */
 
-  const deleteIdea = id => {
-    props.deleteIdea(id);
+  const deleteIdea = idea => {
+    props.deleteIdea(idea);
   };
 
-   const persistIdea = () => {
+  const persistIdea = () => {
 
-    let positionX = parseInt( props.idea.style.left, 10) + 240;
-    let positionY =  parseInt(props.idea.style.top, 10) - 80;
+    let positionX = parseInt(props.idea.style.left, 10) + 240;
+    let positionY = parseInt(props.idea.style.top, 10) - 80;
 
-
-    console.log('persist idea x y ' + props.idea.style.left + ' ' + props.idea.style.top)
+   // console.log('persist idea x y ' + props.idea.style.left + ' ' + props.idea.style.top)
 
     let idea = {
       id: Math.floor(Math.random() * 10000),
@@ -72,13 +73,12 @@ const InputMenu = props => {
       style: {
         left: positionX,
         top: positionY
-       
+
       }
     };
 
     props.persistIdea(idea);
   };
-
 
   return (
     <div id="divMenu">

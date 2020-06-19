@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 //import InputDraggable from "./InputDraggable";
 //import InputDraggable from './teste/InputDraggable.js'
 //import InputDraggable from "./kipuraw3/InputDraggable.js";
@@ -7,52 +7,46 @@ import DraggableItem from "./DraggableItem";
 import "./index.css";
 
 const App = () => {
-  const [ideas, setIdea] = useState([
-   {
+  const [ideas, setIdeas] = useState([
+    {
       id: 0,
       content: "New Idea",
       style: {
-        left: "10",
-        top: "10",
+        left: "100",
+        top: "200",
       }
     }
   ]);
 
+  useEffect(() => {
+
+    console.log(ideas)
+
+  });
+
   const persistIdea = idea => {
-    setIdea([...ideas, idea]);
+    setIdeas([...ideas, idea]);
   };
 
-  const deleteIdea = id => {
+  const updateIdea = (curX, curY, idea) => {
+    setIdeas(ideas.map(i => {
+      if (i.id === idea.id) {
+        i = { ...idea, style: { left: curX, top: curY } };
+      }
+      return i;
+    }))
+  };
+
+  const deleteIdea = idea => {
     //id=0 - nao deletar o primeiro quadro
-    if (id !== 0)
-      setIdea([
-        ...ideas.filter(function(value, index, arr) {
-          return value.id !== id;
-        })
-      ]);
-  };
+    if (idea.id !== 0) {
+      setIdeas(ideas.filter((i) => i !== idea));
+    }
 
-  const updateIdea = idea => {
- 
-    let listIdeas = [...ideas];
-    
-    listIdeas.map(i => {
-      if(i.id===idea.id) return {[i.style]:{left:idea.left, top:idea.top}}
-    })
-    /*
-
-    return event =>
-      setIdea(
-        ideap.map(x => {x.productType = "free"; return x})s.map(i => {
-          if (i === idea) return { i, [i.style.top] : idea.style.top};
-          return i;
-        })
-      );
-      */
   };
 
   return (
-     <div id='container'>
+    <div id='container'>
       {ideas.map((idea, i) => (
         <DraggableItem
           key={i}
@@ -67,3 +61,4 @@ const App = () => {
 };
 
 export default App;
+
